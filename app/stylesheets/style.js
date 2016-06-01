@@ -77,5 +77,16 @@ var tripBar = {
 	float: "left"
 }
 
+// Home Styles
 
-export { search, trips, searchButton, searchBox, searchContainer, tripDisplay, likes, tripBar };
+var home = {
+	maxWidth: 900,
+	marginLeft: 'auto',
+	marginRight: 'auto',
+	padding: '20px',
+	paddingLeft: '20px',
+	paddingRight: '20px'
+}
+
+
+export { search, trips, searchButton, searchBox, searchContainer, tripDisplay, likes, tripBar, home };
