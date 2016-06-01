@@ -344,6 +344,10 @@ var _TripList = require('./TripList');
 
 var _TripList2 = _interopRequireDefault(_TripList);
 
+var _UserTripStore = require('../stores/UserTripStore');
+
+var _UserTripStore2 = _interopRequireDefault(_UserTripStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -369,10 +373,13 @@ var trips = {
 var UserTripsView = function (_React$Component) {
   _inherits(UserTripsView, _React$Component);
 
-  function UserTripsView() {
+  function UserTripsView(props) {
     _classCallCheck(this, UserTripsView);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserTripsView).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserTripsView).call(this, props));
+
+    _this.state = _UserTripStore2.default.getState();
+    return _this;
   }
 
   _createClass(UserTripsView, [{
@@ -384,11 +391,9 @@ var UserTripsView = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'trips', style: trips },
-          _react2.default.createElement(_TripList2.default, { likes: '829', start: 'Tokyo', end: 'Koyoto' }),
-          _react2.default.createElement(_TripList2.default, { likes: '429', start: 'Tokyo', end: 'Shizuoka' }),
-          _react2.default.createElement(_TripList2.default, { likes: '225', start: 'Tokyo', end: 'Akita' }),
-          _react2.default.createElement(_TripList2.default, { likes: '211', start: 'Tokyo', end: 'Matsumoto' }),
-          _react2.default.createElement(_TripList2.default, { likes: '120', start: 'Tokyo', end: 'Fukoka' })
+          this.state.trips.map(function (trip, indx) {
+            return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip });
+          })
         )
       );
     }
@@ -399,7 +404,7 @@ var UserTripsView = function (_React$Component) {
 
 exports.default = UserTripsView;
 
-},{"./TripList":6,"react":"react"}],8:[function(require,module,exports){
+},{"../stores/UserTripStore":11,"./TripList":6,"react":"react"}],8:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -432,7 +437,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _routes2.default
 ), document.getElementById('app'));
 
-},{"./routes":9,"history/lib/createBrowserHistory":19,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
+},{"./routes":9,"history/lib/createBrowserHistory":20,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -473,15 +478,19 @@ var _AllTripsStore = require('./stores/AllTripsStore');
 
 var _AllTripsStore2 = _interopRequireDefault(_AllTripsStore);
 
+var _UserTripStore = require('./stores/UserTripStore');
+
+var _UserTripStore2 = _interopRequireDefault(_UserTripStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { component: _App2.default },
-  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _AllTripsView2.default })
+  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _UserTripView2.default })
 );
 
-},{"./components/AllTripsView":2,"./components/App":3,"./components/Home":4,"./components/SearchBar":5,"./components/TripList":6,"./components/UserTripView":7,"./stores/AllTripsStore":10,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+},{"./components/AllTripsView":2,"./components/App":3,"./components/Home":4,"./components/SearchBar":5,"./components/TripList":6,"./components/UserTripView":7,"./stores/AllTripsStore":10,"./stores/UserTripStore":11,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -505,6 +514,29 @@ var AllTripsStore = function AllTripsStore() {
 exports.default = _alt2.default.createStore(AllTripsStore);
 
 },{"../alt":1}],11:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _alt = require("../alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var UserTripsStore = function UserTripsStore() {
+	_classCallCheck(this, UserTripsStore);
+
+	this.trips = [{ title: "Ultimate Japan Hike", user: "megan", start: "Tokyo", end: "Kyoto", likes: 32918 }, { title: "Handgliding Through South Japan", user: "megan", start: "Tokyo", end: "Kyoto", likes: 28074 }, { title: "Swimming With The Sharks", user: "megan", start: "Shizouka", end: "Tokyo", likes: 24414 }, { title: "How To Meet Friends In Tokyo", user: "megan", start: "Tokyo", end: "Akita", likes: 28074 }, { title: "The Holy Path To Japan's Best Temples", user: "megan", start: "Tokyo", end: "Matsumoto", likes: 22214 }, { title: "How To Ramen Like A Pro", user: "megan", start: "Tokyo", end: "Fukoka", likes: 19087 }, { title: "Getting Lost In Upper Japan", user: "megan", start: "Tokyo", end: "Tokyo", likes: 17762 }, { title: "Best View of Mt Fuji", user: "megan", start: "Tokyo", end: "Shizouka", likes: 13304 }, { title: "Izakaa And Where To Go", user: "megan", start: "Tokyo", end: "Kyoto", likes: 10098 }, { title: "Top Ten Parks", user: "megan", start: "Tokyo", end: "Akita", likes: 9003 }, { title: "Hiking Through Northern Japan", user: "megan", start: "Tokyo", end: "Fukoka", likes: 8331 }, { title: "What to Do In Kyoto", user: "megan", start: "Kyoto", end: "Kyoto", likes: 4042 }];
+};
+
+exports.default = _alt2.default.createStore(UserTripsStore);
+
+},{"../alt":1}],12:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -600,7 +632,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":12,"./lib/keys.js":13}],12:[function(require,module,exports){
+},{"./lib/is_arguments.js":13,"./lib/keys.js":14}],13:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -622,7 +654,7 @@ function unsupported(object){
     false;
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -633,7 +665,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -665,7 +697,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -692,7 +724,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -764,7 +796,7 @@ function readState(key) {
 }
 }).call(this,require('_process'))
 
-},{"_process":28,"warning":29}],17:[function(require,module,exports){
+},{"_process":29,"warning":30}],18:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -845,13 +877,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1033,7 +1065,7 @@ exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./Actions":14,"./DOMStateStorage":16,"./DOMUtils":17,"./ExecutionEnvironment":18,"./createDOMHistory":20,"./parsePath":25,"_process":28,"invariant":27}],20:[function(require,module,exports){
+},{"./Actions":15,"./DOMStateStorage":17,"./DOMUtils":18,"./ExecutionEnvironment":19,"./createDOMHistory":21,"./parsePath":26,"_process":29,"invariant":28}],21:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1077,7 +1109,7 @@ exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./DOMUtils":17,"./ExecutionEnvironment":18,"./createHistory":21,"_process":28,"invariant":27}],21:[function(require,module,exports){
+},{"./DOMUtils":18,"./ExecutionEnvironment":19,"./createHistory":22,"_process":29,"invariant":28}],22:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1369,7 +1401,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":14,"./AsyncUtils":15,"./createLocation":22,"./deprecate":23,"./parsePath":25,"./runTransitionHook":26,"deep-equal":11}],22:[function(require,module,exports){
+},{"./Actions":15,"./AsyncUtils":16,"./createLocation":23,"./deprecate":24,"./parsePath":26,"./runTransitionHook":27,"deep-equal":12}],23:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1424,7 +1456,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":14,"./parsePath":25}],23:[function(require,module,exports){
+},{"./Actions":15,"./parsePath":26}],24:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -1440,7 +1472,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -1454,7 +1486,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1502,7 +1534,7 @@ exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./extractPath":24,"_process":28,"warning":29}],26:[function(require,module,exports){
+},{"./extractPath":25,"_process":29,"warning":30}],27:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1530,7 +1562,7 @@ exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"_process":28,"warning":29}],27:[function(require,module,exports){
+},{"_process":29,"warning":30}],28:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -1586,7 +1618,7 @@ module.exports = invariant;
 
 }).call(this,require('_process'))
 
-},{"_process":28}],28:[function(require,module,exports){
+},{"_process":29}],29:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1682,7 +1714,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -1747,7 +1779,7 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 
-},{"_process":28}]},{},[8])
+},{"_process":29}]},{},[8])
 
 
 //# sourceMappingURL=bundle.js.map

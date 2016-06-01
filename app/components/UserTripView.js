@@ -1,5 +1,8 @@
 import React from 'react';
 import TripList from './TripList';
+import UserTripsStore from '../stores/UserTripStore'
+
+
 var search = {
 	height: "200px",
 	width: "1000px",
@@ -15,15 +18,18 @@ var trips = {
 }
 
 class UserTripsView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = UserTripsStore.getState();
+  }
   render() {
     return (
     	<div className='all-trips-view' style={search}>
     		<div className="trips" style={trips}>
-    			<TripList likes="829"  start="Tokyo" end="Koyoto" />
-    			<TripList likes="429" start="Tokyo" end="Shizuoka" />
-    			<TripList likes="225" start="Tokyo" end="Akita" />
-    			<TripList likes="211" start="Tokyo" end="Matsumoto" />
-    			<TripList likes="120" start="Tokyo" end="Fukoka" />
+        { this.state.trips.map((trip, indx) =>
+    			<TripList key={indx} trip={trip}/>
+          )
+        }
     		</div>
       </div>
     );
