@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import TripList from './TripList';
-import AllTripsStore from '../stores/AllTripsStore'
-import { search, trips } from '../stylesheets/style'
+import AllTripsStore from '../stores/AllTripsStore';
+import { search, trips } from '../stylesheets/style';
 
 class AllTripsView extends React.Component {
 	constructor(props) {

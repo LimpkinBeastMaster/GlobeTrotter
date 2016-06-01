@@ -1,34 +1,5 @@
 import React from 'react';
-
-var tripDisplay = {
-	fontSize: "22px", 
-	height: "60px",
-	width: "950px",
-	marginLeft: "auto",
-	marginRight: "auto",
-	marginTop: "10px",
-	marginBottom: "10px"
-}
-
-var likes = {
-	height: "50px",
-	width: "100px",
-	padding: "5px",
-	marginTop: "5px",
-	marginBottom: "5px",
-	marginRight: "10px",
-	borderStyle: "solid",	
-	float: "left"
-}
-
-var tripBar = {
-	fontSize: "18px", 
-	height: "50px",
-	width: "800px",
-	marginTop: "5px",
-	marginBottom: "5px",
-	float: "left"
-}
+import { tripDisplay, likes, tripBar } from '../stylesheets/style';
 
 var TripList = (props) => (
 

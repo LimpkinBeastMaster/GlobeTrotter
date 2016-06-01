@@ -181,141 +181,85 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 },{"react":"react"}],5:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _style = require('../stylesheets/style');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var searchButton = {
-	height: "50px",
-	width: "150px",
-	marginRight: "20px",
-	float: "left"
-};
-
-var searchBox = {
-	width: "1000px",
-	marginTop: "200px",
-	marginLeft: "auto",
-	marginRight: "auto"
-};
-
-var searchContainer = {
-	width: "800px",
-	boxSizing: "border-box",
-	border: "2px solid #ccc",
-	borderRadius: "4px",
-	fontSize: "16px",
-	backgroundColor: "white",
-	backgroundImage: "url('/img/searchicon.png')",
-	backgroundSize: "27px",
-	backgroundPosition: "10px 10px",
-	backgroundRepeat: "no-repeat",
-	padding: "12px 20px 12px 40px",
-	transition: "width 0.4s ease-in-out",
-	float: "left"
-};
 
 var SearchBar = function SearchBar(props) {
 	return _react2.default.createElement(
-		"div",
-		{ className: "search-box", style: searchBox },
+		'div',
+		{ className: 'search-box', style: _style.searchBox },
 		_react2.default.createElement(
-			"button",
+			'button',
 			{
-				className: "btn btn-primary dropdown-toggle",
-				type: "button",
-				"data-toggle": "dropdown",
-				style: searchButton },
-			"Location",
-			_react2.default.createElement("span", { className: "carat" })
+				className: 'btn btn-primary dropdown-toggle',
+				type: 'button',
+				'data-toggle': 'dropdown',
+				style: _style.searchButton },
+			'Location',
+			_react2.default.createElement('span', { className: 'carat' })
 		),
-		_react2.default.createElement("input", {
-			style: searchContainer,
-			type: "text",
-			name: "location-search",
-			placeholder: "Find your next trip.." })
+		_react2.default.createElement('input', {
+			style: _style.searchContainer,
+			type: 'text',
+			name: 'location-search',
+			placeholder: 'Find your next trip..' })
 	);
 };
 
 exports.default = SearchBar;
 
-},{"react":"react"}],6:[function(require,module,exports){
-"use strict";
+},{"../stylesheets/style":14,"react":"react"}],6:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _style = require('../stylesheets/style');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var tripDisplay = {
-	fontSize: "22px",
-	height: "60px",
-	width: "950px",
-	marginLeft: "auto",
-	marginRight: "auto",
-	marginTop: "10px",
-	marginBottom: "10px"
-};
-
-var likes = {
-	height: "50px",
-	width: "100px",
-	padding: "5px",
-	marginTop: "5px",
-	marginBottom: "5px",
-	marginRight: "10px",
-	borderStyle: "solid",
-	float: "left"
-};
-
-var tripBar = {
-	fontSize: "18px",
-	height: "50px",
-	width: "800px",
-	marginTop: "5px",
-	marginBottom: "5px",
-	float: "left"
-};
-
 var TripList = function TripList(props) {
-	return _react2.default.createElement(
-		"div",
-		{ className: "trip-list", style: tripDisplay },
-		_react2.default.createElement(
-			"div",
-			{ className: "likes", style: likes },
-			"+",
-			props.trip.likes
-		),
-		_react2.default.createElement(
-			"button",
-			{
-				className: "btn btn-primary",
-				type: "button",
-				"data-toggle": "dropdown",
-				style: tripBar },
-			props.trip.title,
-			_react2.default.createElement("span", { className: "carat" })
-		)
-	);
+  return _react2.default.createElement(
+    'div',
+    { className: 'trip-list', style: _style.tripDisplay },
+    _react2.default.createElement(
+      'div',
+      { className: 'likes', style: _style.likes },
+      '+',
+      props.trip.likes
+    ),
+    _react2.default.createElement(
+      'button',
+      {
+        className: 'btn btn-primary',
+        type: 'button',
+        'data-toggle': 'dropdown',
+        style: _style.tripBar },
+      props.trip.title,
+      _react2.default.createElement('span', { className: 'carat' })
+    )
+  );
 };
 
 exports.default = TripList;
 
-},{"react":"react"}],7:[function(require,module,exports){
+},{"../stylesheets/style":14,"react":"react"}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -530,6 +474,7 @@ exports.default = userData;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+// View Styles
 var search = {
 	height: "200px",
 	width: "1000px",
@@ -544,8 +489,78 @@ var trips = {
 	marginRight: "auto"
 };
 
+// Search Bar Styles
+
+var searchButton = {
+	height: "50px",
+	width: "150px",
+	marginRight: "20px",
+	float: "left"
+};
+
+var searchBox = {
+	width: "1000px",
+	marginTop: "200px",
+	marginLeft: "auto",
+	marginRight: "auto"
+};
+
+var searchContainer = {
+	width: "800px",
+	boxSizing: "border-box",
+	border: "2px solid #ccc",
+	borderRadius: "4px",
+	fontSize: "16px",
+	backgroundColor: "white",
+	backgroundImage: "url('/img/searchicon.png')",
+	backgroundSize: "27px",
+	backgroundPosition: "10px 10px",
+	backgroundRepeat: "no-repeat",
+	padding: "12px 20px 12px 40px",
+	transition: "width 0.4s ease-in-out",
+	float: "left"
+};
+
+// TripList Styles
+
+var tripDisplay = {
+	fontSize: "22px",
+	height: "60px",
+	width: "950px",
+	marginLeft: "auto",
+	marginRight: "auto",
+	marginTop: "10px",
+	marginBottom: "10px"
+};
+
+var likes = {
+	height: "50px",
+	width: "100px",
+	padding: "5px",
+	marginTop: "5px",
+	marginBottom: "5px",
+	marginRight: "10px",
+	borderStyle: "solid",
+	float: "left"
+};
+
+var tripBar = {
+	fontSize: "18px",
+	height: "50px",
+	width: "800px",
+	marginTop: "5px",
+	marginBottom: "5px",
+	float: "left"
+};
+
 exports.search = search;
 exports.trips = trips;
+exports.searchButton = searchButton;
+exports.searchBox = searchBox;
+exports.searchContainer = searchContainer;
+exports.tripDisplay = tripDisplay;
+exports.likes = likes;
+exports.tripBar = tripBar;
 
 },{}],15:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
