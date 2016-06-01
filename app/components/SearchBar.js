@@ -26,7 +26,6 @@ var searchContainer = {
   backgroundPosition: "10px 10px", 
   backgroundRepeat: "no-repeat",
   padding: "12px 20px 12px 40px",
-  webkitTransition: "width 0.4s ease-in-out",
   transition: "width 0.4s ease-in-out",
   float: "left"
 }
@@ -39,7 +38,7 @@ var SearchBar = (props) => (
 			data-toggle="dropdown" 
 			style={searchButton}>
 			Location
-			<span class="carat">
+			<span className="carat">
 			</span>
 		</button>
 	  <input 

@@ -3,7 +3,7 @@ import React from 'react';
 var tripDisplay = {
 	fontSize: "22px", 
 	height: "60px",
-	width: "900px",
+	width: "950px",
 	marginLeft: "auto",
 	marginRight: "auto",
 	marginTop: "10px",
@@ -12,7 +12,7 @@ var tripDisplay = {
 
 var likes = {
 	height: "50px",
-	width: "65px",
+	width: "100px",
 	padding: "5px",
 	marginTop: "5px",
 	marginBottom: "5px",
@@ -24,7 +24,7 @@ var likes = {
 var tripBar = {
 	fontSize: "18px", 
 	height: "50px",
-	width: "820px",
+	width: "800px",
 	marginTop: "5px",
 	marginBottom: "5px",
 	float: "left"
@@ -34,15 +34,15 @@ var TripList = (props) => (
 
 	<div className="trip-list" style={tripDisplay}>
 		<div className="likes" style={likes}>
-			+{props.likes}
+			+{props.trip.likes}
 		</div>
 		<button 
   		className='btn btn-primary' 
   		type="button" 
   		data-toggle="dropdown" 
   		style={tripBar}>
-  		From {props.start} To {props.end}
-  		<span class="carat">
+  		{props.trip.title} 
+  		<span className="carat">
   		</span>
   	</button>
 	</div>

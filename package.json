@@ -4,7 +4,7 @@
   "description": "Travel App",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "node server.js",
     "watch": "nodemon server.js"
   },
   "babel": {

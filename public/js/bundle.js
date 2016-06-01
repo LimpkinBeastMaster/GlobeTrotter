@@ -5,6 +5,108 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _alt = require('alt');
+
+var _alt2 = _interopRequireDefault(_alt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = new _alt2.default();
+
+},{"alt":"alt"}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _SearchBar = require('./SearchBar');
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
+var _TripList = require('./TripList');
+
+var _TripList2 = _interopRequireDefault(_TripList);
+
+var _AllTripsStore = require('../stores/AllTripsStore');
+
+var _AllTripsStore2 = _interopRequireDefault(_AllTripsStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var search = {
+  height: "200px",
+  width: "1000px",
+  marginLeft: "auto",
+  marginRight: "auto"
+};
+
+var trips = {
+  width: "1000px",
+  clear: "both",
+  marginLeft: "auto",
+  marginRight: "auto"
+};
+
+var AllTripsView = function (_React$Component) {
+  _inherits(AllTripsView, _React$Component);
+
+  function AllTripsView(props) {
+    _classCallCheck(this, AllTripsView);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AllTripsView).call(this, props));
+
+    _this.state = _AllTripsStore2.default.getState();
+    return _this;
+  }
+
+  _createClass(AllTripsView, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'all-trips-view', style: search },
+        _react2.default.createElement(
+          'div',
+          { className: 'search-bar' },
+          _react2.default.createElement(_SearchBar2.default, null)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'trips', style: trips },
+          this.state.trips.map(function (trip, indx) {
+            return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip });
+          })
+        )
+      );
+    }
+  }]);
+
+  return AllTripsView;
+}(_react2.default.Component);
+
+exports.default = AllTripsView;
+
+},{"../stores/AllTripsStore":10,"./SearchBar":5,"./TripList":6,"react":"react"}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -44,7 +146,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"react":"react"}],2:[function(require,module,exports){
+},{"react":"react"}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -90,7 +192,214 @@ var Home = function (_React$Component) {
 
 exports.default = Home;
 
-},{"react":"react"}],3:[function(require,module,exports){
+},{"react":"react"}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var searchButton = {
+	height: "50px",
+	width: "150px",
+	marginRight: "20px",
+	float: "left"
+};
+
+var searchBox = {
+	width: "1000px",
+	marginTop: "200px",
+	marginLeft: "auto",
+	marginRight: "auto"
+};
+
+var searchContainer = {
+	width: "800px",
+	boxSizing: "border-box",
+	border: "2px solid #ccc",
+	borderRadius: "4px",
+	fontSize: "16px",
+	backgroundColor: "white",
+	backgroundImage: "url('/img/searchicon.png')",
+	backgroundSize: "27px",
+	backgroundPosition: "10px 10px",
+	backgroundRepeat: "no-repeat",
+	padding: "12px 20px 12px 40px",
+	transition: "width 0.4s ease-in-out",
+	float: "left"
+};
+
+var SearchBar = function SearchBar(props) {
+	return _react2.default.createElement(
+		"div",
+		{ className: "search-box", style: searchBox },
+		_react2.default.createElement(
+			"button",
+			{
+				className: "btn btn-primary dropdown-toggle",
+				type: "button",
+				"data-toggle": "dropdown",
+				style: searchButton },
+			"Location",
+			_react2.default.createElement("span", { className: "carat" })
+		),
+		_react2.default.createElement("input", {
+			style: searchContainer,
+			type: "text",
+			name: "location-search",
+			placeholder: "Find your next trip.." })
+	);
+};
+
+exports.default = SearchBar;
+
+},{"react":"react"}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var tripDisplay = {
+	fontSize: "22px",
+	height: "60px",
+	width: "950px",
+	marginLeft: "auto",
+	marginRight: "auto",
+	marginTop: "10px",
+	marginBottom: "10px"
+};
+
+var likes = {
+	height: "50px",
+	width: "100px",
+	padding: "5px",
+	marginTop: "5px",
+	marginBottom: "5px",
+	marginRight: "10px",
+	borderStyle: "solid",
+	float: "left"
+};
+
+var tripBar = {
+	fontSize: "18px",
+	height: "50px",
+	width: "800px",
+	marginTop: "5px",
+	marginBottom: "5px",
+	float: "left"
+};
+
+var TripList = function TripList(props) {
+	return _react2.default.createElement(
+		"div",
+		{ className: "trip-list", style: tripDisplay },
+		_react2.default.createElement(
+			"div",
+			{ className: "likes", style: likes },
+			"+",
+			props.trip.likes
+		),
+		_react2.default.createElement(
+			"button",
+			{
+				className: "btn btn-primary",
+				type: "button",
+				"data-toggle": "dropdown",
+				style: tripBar },
+			props.trip.title,
+			_react2.default.createElement("span", { className: "carat" })
+		)
+	);
+};
+
+exports.default = TripList;
+
+},{"react":"react"}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _TripList = require('./TripList');
+
+var _TripList2 = _interopRequireDefault(_TripList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var search = {
+  height: "200px",
+  width: "1000px",
+  marginLeft: "auto",
+  marginRight: "auto"
+};
+
+var trips = {
+  width: "1000px",
+  clear: "both",
+  marginLeft: "auto",
+  marginRight: "auto"
+};
+
+var UserTripsView = function (_React$Component) {
+  _inherits(UserTripsView, _React$Component);
+
+  function UserTripsView() {
+    _classCallCheck(this, UserTripsView);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserTripsView).apply(this, arguments));
+  }
+
+  _createClass(UserTripsView, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'all-trips-view', style: search },
+        _react2.default.createElement(
+          'div',
+          { className: 'trips', style: trips },
+          _react2.default.createElement(_TripList2.default, { likes: '829', start: 'Tokyo', end: 'Koyoto' }),
+          _react2.default.createElement(_TripList2.default, { likes: '429', start: 'Tokyo', end: 'Shizuoka' }),
+          _react2.default.createElement(_TripList2.default, { likes: '225', start: 'Tokyo', end: 'Akita' }),
+          _react2.default.createElement(_TripList2.default, { likes: '211', start: 'Tokyo', end: 'Matsumoto' }),
+          _react2.default.createElement(_TripList2.default, { likes: '120', start: 'Tokyo', end: 'Fukoka' })
+        )
+      );
+    }
+  }]);
+
+  return UserTripsView;
+}(_react2.default.Component);
+
+exports.default = UserTripsView;
+
+},{"./TripList":6,"react":"react"}],8:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -123,7 +432,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _routes2.default
 ), document.getElementById('app'));
 
-},{"./routes":4,"history/lib/createBrowserHistory":13,"react":"react","react-dom":"react-dom","react-router":"react-router"}],4:[function(require,module,exports){
+},{"./routes":9,"history/lib/createBrowserHistory":19,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -144,15 +453,58 @@ var _Home = require('./components/Home');
 
 var _Home2 = _interopRequireDefault(_Home);
 
+var _AllTripsView = require('./components/AllTripsView');
+
+var _AllTripsView2 = _interopRequireDefault(_AllTripsView);
+
+var _UserTripView = require('./components/UserTripView');
+
+var _UserTripView2 = _interopRequireDefault(_UserTripView);
+
+var _SearchBar = require('./components/SearchBar');
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
+var _TripList = require('./components/TripList');
+
+var _TripList2 = _interopRequireDefault(_TripList);
+
+var _AllTripsStore = require('./stores/AllTripsStore');
+
+var _AllTripsStore2 = _interopRequireDefault(_AllTripsStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { component: _App2.default },
-  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default })
+  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _AllTripsView2.default })
 );
 
-},{"./components/App":1,"./components/Home":2,"react":"react","react-router":"react-router"}],5:[function(require,module,exports){
+},{"./components/AllTripsView":2,"./components/App":3,"./components/Home":4,"./components/SearchBar":5,"./components/TripList":6,"./components/UserTripView":7,"./stores/AllTripsStore":10,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _alt = require("../alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AllTripsStore = function AllTripsStore() {
+	_classCallCheck(this, AllTripsStore);
+
+	this.trips = [{ title: "Ultimate Japan Hike", user: "adam", start: "Tokyo", end: "Kyoto", likes: 32918 }, { title: "Handgliding Through South Japan", user: "ben", start: "Tokyo", end: "Kyoto", likes: 28074 }, { title: "Swimming With The Sharks", user: "jesus", start: "Shizouka", end: "Tokyo", likes: 24414 }, { title: "How To Meet Friends In Tokyo", user: "tim", start: "Tokyo", end: "Akita", likes: 28074 }, { title: "The Holy Path To Japan's Best Temples", user: "bogart", start: "Tokyo", end: "Matsumoto", likes: 22214 }, { title: "How To Ramen Like A Pro", user: "albert", start: "Tokyo", end: "Fukoka", likes: 19087 }, { title: "Getting Lost In Upper Japan", user: "megan", start: "Tokyo", end: "Tokyo", likes: 17762 }, { title: "Best View of Mt Fuji", user: "fran", start: "Tokyo", end: "Shizouka", likes: 13304 }, { title: "Izakaa And Where To Go", user: "sarah", start: "Tokyo", end: "Kyoto", likes: 10098 }, { title: "Top Ten Parks", user: "robert", start: "Tokyo", end: "Akita", likes: 9003 }, { title: "Hiking Through Northern Japan", user: "tim", start: "Tokyo", end: "Fukoka", likes: 8331 }, { title: "What to Do In Kyoto", user: "bob", start: "Kyoto", end: "Kyoto", likes: 4042 }];
+};
+
+exports.default = _alt2.default.createStore(AllTripsStore);
+
+},{"../alt":1}],11:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -248,7 +600,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":6,"./lib/keys.js":7}],6:[function(require,module,exports){
+},{"./lib/is_arguments.js":12,"./lib/keys.js":13}],12:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -270,7 +622,7 @@ function unsupported(object){
     false;
 };
 
-},{}],7:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -281,7 +633,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],8:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -313,7 +665,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],9:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -340,7 +692,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],10:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -412,7 +764,7 @@ function readState(key) {
 }
 }).call(this,require('_process'))
 
-},{"_process":22,"warning":23}],11:[function(require,module,exports){
+},{"_process":28,"warning":29}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -493,13 +845,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],12:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],13:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -681,7 +1033,7 @@ exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./Actions":8,"./DOMStateStorage":10,"./DOMUtils":11,"./ExecutionEnvironment":12,"./createDOMHistory":14,"./parsePath":19,"_process":22,"invariant":21}],14:[function(require,module,exports){
+},{"./Actions":14,"./DOMStateStorage":16,"./DOMUtils":17,"./ExecutionEnvironment":18,"./createDOMHistory":20,"./parsePath":25,"_process":28,"invariant":27}],20:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -725,7 +1077,7 @@ exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./DOMUtils":11,"./ExecutionEnvironment":12,"./createHistory":15,"_process":22,"invariant":21}],15:[function(require,module,exports){
+},{"./DOMUtils":17,"./ExecutionEnvironment":18,"./createHistory":21,"_process":28,"invariant":27}],21:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1017,7 +1369,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":8,"./AsyncUtils":9,"./createLocation":16,"./deprecate":17,"./parsePath":19,"./runTransitionHook":20,"deep-equal":5}],16:[function(require,module,exports){
+},{"./Actions":14,"./AsyncUtils":15,"./createLocation":22,"./deprecate":23,"./parsePath":25,"./runTransitionHook":26,"deep-equal":11}],22:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1072,7 +1424,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":8,"./parsePath":19}],17:[function(require,module,exports){
+},{"./Actions":14,"./parsePath":25}],23:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -1088,7 +1440,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],18:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -1102,7 +1454,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],19:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1150,7 +1502,7 @@ exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./extractPath":18,"_process":22,"warning":23}],20:[function(require,module,exports){
+},{"./extractPath":24,"_process":28,"warning":29}],26:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1178,7 +1530,7 @@ exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"_process":22,"warning":23}],21:[function(require,module,exports){
+},{"_process":28,"warning":29}],27:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -1234,7 +1586,7 @@ module.exports = invariant;
 
 }).call(this,require('_process'))
 
-},{"_process":22}],22:[function(require,module,exports){
+},{"_process":28}],28:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1330,7 +1682,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],23:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -1395,7 +1747,7 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 
-},{"_process":22}]},{},[3])
+},{"_process":28}]},{},[8])
 
 
 //# sourceMappingURL=bundle.js.map
