@@ -8,7 +8,10 @@
     "watch": "nodemon server.js"
   },
   "babel": {
-    "presets": ["es2015", "react"]
+    "presets": [
+      "es2015",
+      "react"
+    ]
   },
   "author": "BeastMaster",
   "license": "ISC",
@@ -56,6 +59,7 @@
     "mysql": "^2.10.2",
     "path": "^0.12.7",
     "react": "^0.14.5",
+    "react-bootstrap": "^0.29.4",
     "react-dom": "^0.14.5",
     "react-redux": "^4.0.6",
     "request": "^2.65.0",

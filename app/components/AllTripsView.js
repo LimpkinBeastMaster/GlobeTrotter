@@ -2,20 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import TripList from './TripList';
 import AllTripsStore from '../stores/AllTripsStore'
-
-var search = {
-	height: "200px",
-	width: "1000px",
-	marginLeft: "auto",
-	marginRight: "auto"
-}
-
-var trips = {
-	width: "1000px",
-	clear: "both",
-	marginLeft: "auto",
-	marginRight: "auto"
-}
+import { search, trips } from '../stylesheets/style'
 
 class AllTripsView extends React.Component {
 	constructor(props) {
