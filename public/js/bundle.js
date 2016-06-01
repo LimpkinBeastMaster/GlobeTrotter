@@ -437,7 +437,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _routes2.default
 ), document.getElementById('app'));
 
-},{"./routes":9,"history/lib/createBrowserHistory":20,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
+},{"./routes":9,"history/lib/createBrowserHistory":22,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -466,40 +466,28 @@ var _UserTripView = require('./components/UserTripView');
 
 var _UserTripView2 = _interopRequireDefault(_UserTripView);
 
-var _SearchBar = require('./components/SearchBar');
-
-var _SearchBar2 = _interopRequireDefault(_SearchBar);
-
-var _TripList = require('./components/TripList');
-
-var _TripList2 = _interopRequireDefault(_TripList);
-
-var _AllTripsStore = require('./stores/AllTripsStore');
-
-var _AllTripsStore2 = _interopRequireDefault(_AllTripsStore);
-
-var _UserTripStore = require('./stores/UserTripStore');
-
-var _UserTripStore2 = _interopRequireDefault(_UserTripStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { component: _App2.default },
-  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _UserTripView2.default })
+  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _AllTripsView2.default })
 );
 
-},{"./components/AllTripsView":2,"./components/App":3,"./components/Home":4,"./components/SearchBar":5,"./components/TripList":6,"./components/UserTripView":7,"./stores/AllTripsStore":10,"./stores/UserTripStore":11,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
-"use strict";
+},{"./components/AllTripsView":2,"./components/App":3,"./components/Home":4,"./components/UserTripView":7,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _alt = require("../alt");
+var _alt = require('../alt');
 
 var _alt2 = _interopRequireDefault(_alt);
+
+var _allData = require('./data/allData');
+
+var _allData2 = _interopRequireDefault(_allData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -508,21 +496,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var AllTripsStore = function AllTripsStore() {
 	_classCallCheck(this, AllTripsStore);
 
-	this.trips = [{ title: "Ultimate Japan Hike", user: "adam", start: "Tokyo", end: "Kyoto", likes: 32918 }, { title: "Handgliding Through South Japan", user: "ben", start: "Tokyo", end: "Kyoto", likes: 28074 }, { title: "Swimming With The Sharks", user: "jesus", start: "Shizouka", end: "Tokyo", likes: 24414 }, { title: "How To Meet Friends In Tokyo", user: "tim", start: "Tokyo", end: "Akita", likes: 28074 }, { title: "The Holy Path To Japan's Best Temples", user: "bogart", start: "Tokyo", end: "Matsumoto", likes: 22214 }, { title: "How To Ramen Like A Pro", user: "albert", start: "Tokyo", end: "Fukoka", likes: 19087 }, { title: "Getting Lost In Upper Japan", user: "megan", start: "Tokyo", end: "Tokyo", likes: 17762 }, { title: "Best View of Mt Fuji", user: "fran", start: "Tokyo", end: "Shizouka", likes: 13304 }, { title: "Izakaa And Where To Go", user: "sarah", start: "Tokyo", end: "Kyoto", likes: 10098 }, { title: "Top Ten Parks", user: "robert", start: "Tokyo", end: "Akita", likes: 9003 }, { title: "Hiking Through Northern Japan", user: "tim", start: "Tokyo", end: "Fukoka", likes: 8331 }, { title: "What to Do In Kyoto", user: "bob", start: "Kyoto", end: "Kyoto", likes: 4042 }];
+	this.trips = _allData2.default;
 };
 
 exports.default = _alt2.default.createStore(AllTripsStore);
 
-},{"../alt":1}],11:[function(require,module,exports){
-"use strict";
+},{"../alt":1,"./data/allData":12}],11:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _alt = require("../alt");
+var _alt = require('../alt');
 
 var _alt2 = _interopRequireDefault(_alt);
+
+var _userData = require('./data/userData');
+
+var _userData2 = _interopRequireDefault(_userData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -531,12 +523,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var UserTripsStore = function UserTripsStore() {
 	_classCallCheck(this, UserTripsStore);
 
-	this.trips = [{ title: "Ultimate Japan Hike", user: "megan", start: "Tokyo", end: "Kyoto", likes: 32918 }, { title: "Handgliding Through South Japan", user: "megan", start: "Tokyo", end: "Kyoto", likes: 28074 }, { title: "Swimming With The Sharks", user: "megan", start: "Shizouka", end: "Tokyo", likes: 24414 }, { title: "How To Meet Friends In Tokyo", user: "megan", start: "Tokyo", end: "Akita", likes: 28074 }, { title: "The Holy Path To Japan's Best Temples", user: "megan", start: "Tokyo", end: "Matsumoto", likes: 22214 }, { title: "How To Ramen Like A Pro", user: "megan", start: "Tokyo", end: "Fukoka", likes: 19087 }, { title: "Getting Lost In Upper Japan", user: "megan", start: "Tokyo", end: "Tokyo", likes: 17762 }, { title: "Best View of Mt Fuji", user: "megan", start: "Tokyo", end: "Shizouka", likes: 13304 }, { title: "Izakaa And Where To Go", user: "megan", start: "Tokyo", end: "Kyoto", likes: 10098 }, { title: "Top Ten Parks", user: "megan", start: "Tokyo", end: "Akita", likes: 9003 }, { title: "Hiking Through Northern Japan", user: "megan", start: "Tokyo", end: "Fukoka", likes: 8331 }, { title: "What to Do In Kyoto", user: "megan", start: "Kyoto", end: "Kyoto", likes: 4042 }];
+	this.trips = _userData2.default;
 };
 
 exports.default = _alt2.default.createStore(UserTripsStore);
 
-},{"../alt":1}],12:[function(require,module,exports){
+},{"../alt":1,"./data/userData":13}],12:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var allData = [{ title: "Ultimate Japan Hike", user: "adam", start: "Tokyo", end: "Kyoto", likes: 32918 }, { title: "Handgliding Through South Japan", user: "ben", start: "Tokyo", end: "Kyoto", likes: 28074 }, { title: "Swimming With The Sharks", user: "jesus", start: "Shizouka", end: "Tokyo", likes: 24414 }, { title: "How To Meet Friends In Tokyo", user: "tim", start: "Tokyo", end: "Akita", likes: 28074 }, { title: "The Holy Path To Japan's Best Temples", user: "bogart", start: "Tokyo", end: "Matsumoto", likes: 22214 }, { title: "How To Ramen Like A Pro", user: "albert", start: "Tokyo", end: "Fukoka", likes: 19087 }, { title: "Getting Lost In Upper Japan", user: "megan", start: "Tokyo", end: "Tokyo", likes: 17762 }, { title: "Best View of Mt Fuji", user: "fran", start: "Tokyo", end: "Shizouka", likes: 13304 }, { title: "Izakaa And Where To Go", user: "sarah", start: "Tokyo", end: "Kyoto", likes: 10098 }, { title: "Top Ten Parks", user: "robert", start: "Tokyo", end: "Akita", likes: 9003 }, { title: "Hiking Through Northern Japan", user: "tim", start: "Tokyo", end: "Fukoka", likes: 8331 }, { title: "What to Do In Kyoto", user: "bob", start: "Kyoto", end: "Kyoto", likes: 4042 }];
+
+exports.default = allData;
+
+},{}],13:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+		value: true
+});
+var userData = [{ title: "Ultimate Japan Hike", user: "megan", start: "Tokyo", end: "Kyoto", likes: 32918 }, { title: "Handgliding Through South Japan", user: "megan", start: "Tokyo", end: "Kyoto", likes: 28074 }, { title: "Swimming With The Sharks", user: "megan", start: "Shizouka", end: "Tokyo", likes: 24414 }, { title: "How To Meet Friends In Tokyo", user: "megan", start: "Tokyo", end: "Akita", likes: 28074 }, { title: "The Holy Path To Japan's Best Temples", user: "megan", start: "Tokyo", end: "Matsumoto", likes: 22214 }, { title: "How To Ramen Like A Pro", user: "megan", start: "Tokyo", end: "Fukoka", likes: 19087 }, { title: "Getting Lost In Upper Japan", user: "megan", start: "Tokyo", end: "Tokyo", likes: 17762 }, { title: "Best View of Mt Fuji", user: "megan", start: "Tokyo", end: "Shizouka", likes: 13304 }, { title: "Izakaa And Where To Go", user: "megan", start: "Tokyo", end: "Kyoto", likes: 10098 }, { title: "Top Ten Parks", user: "megan", start: "Tokyo", end: "Akita", likes: 9003 }, { title: "Hiking Through Northern Japan", user: "megan", start: "Tokyo", end: "Fukoka", likes: 8331 }, { title: "What to Do In Kyoto", user: "megan", start: "Kyoto", end: "Kyoto", likes: 4042 }];
+
+exports.default = userData;
+
+},{}],14:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -632,7 +644,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":13,"./lib/keys.js":14}],13:[function(require,module,exports){
+},{"./lib/is_arguments.js":15,"./lib/keys.js":16}],15:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -654,7 +666,7 @@ function unsupported(object){
     false;
 };
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -665,7 +677,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -697,7 +709,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -724,7 +736,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -796,7 +808,7 @@ function readState(key) {
 }
 }).call(this,require('_process'))
 
-},{"_process":29,"warning":30}],18:[function(require,module,exports){
+},{"_process":31,"warning":32}],20:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -877,13 +889,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1065,7 +1077,7 @@ exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./Actions":15,"./DOMStateStorage":17,"./DOMUtils":18,"./ExecutionEnvironment":19,"./createDOMHistory":21,"./parsePath":26,"_process":29,"invariant":28}],21:[function(require,module,exports){
+},{"./Actions":17,"./DOMStateStorage":19,"./DOMUtils":20,"./ExecutionEnvironment":21,"./createDOMHistory":23,"./parsePath":28,"_process":31,"invariant":30}],23:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1109,7 +1121,7 @@ exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./DOMUtils":18,"./ExecutionEnvironment":19,"./createHistory":22,"_process":29,"invariant":28}],22:[function(require,module,exports){
+},{"./DOMUtils":20,"./ExecutionEnvironment":21,"./createHistory":24,"_process":31,"invariant":30}],24:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1401,7 +1413,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":15,"./AsyncUtils":16,"./createLocation":23,"./deprecate":24,"./parsePath":26,"./runTransitionHook":27,"deep-equal":12}],23:[function(require,module,exports){
+},{"./Actions":17,"./AsyncUtils":18,"./createLocation":25,"./deprecate":26,"./parsePath":28,"./runTransitionHook":29,"deep-equal":14}],25:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1456,7 +1468,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":15,"./parsePath":26}],24:[function(require,module,exports){
+},{"./Actions":17,"./parsePath":28}],26:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -1472,7 +1484,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -1486,7 +1498,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1534,7 +1546,7 @@ exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"./extractPath":25,"_process":29,"warning":30}],27:[function(require,module,exports){
+},{"./extractPath":27,"_process":31,"warning":32}],29:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1562,7 +1574,7 @@ exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
 
-},{"_process":29,"warning":30}],28:[function(require,module,exports){
+},{"_process":31,"warning":32}],30:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -1618,7 +1630,7 @@ module.exports = invariant;
 
 }).call(this,require('_process'))
 
-},{"_process":29}],29:[function(require,module,exports){
+},{"_process":31}],31:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1714,7 +1726,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -1779,7 +1791,7 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 
-},{"_process":29}]},{},[8])
+},{"_process":31}]},{},[8])
 
 
 //# sourceMappingURL=bundle.js.map
