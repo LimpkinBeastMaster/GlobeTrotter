@@ -11,6 +11,10 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
+var partials = require('express-partials');
+var cookieParser = require('cookie-parser'); 
+var engines = require('consolidate');
+
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -34,6 +38,34 @@ app.use(function(req, res) {
     }
   });
 });
+
+////////////////////////////////////////////////////////
+// app.use(cookieParser('shhhh, very secret'));
+// app.use(session({
+//   secret: 'shhh, it\'s a secret',
+//   resave: false,
+//   saveUninitialized: true
+// }));
+////////////////////////////////////////////////////////
+// app.get('/', util.checkUser, handler.renderIndex);
+// app.get('/create', util.checkUser, handler.renderIndex);
+////////////////////////////////////////////////////////
+// // login
+// app.get('/login', handler.loginUserForm);
+// app.post('/login', handler.loginUser);
+////////////////////////////////////////////////////////
+// // logout
+// app.get('/logout', handler.logoutUser);
+////////////////////////////////////////////////////////
+// // signup
+// app.get('/signup', handler.signupUserForm);
+// app.post('/signup', handler.signupUser);
+////////////////////////////////////////////////////////
+//app.get('/*', handler.navToLink);
+////////////////////////////////////////////////////////
+// module.exports = app;
+////////////////////////////////////////////////////////
+
 
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
