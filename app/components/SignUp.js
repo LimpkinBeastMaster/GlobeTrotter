@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import { home } from '../stylesheets/style';
 
-class Login extends React.Component {
+class SignUp extends React.Component {
 	constructor() {
 		super();
 		this.state = { 
@@ -15,18 +15,21 @@ class Login extends React.Component {
   render() {
     return (
     	<div className="home" style={home}>
-	    	<Jumbotron>
-	      <h1>TravelApp</h1>
-	      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sem nunc, scelerisque nec quam quis, fermentum suscipit orci.</p> 
-	      </Jumbotron>
 	      <form>
-	      	<FormGroup> 
-	      		<label className="sr-only">Username</label>
-	      		<input className='formControl' placeholder="Username" />
+	      	<FormGroup 
+	      		controlId="formControlsFirstName"> 
+	      		<ControlLabel>First Name</ControlLabel>
+	      		<FormControl type="text" placeholder="Enter First Name" />
 	      	</FormGroup>
-	      	<FormGroup>
-	      		<label className="sr-only">Password</label>
-	      		<input className='formControl' placeholder="Password" />
+	      	<FormGroup 
+	      		controlId="formControlsLastName"> 
+	      		<ControlLabel>Last Name</ControlLabel>
+	      		<FormControl type="text" placeholder="Enter Last Name" />
+	      	</FormGroup>
+	      	<FormGroup 
+	      		controlId="formControlsPassword"> 
+	      		<ControlLabel>Password</ControlLabel>
+	      		<FormControl type="text" placeholder="Enter Password" />
 	      	</FormGroup>
 	      	<button type="submit" className="btn btn-primary">Sign In</button>
 	      	<button type="button" className="btn">Create Account</button>
@@ -34,4 +37,7 @@ class Login extends React.Component {
       </div>
     );
   }
+
 }
+
+export default SignUp

@@ -1,12 +1,12 @@
 import React from 'react';
 import TripList from './TripList';
-import UserTripsStore from '../stores/UserTripStore'
+import UserStore from '../stores/UserStore'
 import { search, trips } from '../stylesheets/style'
  
 class UserTripsView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = UserTripsStore.getState();
+    this.state = UserStore.getState();
   }
   render() {
     return (
