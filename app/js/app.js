@@ -1,8 +1,10 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-
-import AppRoot from './components/AppRoot.jsx';
+import Maps from './components/Maps.jsx';
+import Globe from './components/Globe.jsx';
+import Container from './Container.jsx';
 
 ReactDOM.render(
-  AppRoot,
+  <Container />,
   document.getElementById('app-root')
 );
