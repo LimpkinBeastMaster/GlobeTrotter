@@ -3,7 +3,7 @@ var knex = require('knex')({
   connection: {
     host     : '127.0.0.1',
     user     : 'root',
-    password : '123',
+    password : 'root',
     database : 'travel',
     charset  : 'utf8'
   }
@@ -17,11 +17,11 @@ db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
-      user.string('username', 255);
-      user.string('password', 255);
+      user.string('username', 100).unique();
+      user.string('password', 100);
       user.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table USERS', table);
     });
   }
 });
@@ -33,7 +33,7 @@ db.knex.schema.hasTable('trips').then(function(exists) {
       trips.string('name', 100);
       trips.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table TRIPS', table);
     });
   }
 });
@@ -47,7 +47,7 @@ db.knex.schema.hasTable('stops').then(function(exists) {
       stops.string('description', 100);
       stops.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table STOPS', table);
     });
   }
 });
