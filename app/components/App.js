@@ -12,15 +12,13 @@ import React from 'react';
 //   <Maps>as</Maps>
 // </div>
 
-// <Globe width={200}
-//            height={100}
-//            radius={100 / 2}
-//            velocity={.02}/>
+
 
 class App extends React.Component {
   render() {
     return (
       <div>
+      
       
         {this.props.children}
         

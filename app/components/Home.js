@@ -1,12 +1,14 @@
 //THE MAIN PAGE AT FOR / INDEX
 
-import React from 'react';
-import {Link} from 'react-router';
+import React from 'react'
+import {Link} from 'react-router'
 import HomeStore from '../stores/HomeStore'
-import HomeActions from '../actions/HomeActions';
+import HomeActions from '../actions/HomeActions'
+import NavLink from './NavLink'
+import Globe from './Globe'
 
-import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
-import { home } from '../stylesheets/style';
+import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
+import { home } from '../stylesheets/style'
 
 class Home extends React.Component {
 
@@ -38,22 +40,34 @@ class Home extends React.Component {
     return (
       <div className="home" style={home}>
         <Jumbotron>
-        <h1>TravelApp</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sem nunc, scelerisque nec quam quis, fermentum suscipit orci.</p> 
+          <h1>TravelApp</h1>
+          <Globe width={200}
+            height={100}
+            radius={100 / 2}
+            velocity={.02} />
+            <span>
+          <NavLink 
+            to="/login">
+            Login
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/signup">
+            SignUp
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/UserTrips">
+            UserTrips
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/AllTrips">
+            AllTrips
+          </NavLink>
+        </span>
         </Jumbotron>
-        <form>
-          <FormGroup 
-            controlId ="formBasicText">
-            <ControlLabel>Username</ControlLabel>
-            <FormControl
-              type="text"
-              value={this.state.value}
-              placeholder="Enter Username"
-              onChange={this.handleChange} />
-              <FormControl.Feedback />
-              <HelpBlock>Usually your email address.</HelpBlock>            
-          </FormGroup>
-        </form>
+
       </div>
     );
   }
