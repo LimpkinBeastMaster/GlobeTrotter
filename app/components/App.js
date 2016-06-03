@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import NavLink from './NavLink'
+import Globe from './Globe'
 //import Globe from './Globe';
 //import Maps from './Maps';
 
@@ -17,11 +19,30 @@ import React from 'react';
 class App extends React.Component {
   render() {
     return (
+
       <div>
-      
-      
+      	<span>
+          <NavLink 
+            to="/login">
+            Login
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/createtrips">
+            Create Trips
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/usertrips">
+            UserTrips
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/alltrips">
+            AllTrips
+          </NavLink>        
+        </span>
         {this.props.children}
-        
       </div>
     );
   }

@@ -1,7 +1,6 @@
 //THE MAIN PAGE AT FOR / INDEX
 
 import React from 'react'
-import {Link} from 'react-router'
 import HomeStore from '../stores/HomeStore'
 import HomeActions from '../actions/HomeActions'
 import NavLink from './NavLink'
@@ -41,31 +40,6 @@ class Home extends React.Component {
       <div className="home" style={home}>
         <Jumbotron>
           <h1>TravelApp</h1>
-          <Globe width={200}
-            height={100}
-            radius={100 / 2}
-            velocity={.02} />
-            <span>
-          <NavLink 
-            to="/login">
-            Login
-          </NavLink>
-          <strong> | </strong>
-          <NavLink 
-            to="/signup">
-            SignUp
-          </NavLink>
-          <strong> | </strong>
-          <NavLink 
-            to="/UserTrips">
-            UserTrips
-          </NavLink>
-          <strong> | </strong>
-          <NavLink 
-            to="/AllTrips">
-            AllTrips
-          </NavLink>
-        </span>
         </Jumbotron>
 
       </div>

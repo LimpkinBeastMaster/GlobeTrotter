@@ -23,7 +23,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,41 +34,41 @@ var Trips = require('./server/models/trips.js');
 var Users = require('./server/models/user.js');
 
 
-app.get('/api/trips', function(req, res) {
-  //This route is to use Trips to query the database for all entries, for the all trips page
+// app.get('/api/trips', function(req, res) {
+//   //This route is to use Trips to query the database for all entries, for the all trips page
   
-  //Trip.collection().fetch().then(function(data) {
-  //  res.send(data);
-  //})
+//   //Trip.collection().fetch().then(function(data) {
+//   //  res.send(data);
+//   //})
   
-  res.send({ title: "Swim with spartans", user: "ben", start: "Shizouka", end:"Tokyo", likes: 10000 });
-});
+//   res.send({ title: "Swim with spartans", user: "ben", start: "Shizouka", end:"Tokyo", likes: 10000 });
+// });
 
-app.post('/api/trips', function(req, res) {
-  //here we want an array of ids to be sent from all the stops made in googleAPI
+// app.post('/api/trips', function(req, res) {
+//   //here we want an array of ids to be sent from all the stops made in googleAPI
   
-  //var stop_ids = req.body.stop_ids; //array of ids
-  // new Trip(req.body).save()
-  //   .then(function(trip){
-  //     return trip.stops().attach(stop_ids);
-  //   }).catch(function(error){
-  //      console.log(error);
-  //   });
-});
+//   //var stop_ids = req.body.stop_ids; //array of ids
+//   // new Trip(req.body).save()
+//   //   .then(function(trip){
+//   //     return trip.stops().attach(stop_ids);
+//   //   }).catch(function(error){
+//   //      console.log(error);
+//   //   });
+// });
 
 
-app.get('/api/trips/:id', function(req, res, next) {
-  //This route is used when navigating to a users own page, want to query for only his related trips
-  //below is just example of potential way to do this
+// app.get('/api/trips/:id', function(req, res, next) {
+//   //This route is used when navigating to a users own page, want to query for only his related trips
+//   //below is just example of potential way to do this
 
-  // var name = url.parse(req.url, true);
-  // name = name.path.split('/')[3].replace(/%20/g, ' ');
-  // console.log('thename', name);
+//   // var name = url.parse(req.url, true);
+//   // name = name.path.split('/')[3].replace(/%20/g, ' ');
+//   // console.log('thename', name);
 
-  //Trip.collection().fetchAll({name: name}).then(function(data) {
-  //  res.send(data);
-  //})
-});
+//   //Trip.collection().fetchAll({name: name}).then(function(data) {
+//   //  res.send(data);
+//   //})
+// });
 
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
