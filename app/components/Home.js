@@ -6,8 +6,8 @@ import HomeStore from '../stores/HomeStore'
 import HomeActions from '../actions/HomeActions';
 
 import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
-import { home } from '../stylesheets/style';
-
+import { home, map } from '../stylesheets/style';
+import Maps from './Maps';
 class Home extends React.Component {
 
   constructor(props) {
@@ -41,6 +41,9 @@ class Home extends React.Component {
         <h1>TravelApp</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sem nunc, scelerisque nec quam quis, fermentum suscipit orci.</p> 
         </Jumbotron>
+        <div style={map}>
+          <Maps/>
+        </div>
         <form>
           <FormGroup 
             controlId ="formBasicText">
