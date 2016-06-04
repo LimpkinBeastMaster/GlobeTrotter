@@ -4,7 +4,7 @@ import CreateTripActions from '../actions/CreateTripActions'
 
 class CreateTripStore {
 	constructor() {
-    this.bindActions(CreateTripsActions);
+    this.bindActions(CreateTripActions);
 		this.stops = [];
 	}
   onAddPointSuccess(data) {

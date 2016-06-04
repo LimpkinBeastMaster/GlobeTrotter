@@ -1,18 +1,18 @@
 var Promise = require('bluebird');
 var db = require('../db/config');
-var Stop = require('./stops');
-var User = require('./user');
+var Stops = require('./stops');
+var Users = require('./users');
 
 var Trip = db.Model.extend({
 
   tableName: 'trips',
   hasTimestamps: true,
   stops: function() {
-    return this.hasMany(Stop);
+    return this.hasMany(Stops);
   },
 
   users: function() {
-    return this.belongsToMany(User);
+    return this.belongsTo(Users);
   }
 
 });

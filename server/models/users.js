@@ -1,7 +1,7 @@
 var db = require('../db/config');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
-var Trip = require('./trips');
+var Trips = require('./trips');
 
 var User = db.Model.extend({
 
@@ -27,7 +27,7 @@ var User = db.Model.extend({
   },
 
   trips: function() {
-    return this.belongsToMany(Trip);
+    return this.hasMany(Trips);
   }
 
 });

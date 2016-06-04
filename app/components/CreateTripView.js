@@ -7,6 +7,9 @@ import Maps from './Maps';
 
 import {Link} from 'react-router';
 import { map } from '../stylesheets/style';
+import CreateTripStore from '../stores/CreateTripStore'
+import UserStore from '../stores/UserStore'
+import CreateTripActions from '../actions/CreateTripActions'
 
 //Mytrips link needs to point link to a specific /usertrips/id
 //once a user logs in can have an id on the window....kinda kills point tho
@@ -18,6 +21,19 @@ class CreateTripsView extends React.Component {
         super(props);
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        var postObject = {
+            username: UserStore.getState().user,
+            tripname: e.target.tripName.value,
+            stops: CreateTripStore.getState().stops
+        }
+        console.log('Posting this!', postObject);
+        CreateTripActions.CreateTrip(postObject);
+    }
+
+
+
     render() {
         return (
           <div className='create-trips-view'>
@@ -28,8 +44,10 @@ class CreateTripsView extends React.Component {
             <Link to={'/alltrips'}>Create</Link>
             <Link to={'/alltrips'}>All Trips</Link>
             <Link to={'/alltrips'}>MyTrips</Link>
-            // add trip button --> get userstore username, get createTrip array from  createtripstore, post to database 
-            // 
+            <form onSubmit={(e) => this.handleSubmit(e)}>
+                <input type='text' id='tripName'/>
+                <button type='submit'> Submit Trip </button>
+            </form>
             </div>
         </div>
     );

@@ -9,7 +9,7 @@ class UserActions {
   }
 
   GetTrips(userName) {
-    $.get({url: '/api/trips/', userName})
+    $.get({url: '/api/trips/' + userName + '/'})
     .success((data) => {
       console.log('DATA', data);
       this.actions.GetTripsSuccess(data)

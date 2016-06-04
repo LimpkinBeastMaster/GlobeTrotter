@@ -7,22 +7,31 @@ import { search, trips } from '../stylesheets/style'
 class UserView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = UserStore.getState();
+    this.state = {
+      trips: UserStore.getState().trips.trips || [],
+      user: UserStore.getState().user,
+    }
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    console.log('USERMOUNTED', this.props.params.id);
+    // console.log('TRIPS', this.state.trips);
+    // console.log('USERMOUNTED', this.state.user);
     UserStore.listen(this.onChange);
-    UserActions.GetTrips(this.props.params.id);
+    UserActions.GetTrips(this.state.user);
+
   }
 
   componentWillUnmount() {
     UserStore.unlisten(this.onChange);
   }
 
-  onChange(state) {
-    this.setState(state);
+  onChange() {
+    // console.log(UserStore.getState().trips)
+    this.setState({
+      trips: UserStore.getState().trips.trips || [],
+      user: UserStore.getState().user
+    });
   }
 
   render() {

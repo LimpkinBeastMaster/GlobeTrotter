@@ -19,12 +19,12 @@ class Home extends React.Component {
 
   componentDidMount() {
     console.log('AT HOME');
-    HomeStore.listen(this.onChange);
+    UserStore.listen(this.onChange);
     //HomeActions.getChallenges();
   }
 
   componentWillUnmount() {
-    HomeStore.unlisten(this.onChange);
+    UserStore.unlisten(this.onChange);
   }
 
   onChange(state) {
@@ -41,7 +41,10 @@ class Home extends React.Component {
         <Jumbotron>
           <h1>TravelApp</h1>
         </Jumbotron>
-
+        <Globe width={500}
+          height={400}
+          radius={400 / 2}
+          velocity={.02} />
       </div>
     );
   }

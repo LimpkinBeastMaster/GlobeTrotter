@@ -23,7 +23,7 @@ class CreateTripActions {
   }
 
   GetTrip(trip) {
-    $.get({url: '/api/trip', tripId})
+    $.get({url: '/api/trip/' + trip + '/'})
     .success((data) => {
       console.log('DATA', data);
       this.actions.GetTripSuccess(data)

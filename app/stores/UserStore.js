@@ -5,10 +5,11 @@ class UserStore {
   constructor() {
     this.bindActions(UserActions);
     this.trips = [];
-    this.user = 'fred';
+    this.user = 'ben';
   }
   onGetTripsSuccess(data) {
   	this.trips = data;
+    this.emitChange();
   }
   onGetTripsFail(err) {
   	this.trips = [];

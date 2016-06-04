@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker, Polyline, SearchBox } from "react-google-maps";
 import { default as update } from "react-addons-update";
-// import CreateTripActions from '../actions/CreateTripActions'
+import CreateTripActions from '../actions/CreateTripActions'
 
 var inputStyle = {
   "border": `1px solid transparent`,
@@ -23,8 +23,8 @@ class Maps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markers: [],
-      path: [],
+      markers: this.props.markers || [], //Pass down props so that map can auto-populate
+      path: this.props.path || [],
       bounds: null,
       center: {
         lat: 37.78355726989257, 
@@ -72,7 +72,7 @@ class Maps extends React.Component {
       markers, 
       path 
     });
-    //CreateTripActions.AddPoint(this.state.markers)
+    CreateTripActions.AddPoint(this.state.markers)
     //Send an action to store
   }
 
@@ -94,7 +94,7 @@ class Maps extends React.Component {
       ],
     });
     this.setState({ markers, path });
-    //CreateTripActions.AddPoint(this.state.markers)
+    CreateTripActions.AddPoint(this.state.markers)
     //Send an action to store
   }
 
@@ -111,7 +111,7 @@ class Maps extends React.Component {
       ],
     });
     this.setState({ markers, path });
-    //CreateTripActions.AddPoint(this.state.markers)
+    CreateTripActions.AddPoint(this.state.markers)
     //Send an action to store
   }
 
@@ -136,7 +136,7 @@ class Maps extends React.Component {
       stopInfo: info
     }
     //console.log(this.state.markers);
-    //CreateTripActions.AddPoint(this.state.markers)
+    CreateTripActions.AddPoint(this.state.markers)
   }
 
   renderInfoWindow(ref, marker) {
