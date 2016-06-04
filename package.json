@@ -31,6 +31,7 @@
     "bookshelf": "^0.9.5",
     "consolidate": "^0.14.1",
     "cookie-parser": "^1.4.3",
+    "d3": "^3.5.17",
     "express-partials": "^0.3.0",
     "express-session": "^1.13.0",
     "html": "0.0.10",
@@ -39,10 +40,13 @@
     "mustache": "^2.2.1",
     "mysql": "^2.10.2",
     "path": "^0.12.7",
-    "react": "^0.14.5",
-    "react-dom": "^0.14.5",
-    "react-redux": "^4.0.6",
-    "redux": "^3.0.5",
-    "request": "^2.72.0"
+    "react": "^15.1.0",
+    "react-addons-update": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-flux": "^1.0.1",
+    "react-google-maps": "^4.11.0",
+    "request": "^2.72.0",
+    "requirejs": "^2.2.0",
+    "topojson": "^1.6.26"
   }
 }
