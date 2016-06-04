@@ -36,7 +36,7 @@ var searchContainer = {
   borderRadius: "4px",
   fontSize: "16px",
   backgroundColor: "white",
-  backgroundImage: "url('/img/searchicon.png')",
+  //backgroundImage: "url('/img/searchicon.png')",
   backgroundSize: "27px",
   backgroundPosition: "10px 10px", 
   backgroundRepeat: "no-repeat",
@@ -93,4 +93,8 @@ var map = {
   width: '500px'
 }
 
-export { map, search, trips, searchButton, searchBox, searchContainer, tripDisplay, likes, tripBar, home };
+var stopList = {
+  display: 'none'
+}
+
+export { map, search, trips, searchButton, searchBox, searchContainer, tripDisplay, likes, tripBar, home, stopList };

@@ -1,29 +1,30 @@
 //THE MAIN PAGE AT FOR / INDEX
 
-import React from 'react';
-import {Link} from 'react-router';
-import HomeStore from '../stores/HomeStore'
-import HomeActions from '../actions/HomeActions';
+import React from 'react'
+import UserStore from '../stores/UserStore'
+import UserActions from '../actions/UserActions'
+import NavLink from './NavLink'
+import Globe from './Globe'
 
-import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
-import { home } from '../stylesheets/style';
+import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
+import { home } from '../stylesheets/style'
 
 class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = HomeStore.getState();
+    this.state = UserStore.getState();
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
     console.log('AT HOME');
-    HomeStore.listen(this.onChange);
+    UserStore.listen(this.onChange);
     //HomeActions.getChallenges();
   }
 
   componentWillUnmount() {
-    HomeStore.unlisten(this.onChange);
+    UserStore.unlisten(this.onChange);
   }
 
   onChange(state) {
@@ -38,22 +39,12 @@ class Home extends React.Component {
     return (
       <div className="home" style={home}>
         <Jumbotron>
-        <h1>TravelApp</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sem nunc, scelerisque nec quam quis, fermentum suscipit orci.</p> 
+          <h1>TravelApp</h1>
         </Jumbotron>
-        <form>
-          <FormGroup 
-            controlId ="formBasicText">
-            <ControlLabel>Username</ControlLabel>
-            <FormControl
-              type="text"
-              value={this.state.value}
-              placeholder="Enter Username"
-              onChange={this.handleChange} />
-              <FormControl.Feedback />
-              <HelpBlock>Usually your email address.</HelpBlock>            
-          </FormGroup>
-        </form>
+        <Globe width={500}
+          height={400}
+          radius={400 / 2}
+          velocity={.02} />
       </div>
     );
   }

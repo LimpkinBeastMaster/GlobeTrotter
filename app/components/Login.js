@@ -19,22 +19,36 @@ class Login extends React.Component {
 	
   render() {
     return (
-    	<div className="home" style={home}>
-	    	<Jumbotron>
-	      <h1>TravelApp</h1>
-	      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sem nunc, scelerisque nec quam quis, fermentum suscipit orci.</p> 
-	      </Jumbotron>
+		<div className="home" style={home}>
 	      <form>
 	      	<FormGroup> 
-	      		<label className="sr-only">Username</label>
-	      		<input className='formControl' placeholder="Username" />
+	      		<label 
+	      		  className="sr-only">
+	      		  Username
+	      		</label>
+	      		<input 
+	      		  className='formControl' 
+	      		  placeholder="Username" />
 	      	</FormGroup>
 	      	<FormGroup>
-	      		<label className="sr-only">Password</label>
-	      		<input className='formControl' placeholder="Password" />
+	      		<label 
+	      			className="sr-only">
+	      			Password
+	      		</label>
+	      		<input 
+	      			className='formControl' 
+	      			placeholder="Password" />
 	      	</FormGroup>
-	      	<button type="submit" className="btn btn-primary">Sign In</button>
-	      	<button type="button" className="btn">Create Account</button>
+	      	<button 
+	      		type="submit"
+	      		className="btn btn-primary">
+	      		Sign In
+	      	</button>
+	      	<button 
+	      		type="button" 
+	      		className="btn">
+	      		Create Account
+	      	</button>
 	      </form>
       </div>
     );
