@@ -1,6 +1,6 @@
 import alt from '../alt';
 
-class UserTripsActions {
+class UserActions {
   constructor() {
     this.generateActions(
       'GetTripsSuccess',
@@ -9,9 +9,8 @@ class UserTripsActions {
   }
 
   GetTrips(userName) {
-    
-    $.ajax({url: '/api/trips/', userName})
-    .done((data) => {
+    $.get({url: '/api/trips/', userName})
+    .success((data) => {
       console.log('DATA', data);
       this.actions.GetTripsSuccess(data)
     })
@@ -22,4 +21,4 @@ class UserTripsActions {
   }
 }
 
-export default alt.createActions(UserTripsActions); 
+export default alt.createActions(UserActions); 

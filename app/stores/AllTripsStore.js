@@ -6,7 +6,6 @@ class AllTripsStore {
   constructor() {
     this.bindActions(AllTripsActions);
     this.trips = allData;
-//    this.trips = [];
   }
 
   onGetTripsSuccess(data) {
