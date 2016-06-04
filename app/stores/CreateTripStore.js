@@ -3,10 +3,12 @@ import userData from './data/userData'
 import CreateTripActions from '../actions/CreateTripActions'
 
 class CreateTripStore {
-	constructor() {
+
+  constructor() {
     this.bindActions(CreateTripActions);
-		this.stops = [];
-	}
+    this.stops = [];
+  }
+
   onAddPointSuccess(data) {
     this.stops = data;
     // console.log(data);
@@ -16,7 +18,6 @@ class CreateTripStore {
   }
   onCreateTripSuccess() {
     this.stops = [];
-    
   }
 }
 export default alt.createStore(CreateTripStore);

@@ -36,7 +36,7 @@ var searchContainer = {
   borderRadius: "4px",
   fontSize: "16px",
   backgroundColor: "white",
-  backgroundImage: "url('/img/searchicon.png')",
+  //backgroundImage: "url('/img/searchicon.png')",
   backgroundSize: "27px",
   backgroundPosition: "10px 10px", 
   backgroundRepeat: "no-repeat",

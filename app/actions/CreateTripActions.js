@@ -68,11 +68,10 @@ class CreateTripActions {
       console.log("Error:", err);
     })
   }
-
+  
   ClearMap() {
     this.actions.CreateTripSuccess();
   }
-
 
 }
 

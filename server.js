@@ -36,7 +36,16 @@ var Stops = require('./server/collections/stops.js');
 var Trips = require('./server/collections/trips.js');
 var Users = require('./server/collections/users.js');
 
+var allData = require('./data.js');
 
+//console.log('alldata', allData);
+//To add in all the hardcoded data
+// for(var i = 0; i < allData.default.length; i++) {
+//    new Trips({title: allData.default[i].title, user: allData.default[i].user, start: allData.default[i].start, end: allData.default[i].end, likes: allData.default[i].likes}).save()
+//  //  console.log('savingtrip', allData.default[i]);
+// }
+
+//////////////////////////////////////////////////
 
 app.get('/api/trips', function(req, res) {
   //This route is to use Trips to query the database for all entries, for the all trips page
@@ -55,6 +64,7 @@ app.get('/api/trips', function(req, res) {
   //   }]
   // });
 });
+
 app.get('/api/trip/:id', function(req, res) {
   //This route is to use Trips to query the database for all entries, for the all trips page
   
@@ -93,6 +103,31 @@ app.get('/api/trip/:id', function(req, res) {
   //     }
   //   }]
   // });
+
+});
+
+//Route to increment / decrement the likes 
+app.put('/api/trips/likes', function(req, res) {
+  console.log('REQ BODY', req.body);
+
+  var likes = req.body['trip[likes]'];
+  var title = req.body['trip[title]'];
+  var user  = req.body['trip[user]'];
+  var type = req.body.type;
+
+  console.log('TYPE:',req.body.type);
+  Trip.where({title: title, user: user, likes: likes}).fetch()
+    .then(function(trip){
+      console.log(trip);
+      var temp = Number(likes);
+      type === '1' ? temp += 1 : temp -= 1;
+      //temp += 1;
+      temp = JSON.stringify(temp);
+      console.log('THE LIKES', temp);
+      trip.set('likes', temp);
+      trip.save();
+      res.status(200).end(JSON.stringify(trip));
+    })
 });
 
 app.post('/api/trip', function(req, res) {
@@ -132,6 +167,18 @@ app.post('/api/trip', function(req, res) {
     })
   })
 });
+
+// app.post('/api/trips', function(req, res) {
+//   //here we want an array of ids to be sent from all the stops made in googleAPI
+  
+//   //var stop_ids = req.body.stop_ids; //array of ids
+//   // new Trip(req.body).save()
+//   //   .then(function(trip){
+//   //     return trip.stops().attach(stop_ids);
+//   //   }).catch(function(error){
+//   //      console.log(error);
+//   //   });
+// });
 
 
 app.get('/api/trips/:id', function(req, res, next) {

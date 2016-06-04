@@ -10,10 +10,10 @@ class UserStore {
   onGetTripsSuccess(data) {
   	this.trips = data;
     this.emitChange();
-    console.log(this.trips);
+    //console.log(this.trips);
   }
   onGetTripsFail(err) {
-  	this.trips = [];
+    this.trips = [];
   }
 }
 

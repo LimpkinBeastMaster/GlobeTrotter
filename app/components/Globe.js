@@ -23,8 +23,3 @@ class Globe extends React.Component {
 }
 module.exports = Globe; 
 
-// <Globe width={200}
-  //   height={100}
-  //   radius={100 / 2}
-  //   velocity={.02} />
-  //   <span>

@@ -35,15 +35,19 @@ class UserView extends React.Component {
     });
   }
 
+  fxn() {
+    console.log('hi');
+  }
+
   render() {
     return (
-    	<div className='all-trips-view' style={search}>
-    		<div className="trips" style={trips}>
+      <div className='all-trips-view' style={search}>
+        <div className="trips" style={trips}>
         { this.state.trips.map((trip, indx) =>
-    			<TripList key={indx} trip={trip}/>
+          <TripList key={indx} trip={trip} clickfxn={this.fxn.bind(this)}/>
           )
         }
-    		</div>
+        </div>
       </div>
     );
   }
