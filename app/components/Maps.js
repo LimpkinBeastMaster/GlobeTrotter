@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker, Polyline, SearchBox } from "react-google-maps";
 import { default as update } from "react-addons-update";
+// import CreateTripActions from '../actions/CreateTripActions'
 
 var inputStyle = {
   "border": `1px solid transparent`,
@@ -71,6 +72,8 @@ class Maps extends React.Component {
       markers, 
       path 
     });
+    //CreateTripActions.AddPoint(this.state.markers)
+    //Send an action to store
   }
 
   handleMapClick(event) {
@@ -91,6 +94,8 @@ class Maps extends React.Component {
       ],
     });
     this.setState({ markers, path });
+    //CreateTripActions.AddPoint(this.state.markers)
+    //Send an action to store
   }
 
   handleMarkerRightClick(index, event) {
@@ -106,6 +111,8 @@ class Maps extends React.Component {
       ],
     });
     this.setState({ markers, path });
+    //CreateTripActions.AddPoint(this.state.markers)
+    //Send an action to store
   }
 
   handleMarkerClick(marker) {
@@ -118,17 +125,18 @@ class Maps extends React.Component {
     this.setState(this.state);
   }
 
-  saveData() {
-    let name =document.getElementById('name').value;
-    let address = document.getElementById('address').value;
-    let info = document.getElementById('info').value;
-
-    console.log(name, address, info);
-
-    /*
-      Send it to create trips store.
-      
-    */
+  saveData(e, ref, marker) {
+    e.preventDefault();
+    let name = e.target.name.value;
+    let address = e.target.address.value;
+    let info = e.target.info.value;
+    marker['stopData'] = {
+      stopName: name,
+      stopAddress: address,
+      stopInfo: info
+    }
+    //console.log(this.state.markers);
+    //CreateTripActions.AddPoint(this.state.markers)
   }
 
   renderInfoWindow(ref, marker) {
@@ -139,29 +147,19 @@ class Maps extends React.Component {
       //            "<tr><td>Address:</td> <td><input type='text' id='address'/></td> </tr>"
       //            "<tr><td>Info:</td> <td><input type='text' id='info'/></td> </tr>"
       //            "<tr><td></td><td><input type='button' value='Save & Close' onclick='saveData()'/></td></tr>";
+
       <InfoWindow 
         key={`${ref}_info_window`}
-        onCloseclick={this.handleMarkerClose.bind(this, marker)} >
-        <table>
-          <tbody id='table'>
-            <tr>
-              <td>Name:</td> 
-              <td><input type='text' id='name'/> </td>
-            </tr>
-            <tr>
-              <td>Address:</td> 
-              <td><input type='text' id='address'/></td>
-            </tr>
-            <tr>
-              <td>Info:</td>
-              <td><input type='text' id='info'/></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><input type='button' value='Save & Close' onClick={this.saveData.bind(this)}/></td>
-            </tr>
-          </tbody>
-        </table>       
+        onCloseclick={this.handleMarkerClose.bind(this, marker)}>
+        <form onSubmit={(e) => this.saveData(e, ref, marker)} >
+          Name: 
+          <input type='text' id='name'/> <br/> 
+          Address: 
+          <input type='text' id='address'/> <br/>
+          Info:
+          <input type='text' id='info'/> <br/>
+          <button type='submit'> Save & Close </button>
+        </form>
       </InfoWindow>
       
     );
@@ -169,7 +167,6 @@ class Maps extends React.Component {
   }
 
   render() {
-    console.log('test2');
     return (
       <GoogleMapLoader
         containerElement={
