@@ -16,6 +16,7 @@ class CreateTripStore {
   }
   onCreateTripSuccess() {
     this.stops = [];
+    
   }
 }
 export default alt.createStore(CreateTripStore);
