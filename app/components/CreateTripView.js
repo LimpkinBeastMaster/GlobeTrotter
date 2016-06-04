@@ -28,6 +28,8 @@ class CreateTripsView extends React.Component {
             <Link to={'/alltrips'}>Create</Link>
             <Link to={'/alltrips'}>All Trips</Link>
             <Link to={'/alltrips'}>MyTrips</Link>
+            // add trip button --> get userstore username, get createTrip array from  createtripstore, post to database 
+            // 
             </div>
         </div>
     );

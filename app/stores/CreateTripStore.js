@@ -11,5 +11,11 @@ class CreateTripStore {
     this.stops = data;
     console.log(data);
   }
+  onGetTripSuccess(data) {
+    this.stops = data;
+  }
+  onCreateTripSuccess() {
+    this.stops = [];
+  }
 }
 export default alt.createStore(CreateTripStore);

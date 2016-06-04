@@ -33,8 +33,8 @@ class App extends React.Component {
           </NavLink>
           <strong> | </strong>
           <NavLink 
-            to="/usertrips">
-            UserTrips
+            to="/mytrips">
+            My Trips
           </NavLink>
           <strong> | </strong>
           <NavLink 

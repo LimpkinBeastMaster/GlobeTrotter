@@ -1,8 +1,8 @@
 //THE MAIN PAGE AT FOR / INDEX
 
 import React from 'react'
-import HomeStore from '../stores/HomeStore'
-import HomeActions from '../actions/HomeActions'
+import UserStore from '../stores/UserStore'
+import UserActions from '../actions/UserActions'
 import NavLink from './NavLink'
 import Globe from './Globe'
 
@@ -13,7 +13,7 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = HomeStore.getState();
+    this.state = UserStore.getState();
     this.onChange = this.onChange.bind(this);
   }
 

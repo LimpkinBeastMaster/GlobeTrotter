@@ -14,6 +14,6 @@ export default (
     	<Route path="/login" component={Login} />
     	<Route path="/createtrips" component={CreateTrips} />
     	<Route path="/alltrips" component={AllTrips} />
-    	<Route path="/usertrips" component={UserTrips} />
+    	<Route path="/mytrips" component={UserTrips} />
   </Route>
 );
