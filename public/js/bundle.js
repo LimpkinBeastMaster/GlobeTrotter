@@ -19,7 +19,10 @@ var AllTripsActions = function () {
   function AllTripsActions() {
     _classCallCheck(this, AllTripsActions);
 
-    this.generateActions('GetTripsSuccess', 'GetTripsFail');
+    this.generateActions('GetTripsSuccess', 'GetTripsFail', 'updateSearchQuery', 'ChangeLikesSuccess'
+    //'FindTripSuccess',
+    //'FindTripFail'
+    );
   }
 
   _createClass(AllTripsActions, [{
@@ -28,13 +31,44 @@ var AllTripsActions = function () {
       var _this = this;
 
       $.ajax({ url: '/api/trips' }).done(function (data) {
-        console.log('DATA', data);
+        //console.log('DATA', data);
         _this.actions.GetTripsSuccess(data);
       }).fail(function (err) {
         console.log('ERROR:', err);
         _this.actions.GetTripsFail(err);
       });
     }
+  }, {
+    key: 'ChangeLikes',
+    value: function ChangeLikes(trip, index, type) {
+      var _this2 = this;
+
+      $.ajax({
+        type: 'PUT',
+        url: '/api/trips/likes',
+        data: { 'trip': trip, 'type': type }
+      }).done(function (data) {
+        _this2.actions.ChangeLikesSuccess({ data: data, index: index });
+        console.log('success', data);
+      }).fail(function () {
+        console.log('failed like request');
+      });
+    }
+
+    // findTrip(payload) {
+    //   $.ajax({
+    //     url: '/api/trips/search',
+    //     data: { name: payload.searchQuery }
+    //   })
+    //     .done((data) => {
+    //       assign(payload, data);
+    //       this.actions.findCharacterSuccess(payload);
+    //     })
+    //     .fail(() => {
+    //       this.actions.findCharacterFail(payload);
+    //     });
+    // }
+
   }]);
 
   return AllTripsActions;
@@ -191,10 +225,48 @@ var AllTripsView = function (_React$Component) {
             this.setState(state);
         }
     }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+
+            event.preventDefault();
+
+            var searchQuery = this.state.searchQuery.trim();
+
+            if (searchQuery) {
+                // AllTripsActions.findTrip({
+                //   searchQuery: searchQuery,
+                //   searchForm: this.refs.searchForm,
+                //   history: this.props.history
+                // });
+
+                var queryResult = [];
+                this.state.trips.forEach(function (trip) {
+                    if (trip.title.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1) {
+                        queryResult.push(trip);
+                    }
+                });
+
+                console.log('QUERYRESULT', queryResult);
+
+                this.setState({
+                    trips: queryResult
+                });
+            }
+        }
+    }, {
+        key: 'handleTripClick',
+        value: function handleTripClick(trip, index, type, e) {
+            e.preventDefault();
+            console.log('name, title', trip, index, type);
+            _AllTripActions2.default.ChangeLikes(trip, index, type);
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var tarr = this.state.trips.map(function (trip, indx) {
-                return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip });
+            var _this2 = this;
+
+            var tripArr = this.state.trips.map(function (trip, indx) {
+                return _react2.default.createElement(_TripList2.default, { key: indx, index: indx, trip: trip, clickfxn: _this2.handleTripClick.bind(_this2) });
             });
 
             return _react2.default.createElement(
@@ -203,12 +275,29 @@ var AllTripsView = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'search-bar' },
-                    _react2.default.createElement(_SearchBar2.default, null)
+                    _react2.default.createElement(
+                        'form',
+                        { ref: 'searchForm', className: 'navbar-form navbar-left animated', onSubmit: this.handleSubmit.bind(this) },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'input-group' },
+                            _react2.default.createElement('input', { style: _style.searchContainer, type: 'text', className: 'form-control', placeholder: 'Find your next trip...', value: this.state.searchQuery, onChange: _AllTripActions2.default.updateSearchQuery }),
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'input-group-btn' },
+                                _react2.default.createElement(
+                                    'button',
+                                    { className: 'btn btn-default', onChange: this.handleSubmit.bind(this) },
+                                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-search' })
+                                )
+                            )
+                        )
+                    )
                 ),
                 _react2.default.createElement(
                     'div',
                     { className: 'trips', style: _style.trips },
-                    tarr
+                    tripArr
                 )
             );
         }
@@ -889,9 +978,6 @@ var TripList = function (_React$Component) {
     return _possibleConstructorReturn(this, Object.getPrototypeOf(TripList).call(this, props));
   }
 
-  //add link component around button and route to the passed in prop ID of the trip to redirect to route page
-
-
   _createClass(TripList, [{
     key: 'render',
     value: function render() {
@@ -900,7 +986,7 @@ var TripList = function (_React$Component) {
         { className: 'trip-list', style: _style.tripDisplay },
         _react2.default.createElement(
           'div',
-          { className: 'likes', style: _style.likes },
+          { className: 'likes', style: _style.likes, onClick: this.props.clickfxn },
           '+',
           this.props.trip.likes
         ),
@@ -913,6 +999,16 @@ var TripList = function (_React$Component) {
             style: _style.tripBar },
           this.props.trip.title,
           _react2.default.createElement('span', { className: 'carat' })
+        ),
+        _react2.default.createElement(
+          'a',
+          { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
+          _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-up' })
+        ),
+        _react2.default.createElement(
+          'a',
+          { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2) },
+          _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-down' })
         )
       );
     }
@@ -1132,19 +1228,38 @@ var AllTripsStore = function () {
 
     this.bindActions(_AllTripActions2.default);
     this.trips = _allData2.default;
-    //    this.trips = [];
+    this.searchQuery = '';
+    //  this.trips = [];
   }
 
   _createClass(AllTripsStore, [{
     key: 'onGetTripsSuccess',
     value: function onGetTripsSuccess(data) {
-      this.trips.push(data);
+      //this.trips.push(data);
+      this.trips = data;
+    }
+  }, {
+    key: 'onChangeLikesSuccess',
+    value: function onChangeLikesSuccess(obj) {
+      console.log('at the success', obj.data, obj.index);
+      this.trips[obj.index] = JSON.parse(obj.data);
     }
   }, {
     key: 'onGetTripsFail',
     value: function onGetTripsFail(err) {
       console.log('Wtf failed');
     }
+  }, {
+    key: 'onUpdateSearchQuery',
+    value: function onUpdateSearchQuery(event) {
+      this.searchQuery = event.target.value;
+    }
+
+    // onFindCharacterSuccess(payload) {
+    //   //change this to link to the tripviewpage of the specific trip
+    //   payload.history.pushState(null, '/characters/' + payload.characterId);
+    // }
+
   }]);
 
   return AllTripsStore;
@@ -1220,7 +1335,7 @@ var UserTripsStore = function () {
   }, {
     key: 'onGetTripsFail',
     value: function onGetTripsFail(err) {
-      console.log('Wtf failed');
+      console.log('failed');
     }
   }]);
 
@@ -1293,7 +1408,7 @@ var searchContainer = {
   borderRadius: "4px",
   fontSize: "16px",
   backgroundColor: "white",
-  backgroundImage: "url('/img/searchicon.png')",
+  //backgroundImage: "url('/img/searchicon.png')",
   backgroundSize: "27px",
   backgroundPosition: "10px 10px",
   backgroundRepeat: "no-repeat",

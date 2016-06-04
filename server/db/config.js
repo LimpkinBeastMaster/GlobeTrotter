@@ -29,8 +29,13 @@ db.knex.schema.hasTable('users').then(function(exists) {
 db.knex.schema.hasTable('trips').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('trips', function (trips) {
+      // references users through join table
       trips.increments('id').primary();
-      trips.string('name', 100);
+      trips.string('title', 100);
+      trips.string('start', 100);
+      trips.string('end', 100);
+      trips.string('user', 100);
+      trips.integer('likes');
       trips.timestamps();
     }).then(function (table) {
       console.log('Created Table TRIPS', table);

@@ -32,16 +32,48 @@ app.use(express.static(path.join(__dirname, 'public')));
 var Stops = require('./server/models/stops.js');
 var Trips = require('./server/models/trips.js');
 var Users = require('./server/models/user.js');
+var allData = require('./data.js');
 
+//console.log('alldata', allData);
+//To add in all the hardcoded data
+// for(var i = 0; i < allData.default.length; i++) {
+//    new Trips({title: allData.default[i].title, user: allData.default[i].user, start: allData.default[i].start, end: allData.default[i].end, likes: allData.default[i].likes}).save()
+//  //  console.log('savingtrip', allData.default[i]);
+// }
+
+//////////////////////////////////////////////////
 
 app.get('/api/trips', function(req, res) {
-  //This route is to use Trips to query the database for all entries, for the all trips page
-  
-  //Trip.collection().fetch().then(function(data) {
-  //  res.send(data);
-  //})
-  
-  res.send({ title: "Swim with spartans", user: "ben", start: "Shizouka", end:"Tokyo", likes: 10000 });
+ //This route is to use Trips to query the database for all entries, for the all trips page
+  Trips.collection().fetch()
+    .then(function(data) {
+      res.send(data);
+    });
+});
+
+app.put('/api/trips/likes', function(req, res) {
+  console.log('REQ BODY', req.body);
+
+  var likes = req.body['trip[likes]'];
+  var title = req.body['trip[title]'];
+  var user  = req.body['trip[user]'];
+  var type = req.body.type;
+
+  console.log('TYPE:',req.body.type);
+
+  Trips.where({title: title, user: user, likes: likes}).fetch()
+    .then(function(trip){
+      console.log(trip);
+      var temp = Number(likes);
+      type === '1' ? temp += 1 : temp -= 1;
+      //temp += 1;
+      temp = JSON.stringify(temp);
+      console.log('THE LIKES', temp);
+      trip.set('likes', temp);
+      trip.save();
+      res.status(200).end(JSON.stringify(trip));
+    })
+
 });
 
 app.post('/api/trips', function(req, res) {

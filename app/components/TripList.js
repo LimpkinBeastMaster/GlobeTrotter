@@ -7,11 +7,10 @@ class TripList extends React.Component {
     super(props);    
   }
 
-//add link component around button and route to the passed in prop ID of the trip to redirect to route page
   render () {
   	return (
       <div className="trip-list" style={tripDisplay}>
-    		<div className="likes" style={likes}>
+    		<div className="likes" style={likes} onClick={this.props.clickfxn}>
     			+{this.props.trip.likes}
     		</div>
     		<button 
@@ -23,6 +22,8 @@ class TripList extends React.Component {
       		<span className="carat">
       		</span>
       	</button>
+        <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}><span className="glyphicon glyphicon-arrow-up"></span></a>
+        <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2)}><span className="glyphicon glyphicon-arrow-down"></span></a>
     	</div>
     )
   };
