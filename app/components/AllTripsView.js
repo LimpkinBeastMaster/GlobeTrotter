@@ -35,11 +35,6 @@ class AllTripsView extends React.Component {
         let searchQuery = this.state.searchQuery.trim();
 
         if (searchQuery) {
-          // AllTripsActions.findTrip({
-          //   searchQuery: searchQuery,
-          //   searchForm: this.refs.searchForm,
-          //   history: this.props.history
-          // });
 
             var queryResult = [];
             this.state.trips.forEach(function(trip) {
@@ -71,13 +66,13 @@ class AllTripsView extends React.Component {
         	<div className='all-trips-view' style={search}>
         		<div className="search-bar">
         			<form ref='searchForm' className='navbar-form navbar-left animated' onSubmit={this.handleSubmit.bind(this)}>
-                        <div className='input-group'>
+                    <div className='input-group'>
                         <input style={searchContainer} type='text' className='form-control' placeholder={'Find your next trip...'} value={this.state.searchQuery} onChange={AllTripsActions.updateSearchQuery} />
                         <span className='input-group-btn'>
                         <button className='btn btn-default' onChange={this.handleSubmit.bind(this)}><span className='glyphicon glyphicon-search'></span></button>
-                    </span>
-            </div>
-          </form>
+                        </span>
+                    </div>
+                    </form>
         		</div>
         		<div className="trips" style={trips}>
         		  {tripArr}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { tripDisplay, likes, tripBar } from '../stylesheets/style';
+import CreateTripActions from '../actions/CreateTripActions';
 
 class TripList extends React.Component {
 
@@ -7,17 +8,25 @@ class TripList extends React.Component {
     super(props);    
   }
 
+  clickHandler(e) {
+    // console.log(e.target.id)
+    // console.log(e.currentTarget.id)
+    CreateTripActions.GetTrip(e.currentTarget.id)
+  }
+
   render () {
   	return (
       <div className="trip-list" style={tripDisplay}>
-    		<div className="likes" style={likes} onClick={this.props.clickfxn}>
+    		<div className="likes" style={likes}>
     			+{this.props.trip.likes}
     		</div>
     		<button 
+          id={this.props.trip.id}
       		className='btn btn-primary' 
       		type="button" 
       		data-toggle="dropdown" 
-      		style={tripBar}>
+      		style={tripBar}
+          onClick = {this.clickHandler.bind(this)}>
       		{this.props.trip.title} 
       		<span className="carat">
       		</span>

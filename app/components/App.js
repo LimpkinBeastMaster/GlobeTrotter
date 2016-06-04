@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import NavLink from './NavLink'
+import Globe from './Globe'
 //import Globe from './Globe';
 //import Maps from './Maps';
 
@@ -12,18 +14,35 @@ import React from 'react';
 //   <Maps>as</Maps>
 // </div>
 
-// <Globe width={200}
-//            height={100}
-//            radius={100 / 2}
-//            velocity={.02}/>
+
 
 class App extends React.Component {
   render() {
     return (
+
       <div>
-      
+        <span>
+          <NavLink 
+            to="/login">
+            Login
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/createtrips">
+            Create Trips
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/mytrips">
+            My Trips
+          </NavLink>
+          <strong> | </strong>
+          <NavLink 
+            to="/alltrips">
+            AllTrips
+          </NavLink>        
+        </span>
         {this.props.children}
-        
       </div>
     );
   }
