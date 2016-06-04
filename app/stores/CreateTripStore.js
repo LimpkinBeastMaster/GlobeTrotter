@@ -2,18 +2,14 @@ import alt from '../alt';
 import userData from './data/userData'
 import CreateTripActions from '../actions/CreateTripActions'
 
-class UserTripsStore {
+class CreateTripStore {
 	constructor() {
     this.bindActions(CreateTripsActions);
-		this.trips = userData;
+		this.stops = [];
 	}
-
-  onGetTripsSuccess(data) {
-    this.trips.push(data);
-  }
-
-  onGetTripsFail(err) {
-    console.log('failed');
+  onAddPointSuccess(data) {
+    this.stops = data;
+    console.log(data);
   }
 }
 export default alt.createStore(CreateTripStore);

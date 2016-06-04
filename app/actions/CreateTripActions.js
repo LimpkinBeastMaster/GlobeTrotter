@@ -1,24 +1,23 @@
 import alt from '../alt';
 
-class UserTripsActions {
+class CreateTripActions {
   constructor() {
     this.generateActions(
-      'GetTripsSuccess',
-      'GetTripsFail'
+      'AddPoint'
     );
   }
-
-  GetTrips(userName) {
-    
-    $.ajax({url: '/api/trips/', userName})
-    .done((data) => {
-      console.log('DATA', data);
-      this.actions.GetTripsSuccess(data)
-    })
-    .fail((err) => {
-      console.log('ERROR:', err);
-      this.actions.GetTripsFail(err);
-    })
+  // on add point
+  // send whole array to store
+  AddPoint(array) {
+    //position, stopData
+    var stops = [];
+    for (var i=0; i< array.length; i++) {
+      var stop = {}
+      stop.position = array[i].position;
+      stop.stopData = array[i].stopData;
+      stops.push(stop);
+    }
+    this.actions.AddPointSuccess(stops);
   }
 }
 

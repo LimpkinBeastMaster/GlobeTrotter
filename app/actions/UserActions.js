@@ -1,6 +1,6 @@
 import alt from '../alt';
 
-class UserTripsActions {
+class UseraActions {
   constructor() {
     this.generateActions(
       'GetTripsSuccess',
