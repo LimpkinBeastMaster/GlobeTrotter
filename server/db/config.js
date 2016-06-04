@@ -30,7 +30,7 @@ db.knex.schema.hasTable('trips').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('trips', function (trips) {
       trips.increments('id').primary();
-      trips.string('name', 100);
+      trips.string('title', 100);
       trips.integer('users_id');
       trips.string('start',100);
       trips.string('end',100);

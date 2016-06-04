@@ -75,8 +75,17 @@ var CreateTripActions = function () {
       var stops = [];
       for (var i = 0; i < array.length; i++) {
         var stop = {};
-        var lat = array[i].position.lat();
-        var lng = array[i].position.lng();
+        var lat, lng;
+        if (typeof array[i].position.lat === 'function') {
+          lat = array[i].position.lat();
+        } else {
+          lat = array[i].position.lat;
+        }
+        if (typeof array[i].position.lng === 'function') {
+          lng = array[i].position.lng();
+        } else {
+          lng = array[i].position.lng;
+        }
         stop.position = { lat: lat, lng: lng };
         stop.stopData = array[i].stopData;
         stops.push(stop);
@@ -88,8 +97,20 @@ var CreateTripActions = function () {
     value: function GetTrip(trip) {
       var _this = this;
 
-      $.get({ url: '/api/trip/' + trip + '/' }).success(function (data) {
+      // console.log('/api/trip/' + trip);
+      $.get({ url: '/api/trip/' + trip }).success(function (data) {
         console.log('DATA', data);
+        for (var i = 0; i < data.length; i++) {
+          data[i].position = JSON.parse(data[i].coordinates);
+          data[i].position.lat = Number(data[i].position.lat);
+          data[i].position.lng = Number(data[i].position.lng);
+          data[i].stopData = {
+            stopAddress: data[i].address,
+            stopInfo: data[i].info,
+            stopName: data[i].name
+          };
+          // console.log(data[i].position);
+        }
         _this.actions.GetTripSuccess(data);
       }).fail(function (err) {
         console.log('ERROR:', err);
@@ -383,7 +404,7 @@ exports.default = App;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -429,75 +450,82 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //
 
 var CreateTripsView = function (_React$Component) {
-    _inherits(CreateTripsView, _React$Component);
+  _inherits(CreateTripsView, _React$Component);
 
-    function CreateTripsView(props) {
-        _classCallCheck(this, CreateTripsView);
+  function CreateTripsView(props) {
+    _classCallCheck(this, CreateTripsView);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(CreateTripsView).call(this, props));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(CreateTripsView).call(this, props));
+  }
+
+  _createClass(CreateTripsView, [{
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var postObject = {
+        username: _UserStore2.default.getState().user,
+        tripname: e.target.tripName.value,
+        stops: _CreateTripStore2.default.getState().stops
+      };
+      console.log('Posting this!', postObject);
+      _CreateTripActions2.default.CreateTrip(postObject);
     }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    _createClass(CreateTripsView, [{
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            e.preventDefault();
-            var postObject = {
-                username: _UserStore2.default.getState().user,
-                tripname: e.target.tripName.value,
-                stops: _CreateTripStore2.default.getState().stops
-            };
-            console.log('Posting this!', postObject);
-            _CreateTripActions2.default.CreateTrip(postObject);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+      return _react2.default.createElement(
+        'div',
+        { className: 'create-trips-view' },
+        _react2.default.createElement(
+          'div',
+          { style: _style.map },
+          _react2.default.createElement(_Maps2.default, {
+            markers: _CreateTripStore2.default.getState().stops.map(function (stop) {
+              stop.key = stop.id + ' stop';return stop;
+            }),
+            path: _CreateTripStore2.default.getState().stops.map(function (stop) {
+              stop.key = stop.id + ' path';return stop.position;
+            })
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'navigate' },
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/alltrips' },
+            'Create'
+          ),
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/alltrips' },
+            'All Trips'
+          ),
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/alltrips' },
+            'MyTrips'
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: function onSubmit(e) {
+                return _this2.handleSubmit(e);
+              } },
+            _react2.default.createElement('input', { type: 'text', id: 'tripName' }),
+            _react2.default.createElement(
+              'button',
+              { type: 'submit' },
+              ' Submit Trip '
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-            return _react2.default.createElement(
-                'div',
-                { className: 'create-trips-view' },
-                _react2.default.createElement(
-                    'div',
-                    { style: _style.map },
-                    _react2.default.createElement(_Maps2.default, null)
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'navigate' },
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/alltrips' },
-                        'Create'
-                    ),
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/alltrips' },
-                        'All Trips'
-                    ),
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/alltrips' },
-                        'MyTrips'
-                    ),
-                    _react2.default.createElement(
-                        'form',
-                        { onSubmit: function onSubmit(e) {
-                                return _this2.handleSubmit(e);
-                            } },
-                        _react2.default.createElement('input', { type: 'text', id: 'tripName' }),
-                        _react2.default.createElement(
-                            'button',
-                            { type: 'submit' },
-                            ' Submit Trip '
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return CreateTripsView;
+  return CreateTripsView;
 }(_react2.default.Component);
 
 exports.default = CreateTripsView;
@@ -1243,6 +1271,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _style = require('../stylesheets/style');
 
+var _CreateTripActions = require('../actions/CreateTripActions');
+
+var _CreateTripActions2 = _interopRequireDefault(_CreateTripActions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1260,10 +1292,17 @@ var TripList = function (_React$Component) {
     return _possibleConstructorReturn(this, Object.getPrototypeOf(TripList).call(this, props));
   }
 
-  //add link component around button and route to the passed in prop ID of the trip to redirect to route page
-
-
   _createClass(TripList, [{
+    key: 'clickHandler',
+    value: function clickHandler(e) {
+      // console.log(e.target.id)
+      // console.log(e.currentTarget.id)
+      _CreateTripActions2.default.GetTrip(e.currentTarget.id);
+    }
+
+    //add link component around button and route to the passed in prop ID of the trip to redirect to route page
+
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -1278,10 +1317,12 @@ var TripList = function (_React$Component) {
         _react2.default.createElement(
           'button',
           {
+            id: this.props.trip.id,
             className: 'btn btn-primary',
             type: 'button',
             'data-toggle': 'dropdown',
-            style: _style.tripBar },
+            style: _style.tripBar,
+            onClick: this.clickHandler.bind(this) },
           this.props.trip.title,
           _react2.default.createElement('span', { className: 'carat' })
         )
@@ -1296,7 +1337,7 @@ var TripList = function (_React$Component) {
 
 exports.default = TripList;
 
-},{"../stylesheets/style":25,"react":"react"}],16:[function(require,module,exports){
+},{"../actions/CreateTripActions":2,"../stylesheets/style":25,"react":"react"}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1340,7 +1381,7 @@ var UserView = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserView).call(this, props));
 
     _this.state = {
-      trips: _UserStore2.default.getState().trips.trips || [],
+      trips: _UserStore2.default.getState().trips || [],
       user: _UserStore2.default.getState().user
     };
     _this.onChange = _this.onChange.bind(_this);
@@ -1354,6 +1395,7 @@ var UserView = function (_React$Component) {
       // console.log('USERMOUNTED', this.state.user);
       _UserStore2.default.listen(this.onChange);
       _UserActions2.default.GetTrips(this.state.user);
+      console.log(this.state.trips);
     }
   }, {
     key: 'componentWillUnmount',
@@ -1365,7 +1407,7 @@ var UserView = function (_React$Component) {
     value: function onChange() {
       // console.log(UserStore.getState().trips)
       this.setState({
-        trips: _UserStore2.default.getState().trips.trips || [],
+        trips: _UserStore2.default.getState().trips || [],
         user: _UserStore2.default.getState().user
       });
     }
@@ -1639,7 +1681,7 @@ var CreateTripStore = function () {
     key: 'onAddPointSuccess',
     value: function onAddPointSuccess(data) {
       this.stops = data;
-      console.log(data);
+      // console.log(data);
     }
   }, {
     key: 'onGetTripSuccess',
@@ -1693,6 +1735,7 @@ var UserStore = function () {
     value: function onGetTripsSuccess(data) {
       this.trips = data;
       this.emitChange();
+      console.log(this.trips);
     }
   }, {
     key: 'onGetTripsFail',

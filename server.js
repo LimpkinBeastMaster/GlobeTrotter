@@ -61,11 +61,12 @@ app.get('/api/trip/:id', function(req, res) {
   //Trip.collection().fetch().then(function(data) {
   //  res.send(data);
   //})
-
   //-----VERY HACKY WAY WITHOUT RELATIONS!-----//
   var tripID = url.parse(req.url, true);
+  console.log(tripID);
   tripID = tripID.path.split('/')[3].replace(/%20/g, ' ');
   Stop.query('where', 'trips_id', '=', tripID).fetchAll().then(function(found) {
+    console.log(found);
     res.send(found);
   })
   // res.send({ stops: [
@@ -109,7 +110,7 @@ app.post('/api/trip', function(req, res) {
   User.forge({username: username}).fetch().then(function(found) {
     Trips.create({
       users_id: found.attributes.id,
-      name: tripname,
+      title: tripname,
       start: stopsArray[0].stopData.stopName,
       end: stopsArray[stopsArray.length - 1].stopData.stopName,
       likes: 0

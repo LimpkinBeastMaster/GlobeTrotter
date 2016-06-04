@@ -8,7 +8,7 @@ class UserView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: UserStore.getState().trips.trips || [],
+      trips: UserStore.getState().trips || [],
       user: UserStore.getState().user,
     }
     this.onChange = this.onChange.bind(this);
@@ -19,6 +19,7 @@ class UserView extends React.Component {
     // console.log('USERMOUNTED', this.state.user);
     UserStore.listen(this.onChange);
     UserActions.GetTrips(this.state.user);
+    console.log(this.state.trips);
 
   }
 
@@ -29,7 +30,7 @@ class UserView extends React.Component {
   onChange() {
     // console.log(UserStore.getState().trips)
     this.setState({
-      trips: UserStore.getState().trips.trips || [],
+      trips: UserStore.getState().trips || [],
       user: UserStore.getState().user
     });
   }

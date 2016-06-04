@@ -9,7 +9,7 @@ class CreateTripStore {
 	}
   onAddPointSuccess(data) {
     this.stops = data;
-    console.log(data);
+    // console.log(data);
   }
   onGetTripSuccess(data) {
     this.stops = data;
