@@ -1,10 +1,10 @@
 import alt from '../alt';
 import userData from './data/userData'
-import UserTripsActions from '../actions/UserTripActions'
+import CreateTripActions from '../actions/CreateTripActions'
 
 class UserTripsStore {
 	constructor() {
-    this.bindActions(UserTripsActions);
+    this.bindActions(CreateTripsActions);
 		this.trips = userData;
 	}
 
@@ -16,4 +16,4 @@ class UserTripsStore {
     console.log('failed');
   }
 }
-export default alt.createStore(UserTripsStore);
+export default alt.createStore(CreateTripStore);

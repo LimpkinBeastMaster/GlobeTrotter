@@ -22,4 +22,4 @@ class UserTripsActions {
   }
 }
 
-export default alt.createActions(UserTripsActions); 
+export default alt.createActions(CreateTripActions); 
