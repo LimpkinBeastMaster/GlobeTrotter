@@ -13,9 +13,9 @@ class AllTripsActions {
   }
 
   GetTrips() {
-    $.ajax({url: '/api/trips'})
-    .done((data) => {
-      //console.log('DATA', data);
+    $.get({url: '/api/trips'})
+    .success((data) => {
+      console.log('DATA', data);
       this.actions.GetTripsSuccess(data)
     })
     .fail((err) => {

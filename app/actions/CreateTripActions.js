@@ -26,7 +26,11 @@ class CreateTripActions {
         lng = array[i].position.lng;
       }
       stop.position = {lat: lat, lng: lng};
-      stop.stopData = array[i].stopData || {stopName: '', stopAddress: '', stopInfo: ''};
+      stop.stopData = array[i].stopData || {
+        stopName: '',
+        stopAddress: '',
+        stopInfo: ''
+      };
       stops.push(stop);
     }
     this.actions.AddPointSuccess(stops);
@@ -58,13 +62,16 @@ class CreateTripActions {
   CreateTrip(data) {
     $.post({url: '/api/trip', data})
     .success((data) => {
-      this.actions.CreateTripSuccess()
+      this.actions.CreateTripSuccess();
     })
     .fail((err) => {
       console.log("Error:", err);
     })
   }
-
+  
+  ClearMap() {
+    this.actions.CreateTripSuccess();
+  }
 
 }
 

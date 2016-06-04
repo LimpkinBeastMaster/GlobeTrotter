@@ -22,7 +22,7 @@ class TripList extends React.Component {
     		</div>
     		<button 
           id={this.props.trip.id}
-      		className='btn btn-primary' 
+      		className="btn btn-primary" 
       		type="button" 
       		data-toggle="dropdown" 
       		style={tripBar}

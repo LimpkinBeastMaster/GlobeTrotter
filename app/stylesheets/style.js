@@ -93,4 +93,8 @@ var map = {
   width: '500px'
 }
 
-export { map, search, trips, searchButton, searchBox, searchContainer, tripDisplay, likes, tripBar, home };
+var stopList = {
+  display: 'none'
+}
+
+export { map, search, trips, searchButton, searchBox, searchContainer, tripDisplay, likes, tripBar, home, stopList };

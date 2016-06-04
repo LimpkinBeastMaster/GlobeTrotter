@@ -23,7 +23,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -103,6 +103,7 @@ app.get('/api/trip/:id', function(req, res) {
   //     }
   //   }]
   // });
+
 });
 
 //Route to increment / decrement the likes 
@@ -127,7 +128,6 @@ app.put('/api/trips/likes', function(req, res) {
       trip.save();
       res.status(200).end(JSON.stringify(trip));
     })
-
 });
 
 app.post('/api/trip', function(req, res) {
@@ -136,7 +136,6 @@ app.post('/api/trip', function(req, res) {
   var tripname = req.body.tripname;
   var stopsArray = req.body.stops;
 
-  console.log('REQBODY!AKLFJA', req.body);
   if (!username || !tripname || !stopsArray) {
     console.log('Woops!');
     return res.sendStatus(404);
