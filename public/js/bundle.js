@@ -509,15 +509,18 @@ var CreateTripsView = function (_React$Component) {
   }, {
     key: 'clearMap',
     value: function clearMap(e) {
-      console.log(e);
       _CreateTripActions2.default.ClearMap();
+
+      this._input.setState({
+        markers: [],
+        path: []
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      console.log('Rerendering');
       return _react2.default.createElement(
         'div',
         { className: 'create-trips-view' },
@@ -528,7 +531,10 @@ var CreateTripsView = function (_React$Component) {
             markers: this.state.stops,
             path: this.state.stops.map(function (stop) {
               return stop.position;
-            })
+            }),
+            ref: function ref(map) {
+              return _this2._input = map;
+            }
           })
         ),
         _react2.default.createElement(
@@ -1362,10 +1368,6 @@ var _Stop = require('./Stop');
 
 var _Stop2 = _interopRequireDefault(_Stop);
 
-var _CreateTripStore = require('../stores/CreateTripStore');
-
-var _CreateTripStore2 = _interopRequireDefault(_CreateTripStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1403,7 +1405,7 @@ var StopList = function (_React$Component) {
 
 exports.default = StopList;
 
-},{"../stores/CreateTripStore":23,"./Stop":15,"react":"react"}],17:[function(require,module,exports){
+},{"./Stop":15,"react":"react"}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

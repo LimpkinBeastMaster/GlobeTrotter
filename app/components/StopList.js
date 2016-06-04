@@ -1,6 +1,5 @@
 import React from 'react';
 import Stop from './Stop';
-import CreateTripStore from '../stores/CreateTripStore';
 
 class StopList extends React.Component {
   render() {

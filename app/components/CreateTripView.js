@@ -39,23 +39,26 @@ class CreateTripsView extends React.Component {
   }
 
   handleSubmit(e) {
-      e.preventDefault();
-      var postObject = {
-          username: UserStore.getState().user,
-          tripname: e.target.tripName.value,
-          stops: this.state.stops
-      }
-      console.log('Posting this!', postObject);
-      CreateTripActions.CreateTrip(postObject);
+    e.preventDefault();
+    var postObject = {
+        username: UserStore.getState().user,
+        tripname: e.target.tripName.value,
+        stops: this.state.stops
+    }
+    console.log('Posting this!', postObject);
+    CreateTripActions.CreateTrip(postObject);
   }
 
   clearMap(e) {
-      console.log(e);
-      CreateTripActions.ClearMap();
+    CreateTripActions.ClearMap();
+
+    this._input.setState({
+      markers: [],
+      path: []
+    });
   }
 
   render() {
-    console.log('Rerendering');
     return (
       <div className='create-trips-view'>
         <div style={map}>
@@ -65,6 +68,7 @@ class CreateTripsView extends React.Component {
               this.state.stops.map((stop) => {
                 return stop.position;
               })}
+            ref={(map) => this._input = map}
             />
         </div>
         <form onSubmit={(e) => this.handleSubmit(e)}>
