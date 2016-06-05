@@ -6,7 +6,7 @@ import UserActions from '../actions/UserActions'
 import NavLink from './NavLink'
 import Globe from './Globe'
 
-import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
+import { Col, Row, ButtonToolbar, Button, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
 import { home } from '../stylesheets/style'
 
 class Home extends React.Component {
@@ -31,21 +31,41 @@ class Home extends React.Component {
     this.setState(state);
   }
 
-  handleClick(character) {
-   
+  handleLogin(event) {
+    event.preventDefault(); 
+    console.log('props.history:', this.props.history);
+    const path = '/login';
+    this.props.history.push(path);
+  }
+
+  handleSignup(event) {
+    event.preventDefault(); 
+    console.log('props.history:', this.props.history);
+    const path = '/signup';
+    this.props.history.push(path);
   }
 
   render() {
     return (
-      <div className="home" style={home}>
-        <Jumbotron>
-          <h1>TravelApp</h1>
-        </Jumbotron>
-        <Globe width={500}
-          height={400}
-          radius={400 / 2}
-          velocity={.02} />
-      </div>
+      <Row> 
+        <Col md={1}></Col>
+        <div className="col-md-9 col-md-offset-2" >
+          <Globe width={860}
+            height={689}
+            radius={689 / 2}
+            velocity={.02} />
+          <Row > 
+            <div className="col-md-6">
+              <Button bsStyle="default" onClick={this.handleLogin.bind(this)}>Login</Button>
+            </div>
+            <div className="col-md-6">
+              <Button bsStyle="primary" onClick={this.handleSignup.bind(this)}>Sign up</Button>
+            </div>                           
+            {this.props.children}
+          </Row> 
+        </div>
+        <Col md={1}></Col>
+      </Row>
     );
   }
 }
