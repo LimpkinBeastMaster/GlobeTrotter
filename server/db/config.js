@@ -3,7 +3,7 @@
   connection: {
     host     : '127.0.0.1',
     user     : 'root',
-    password : '123',
+    password : 'onepiece14',
     database : 'test1',
     charset  : 'utf8'
   }

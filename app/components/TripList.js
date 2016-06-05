@@ -15,10 +15,12 @@ class TripList extends React.Component {
   }
 
   render () {
+    var sign = '';
+    this.props.trip.likes > 0 ? sign = '+' : sign = ''; 
   	return (
       <div className="trip-list" style={tripDisplay}>
     		<div className="likes" style={likes}>
-    			+{this.props.trip.likes}
+    			{sign+JSON.stringify(this.props.trip.likes).replace(/["]/g, '')}
     		</div>
     		<button 
           id={this.props.trip.id}
