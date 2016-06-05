@@ -1,18 +1,5 @@
 import React from 'react'
 import NavLink from './NavLink'
-import Globe from './Globe'
-//import Globe from './Globe';
-//import Maps from './Maps';
-
-//Because route component set to app, can use this.props.children to route based on the url
-// var map = {
-//   height: '500px',
-//   width: '500px'
-// }
-
-// <div style={map}>
-//   <Maps>as</Maps>
-// </div>
 import { Router, Route, Link  } from 'react-router'
 import { Navbar, NavItem, Nav, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { LinkContainer, IndexRoute, IndexLinkContainer } from 'react-router-bootstrap'
@@ -24,7 +11,7 @@ function fxn(path){
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{padding: "15px"}}>
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
