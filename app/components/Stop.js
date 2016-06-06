@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import { Row, Button, Well, ButtonGroup } from 'react-bootstrap'
+
 
 class Stop extends React.Component {
   render() {
@@ -11,10 +13,10 @@ class Stop extends React.Component {
       info = this.props.data.stopInfo || '';
     }
     return (
-      <div className="stops">
-        Name: {name}
-        Address: {address}
-        Info: {info}
+      <div className="Row" style={{marginBottom: "10px", clear: "both"}} >
+        <Button type="button" bsStyle="primary" bsSize="small" block>
+        {this.props.indx+1} <small>Name {name} Address {address} Info {info}</small>
+        </Button>
       </div>
     )
   }

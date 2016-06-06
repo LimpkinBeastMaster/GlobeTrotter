@@ -1,6 +1,6 @@
 import React from 'react';
 import Maps from './Maps';
-import { Row, PageHeader, FormControl, Button } from 'react-bootstrap'
+import { Row, PageHeader, FormControl, Button, ButtonToolbar } from 'react-bootstrap'
 import {Link} from 'react-router';
 import { map, stopList } from '../stylesheets/style';
 import CreateTripStore from '../stores/CreateTripStore';
@@ -11,6 +11,8 @@ import StopList from './StopList';
 //Mytrips link needs to point link to a specific /usertrips/id
 //once a user logs in can have an id on the window....kinda kills point tho
 //
+const wellStyle = { maxWidth: 200, margin: '0 auto 10px' };
+
 
 class CreateTripsView extends React.Component {
   constructor(props) {
@@ -84,9 +86,12 @@ class CreateTripsView extends React.Component {
           <div className="col-md-6">
             <div>
               <form onSubmit={(e) => this.handleSubmit(e)}>
-                <FormControl type='text' id='tripName' placeholder="Enter trip name"/>
-                <Button type='submit' bsStyle="primary"> Submit Trip </Button>
-                <Button type='submit' bsStyle="primary" onClick={(e) => this.clearMap(e)}> Clear Map </Button>
+                <FormControl type='text' id='tripName' placeholder="Enter trip name" style={{marginBottom: '10px'}} />
+                <div style={wellStyle}>
+                  <Button type='submit' bsStyle="primary" > Submit Trip </Button>
+                  { '  ' }
+                  <Button type='submit' bsStyle="default" onClick={(e) => this.clearMap(e)} >Clear Map</Button>
+                </div>
               </form>
             <StopList id="stop-list" style={stopList} data={this.state.stops}/>
             </div>

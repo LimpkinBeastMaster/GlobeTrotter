@@ -599,6 +599,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //Mytrips link needs to point link to a specific /usertrips/id
 //once a user logs in can have an id on the window....kinda kills point tho
 //
+var wellStyle = { maxWidth: 200, margin: '0 auto 10px' };
 
 var CreateTripsView = function (_React$Component) {
   _inherits(CreateTripsView, _React$Component);
@@ -713,18 +714,23 @@ var CreateTripsView = function (_React$Component) {
                 { onSubmit: function onSubmit(e) {
                     return _this2.handleSubmit(e);
                   } },
-                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', id: 'tripName', placeholder: 'Enter trip name' }),
+                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', id: 'tripName', placeholder: 'Enter trip name', style: { marginBottom: '10px' } }),
                 _react2.default.createElement(
-                  _reactBootstrap.Button,
-                  { type: 'submit', bsStyle: 'primary' },
-                  ' Submit Trip '
-                ),
-                _react2.default.createElement(
-                  _reactBootstrap.Button,
-                  { type: 'submit', bsStyle: 'primary', onClick: function onClick(e) {
-                      return _this2.clearMap(e);
-                    } },
-                  ' Clear Map '
+                  'div',
+                  { style: wellStyle },
+                  _react2.default.createElement(
+                    _reactBootstrap.Button,
+                    { type: 'submit', bsStyle: 'primary' },
+                    ' Submit Trip '
+                  ),
+                  '  ',
+                  _react2.default.createElement(
+                    _reactBootstrap.Button,
+                    { type: 'submit', bsStyle: 'default', onClick: function onClick(e) {
+                        return _this2.clearMap(e);
+                      } },
+                    'Clear Map'
+                  )
                 )
               ),
               _react2.default.createElement(_StopList2.default, { id: 'stop-list', style: _style.stopList, data: this.state.stops })
@@ -1495,6 +1501,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactBootstrap = require('react-bootstrap');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1525,13 +1533,23 @@ var Stop = function (_React$Component) {
       }
       return _react2.default.createElement(
         'div',
-        { className: 'stops' },
-        'Name: ',
-        name,
-        'Address: ',
-        address,
-        'Info: ',
-        info
+        { className: 'Row', style: { marginBottom: "10px", clear: "both" } },
+        _react2.default.createElement(
+          _reactBootstrap.Button,
+          { type: 'button', bsStyle: 'primary', bsSize: 'small', block: true },
+          this.props.indx + 1,
+          ' ',
+          _react2.default.createElement(
+            'small',
+            null,
+            'Name ',
+            name,
+            ' Address ',
+            address,
+            ' Info ',
+            info
+          )
+        )
       );
     }
   }]);
@@ -1541,7 +1559,7 @@ var Stop = function (_React$Component) {
 
 exports.default = Stop;
 
-},{"react":"react"}],16:[function(require,module,exports){
+},{"react":"react","react-bootstrap":275}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1581,10 +1599,8 @@ var StopList = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        this.props.data.map(function (stop) {
-          return _react2.default.createElement(_Stop2.default, {
-            data: stop.stopData
-          });
+        this.props.data.map(function (stop, indx) {
+          return _react2.default.createElement(_Stop2.default, { data: stop.stopData, indx: indx });
         })
       );
     }
