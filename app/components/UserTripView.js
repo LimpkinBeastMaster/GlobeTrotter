@@ -35,8 +35,13 @@ class UserView extends React.Component {
     });
   }
 
-  fxn() {
-    console.log('hi');
+  RemoveTrip(trip, index, type, e) {
+   // console.log('hi');
+    e.preventDefault();
+    console.log('name, title', trip, index, type);
+    if(type === 3) {
+      UserActions.RemoveTrip(trip, index, type);
+    }
   }
 
   render() {
@@ -44,7 +49,7 @@ class UserView extends React.Component {
       <div className='all-trips-view' style={search}>
         <div className="trips" style={trips}>
         { this.state.trips.map((trip, indx) =>
-          <TripList key={indx} trip={trip} clickfxn={this.fxn.bind(this)}/>
+          <TripList key={indx} trip={trip} clickfxn={this.RemoveTrip.bind(this)}/>
           )
         }
         </div>

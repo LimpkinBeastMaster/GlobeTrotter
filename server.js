@@ -132,6 +132,29 @@ app.put('/api/trips/likes', function(req, res) {
     })
 });
 
+app.post('/api/trips/remove', function(req, res) {
+  console.log('REMOVE REQ BODY', req.body);
+
+  var likes = req.body.likes;
+  var title = req.body.title;
+  var id = req.body.user_id;
+
+  // console.log('TYPE:',req.body.type);
+  // console.log('likes title', likes, title);
+  Trip.where({title: title, likes: likes}).fetch()
+      .then(function(trip){
+      console.log('THE TRIP', trip);
+      trip.destroy();
+      Stop.where({trips_id: id}).fetchAll()
+        .then(function(stops){
+          console.log('The stops', stops);
+          res.status(200).end();
+        })
+    })
+});
+
+
+
 app.post('/api/trip', function(req, res) {
   //here we want an array of ids to be sent from all the stops made in googleAPI
   var username = req.body.username;
