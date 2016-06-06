@@ -2,6 +2,8 @@ import React from 'react';
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker, Polyline, SearchBox } from "react-google-maps";
 import { default as update } from "react-addons-update";
 import CreateTripActions from '../actions/CreateTripActions'
+import { FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
+
 
 var inputStyle = {
   "border": `1px solid transparent`,
@@ -152,13 +154,19 @@ class Maps extends React.Component {
         key={`${ref}_info_window`}
         onCloseclick={this.handleMarkerClose.bind(this, marker)}>
         <form onSubmit={(e) => this.saveData(e, ref, marker)} >
-          Name: 
-          <input type='text' id='name'/> <br/> 
-          Address: 
-          <input type='text' id='address'/> <br/>
-          Info:
-          <input type='text' id='info'/> <br/>
-          <button type='submit'> Save & Close </button>
+          <FormGroup>
+            <ControlLabel>Name</ControlLabel> 
+            <FormControl type='text' id='name'/>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Address</ControlLabel> 
+            <FormControl type='text' id='address'/>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Info</ControlLabel> 
+            <FormControl type='text' id='info'/>
+          </FormGroup>
+          <Button type='submit' bsStyle="success" bsSize="small">Save & Close</Button>
         </form>
       </InfoWindow>
       

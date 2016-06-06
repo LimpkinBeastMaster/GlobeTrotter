@@ -1030,6 +1030,8 @@ var _CreateTripActions = require("../actions/CreateTripActions");
 
 var _CreateTripActions2 = _interopRequireDefault(_CreateTripActions);
 
+var _reactBootstrap = require("react-bootstrap");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1206,22 +1208,40 @@ var Maps = function (_React$Component) {
             { onSubmit: function onSubmit(e) {
                 return _this2.saveData(e, ref, marker);
               } },
-            "Name:",
-            _react2.default.createElement("input", { type: "text", id: "name" }),
-            " ",
-            _react2.default.createElement("br", null),
-            "Address:",
-            _react2.default.createElement("input", { type: "text", id: "address" }),
-            " ",
-            _react2.default.createElement("br", null),
-            "Info:",
-            _react2.default.createElement("input", { type: "text", id: "info" }),
-            " ",
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-              "button",
-              { type: "submit" },
-              " Save & Close "
+              _reactBootstrap.FormGroup,
+              null,
+              _react2.default.createElement(
+                _reactBootstrap.ControlLabel,
+                null,
+                "Name"
+              ),
+              _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "name" })
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.FormGroup,
+              null,
+              _react2.default.createElement(
+                _reactBootstrap.ControlLabel,
+                null,
+                "Address"
+              ),
+              _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "address" })
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.FormGroup,
+              null,
+              _react2.default.createElement(
+                _reactBootstrap.ControlLabel,
+                null,
+                "Info"
+              ),
+              _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "info" })
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.Button,
+              { type: "submit", bsStyle: "success", bsSize: "small" },
+              "Save & Close"
             )
           )
         )
@@ -1281,7 +1301,7 @@ var Maps = function (_React$Component) {
 
 module.exports = Maps;
 
-},{"../actions/CreateTripActions":2,"react":"react","react-addons-update":183,"react-google-maps":323}],12:[function(require,module,exports){
+},{"../actions/CreateTripActions":2,"react":"react","react-addons-update":183,"react-bootstrap":275,"react-google-maps":323}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
