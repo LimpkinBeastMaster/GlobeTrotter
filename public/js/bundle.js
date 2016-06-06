@@ -721,7 +721,7 @@ var CreateTripsView = function (_React$Component) {
                   _react2.default.createElement(
                     _reactBootstrap.Button,
                     { type: 'submit', bsStyle: 'primary' },
-                    ' Submit Trip '
+                    'Submit Trip'
                   ),
                   '  ',
                   _react2.default.createElement(
@@ -1526,29 +1526,42 @@ var Stop = function (_React$Component) {
       var name = '';
       var address = '';
       var info = '';
+      var header = '';
       if (this.props.data) {
         name = this.props.data.stopName || '';
         address = this.props.data.stopAddress || '';
         info = this.props.data.stopInfo || '';
+        header = 'Stop ' + Number(this.props.indx);
       }
       return _react2.default.createElement(
         'div',
         { className: 'Row', style: { marginBottom: "10px", clear: "both" } },
         _react2.default.createElement(
-          _reactBootstrap.Button,
-          { type: 'button', bsStyle: 'primary', bsSize: 'small', block: true },
-          this.props.indx + 1,
-          ' ',
+          _reactBootstrap.Panel,
+          { header: header, bsStyle: 'primary' },
           _react2.default.createElement(
-            'small',
+            'strong',
             null,
-            'Name ',
-            name,
-            ' Address ',
-            address,
-            ' Info ',
-            info
-          )
+            'Name'
+          ),
+          ' ',
+          name,
+          ' | ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Address'
+          ),
+          ' ',
+          address,
+          ' | ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Info'
+          ),
+          ' ',
+          info
         )
       );
     }

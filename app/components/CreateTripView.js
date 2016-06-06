@@ -88,7 +88,7 @@ class CreateTripsView extends React.Component {
               <form onSubmit={(e) => this.handleSubmit(e)}>
                 <FormControl type='text' id='tripName' placeholder="Enter trip name" style={{marginBottom: '10px'}} />
                 <div style={wellStyle}>
-                  <Button type='submit' bsStyle="primary" > Submit Trip </Button>
+                  <Button type='submit' bsStyle="primary" >Submit Trip</Button>
                   { '  ' }
                   <Button type='submit' bsStyle="default" onClick={(e) => this.clearMap(e)} >Clear Map</Button>
                 </div>
