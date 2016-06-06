@@ -63,7 +63,7 @@ class AllTripsView extends React.Component {
 
   render() {
     var tripArr = this.state.trips.map((trip, indx) => {
-      return (<TripList key={indx} index={indx} trip={trip} clickfxn={this.handleTripClick.bind(this)}/>)
+      return (<TripList key={indx} index={indx} show={false} trip={trip} clickfxn={this.handleTripClick.bind(this)}/>)
     });
 
     return (
