@@ -70,7 +70,7 @@ class CreateTripsView extends React.Component {
           <div className="col-md-2">
           </div>  
         </div>
-        <div classNAme="Row">
+        <div className="Row">
           <div className="col-md-6">
             <div className='create-trips-view'>
               <div style={map}>

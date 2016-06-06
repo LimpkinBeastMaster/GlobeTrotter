@@ -27,7 +27,9 @@ class TripList extends React.Component {
           </Button>
         </div>
           <div className="col-md-8" style={{ margin: '0 auto 10px' }}>
-          <Button type="button" bsSize="large" bsStyle="primary" block>
+          <Button type="button" bsSize="large" bsStyle="primary" block
+            id={this.props.trip.id}
+            onClick = {this.clickHandler.bind(this)}>
             {this.props.trip.title}
           </Button> 
         </div> 

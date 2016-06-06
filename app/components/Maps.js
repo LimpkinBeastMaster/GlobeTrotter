@@ -28,7 +28,7 @@ class Maps extends React.Component {
       markers: this.props.markers || [], //Pass down props so that map can auto-populate
       path: this.props.path || [],
       bounds: null,
-      center: {
+      center: this.props.markers[0] ? this.props.markers[0].position : {
         lat: 37.78355726989257, 
         lng: -122.40891695022583 
       },
