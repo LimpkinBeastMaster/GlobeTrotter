@@ -88,6 +88,12 @@ var home = {
   paddingRight: '20px'
 }
 
+var signupButton = {
+  float: 'none',
+  display: 'inline-block',
+  verticalAlign: 'middle'
+}
+
 var map = {
   height: '500px',
   width: '500px'
