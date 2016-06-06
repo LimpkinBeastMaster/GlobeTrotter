@@ -19,9 +19,10 @@ class TripList extends React.Component {
     this.props.trip.likes > 0 ? sign = '+' : sign = ''; 
   	return (
       <div className="trip-list" style={tripDisplay}>
-    		<div className="likes" style={likes}>
+    		<span className="likes" style={likes}>
     			{sign+JSON.stringify(this.props.trip.likes).replace(/["]/g, '')}
-    		</div>
+    		</span>
+        <span className='pull-right'>
     		<button 
           id={this.props.trip.id}
       		className="btn btn-primary" 
@@ -32,10 +33,12 @@ class TripList extends React.Component {
       		{this.props.trip.title} 
       		<span className="carat">
       		</span>
-      	</button>
+      	</button> 
         <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}><span className="glyphicon glyphicon-arrow-up"></span></a>
         <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2)}><span className="glyphicon glyphicon-arrow-down"></span></a>
-    	</div>
+    	  <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 3)}><span className="glyphicon glyphicon-remove-sign"></span></a>
+       </span>
+      </div>
     )
   };
 };
