@@ -13,7 +13,7 @@ class Stop extends React.Component {
       name = this.props.data.stopName || '';
       address = this.props.data.stopAddress || '';
       info = this.props.data.stopInfo || '';
-      header = 'Stop ' + Number(this.props.indx); 
+      header = 'Stop ' + (Number(this.props.indx) + 1); 
     }
     return (
       <div className="Row" style={{marginBottom: "10px", clear: "both"}} >

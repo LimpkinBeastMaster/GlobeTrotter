@@ -1207,41 +1207,79 @@ var Maps = function (_React$Component) {
             "form",
             { onSubmit: function onSubmit(e) {
                 return _this2.saveData(e, ref, marker);
-              } },
+              }, horizontal: true },
             _react2.default.createElement(
               _reactBootstrap.FormGroup,
-              null,
+              { bsSize: "small", style: { marginBottom: "10px" } },
               _react2.default.createElement(
-                _reactBootstrap.ControlLabel,
-                null,
+                _reactBootstrap.Col,
+                { componentClass: _reactBootstrap.ControlLabel, sm: 4 },
                 "Name"
               ),
-              _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "name" })
+              _react2.default.createElement(
+                _reactBootstrap.Col,
+                { sm: 8 },
+                _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "name" })
+              )
+            ),
+            _react2.default.createElement(
+              "span",
+              null,
+              " ",
+              ' '
             ),
             _react2.default.createElement(
               _reactBootstrap.FormGroup,
-              null,
+              { bsSize: "small", style: { marginBottom: "10px" } },
               _react2.default.createElement(
-                _reactBootstrap.ControlLabel,
-                null,
+                _reactBootstrap.Col,
+                { componentClass: _reactBootstrap.ControlLabel, sm: 4 },
                 "Address"
               ),
-              _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "address" })
+              _react2.default.createElement(
+                _reactBootstrap.Col,
+                { sm: 8 },
+                _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "address" })
+              )
+            ),
+            _react2.default.createElement(
+              "span",
+              null,
+              " ",
+              ' '
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.FormGroup,
+              { bsSize: "small", style: { marginBottom: "10px" } },
+              _react2.default.createElement(
+                _reactBootstrap.Col,
+                { componentClass: _reactBootstrap.ControlLabel, sm: 4 },
+                "Info"
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.Col,
+                { sm: 8 },
+                _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "info" })
+              )
+            ),
+            _react2.default.createElement(
+              "span",
+              null,
+              " ",
+              ' '
             ),
             _react2.default.createElement(
               _reactBootstrap.FormGroup,
               null,
               _react2.default.createElement(
-                _reactBootstrap.ControlLabel,
-                null,
-                "Info"
-              ),
-              _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", id: "info" })
-            ),
-            _react2.default.createElement(
-              _reactBootstrap.Button,
-              { type: "submit", bsStyle: "success", bsSize: "small" },
-              "Save & Close"
+                _reactBootstrap.Col,
+                { smOffset: 4, sm: 8 },
+                _react2.default.createElement(
+                  _reactBootstrap.Button,
+                  { type: "submit", bsStyle: "success", bsSize: "small" },
+                  "Save & Close"
+                )
+              )
             )
           )
         )
@@ -1551,7 +1589,7 @@ var Stop = function (_React$Component) {
         name = this.props.data.stopName || '';
         address = this.props.data.stopAddress || '';
         info = this.props.data.stopInfo || '';
-        header = 'Stop ' + Number(this.props.indx);
+        header = 'Stop ' + (Number(this.props.indx) + 1);
       }
       return _react2.default.createElement(
         'div',

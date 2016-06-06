@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker, Polyline, SearchBox } from "react-google-maps";
 import { default as update } from "react-addons-update";
 import CreateTripActions from '../actions/CreateTripActions'
-import { FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Col } from 'react-bootstrap';
 
 
 var inputStyle = {
@@ -153,20 +153,39 @@ class Maps extends React.Component {
       <InfoWindow 
         key={`${ref}_info_window`}
         onCloseclick={this.handleMarkerClose.bind(this, marker)}>
-        <form onSubmit={(e) => this.saveData(e, ref, marker)} >
-          <FormGroup>
-            <ControlLabel>Name</ControlLabel> 
+        <form onSubmit={(e) => this.saveData(e, ref, marker)} horizontal>
+          <FormGroup bsSize="small" style={{marginBottom: "10px"}}>
+            <Col componentClass={ControlLabel} sm={4}>
+              Name
+            </Col>
+            <Col sm={8}>
             <FormControl type='text' id='name'/>
+            </Col>
           </FormGroup>
+          <span> { ' ' }</span>
+          <FormGroup bsSize="small" style={{marginBottom: "10px"}}>
+            <Col componentClass={ControlLabel} sm={4}>
+            Address 
+            </Col>
+            <Col sm={8}>
+              <FormControl type='text' id='address'/>
+            </Col>
+          </FormGroup>
+          <span> { ' ' }</span>
+          <FormGroup bsSize="small" style={{marginBottom: "10px"}}>
+            <Col componentClass={ControlLabel} sm={4}>
+              Info
+            </Col>
+            <Col sm={8}>
+              <FormControl type='text' id='info'/>
+            </Col>
+          </FormGroup>
+          <span> { ' ' }</span>
           <FormGroup>
-            <ControlLabel>Address</ControlLabel> 
-            <FormControl type='text' id='address'/>
+            <Col smOffset={4} sm={8}>
+              <Button type='submit' bsStyle="success" bsSize="small">Save & Close</Button>
+            </Col>
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>Info</ControlLabel> 
-            <FormControl type='text' id='info'/>
-          </FormGroup>
-          <Button type='submit' bsStyle="success" bsSize="small">Save & Close</Button>
         </form>
       </InfoWindow>
       
