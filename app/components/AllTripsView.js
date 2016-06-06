@@ -50,9 +50,12 @@ class AllTripsView extends React.Component {
   }
 
   handleTripClick(trip, index, type, e) {
-    e.preventDefault();
-    console.log('name, title', trip, index, type);
-    AllTripsActions.ChangeLikes(trip, index, type);
+      e.preventDefault();
+      console.log('name, title', trip, index, type);
+      
+      if(type !== 3) {
+          AllTripsActions.ChangeLikes(trip, index, type);
+      }
   }
 
   render() {

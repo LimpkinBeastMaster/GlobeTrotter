@@ -17,6 +17,8 @@ class TripList extends React.Component {
   }
 
   render () {
+    var sign = '';
+    this.props.trip.likes > 0 ? sign = '+' : sign = ''; 
   	return (
       <div className="Row" style={{clear: "both"}}>
         <div className="col-md-2">
@@ -34,8 +36,11 @@ class TripList extends React.Component {
             <Button bsStyle="info" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}>
               <span className="glyphicon glyphicon-arrow-up"></span>
             </Button>
-            <Button bsStyle="warning" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}>
+            <Button bsStyle="warning" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2)}>
               <span className="glyphicon glyphicon-arrow-down"></span>
+            </Button>
+            <Button bsStyle="danger" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 3)}>
+              <span className="glyphicon glyphicon-remove-sign"></span>
             </Button>
           </ButtonGroup>
         </div> 

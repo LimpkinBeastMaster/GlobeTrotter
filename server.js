@@ -110,15 +110,17 @@ app.get('/api/trip/:id', function(req, res) {
 app.put('/api/trips/likes', function(req, res) {
   console.log('REQ BODY', req.body);
 
-  var likes = req.body['trip[likes]'];
-  var title = req.body['trip[title]'];
-  var user  = req.body['trip[user]'];
+  var likes = req.body.trip.likes;
+  var title = req.body.trip.title;
+ // var id = req.body['id'];
+  //var user  = req.body['trip[user]'];
   var type = req.body.type;
 
   console.log('TYPE:',req.body.type);
-  Trip.where({title: title, user: user, likes: likes}).fetch()
+  console.log('likes title', likes, title);
+  Trip.where({title: title, likes: likes}).fetch()
     .then(function(trip){
-      console.log(trip);
+      console.log('THE TRIP', trip);
       var temp = Number(likes);
       type === '1' ? temp += 1 : temp -= 1;
       //temp += 1;
@@ -129,6 +131,29 @@ app.put('/api/trips/likes', function(req, res) {
       res.status(200).end(JSON.stringify(trip));
     })
 });
+
+app.post('/api/trips/remove', function(req, res) {
+  console.log('REMOVE REQ BODY', req.body);
+
+  var likes = req.body.likes;
+  var title = req.body.title;
+  var id = req.body.user_id;
+
+  // console.log('TYPE:',req.body.type);
+  // console.log('likes title', likes, title);
+  Trip.where({title: title, likes: likes}).fetch()
+      .then(function(trip){
+      console.log('THE TRIP', trip);
+      trip.destroy();
+      Stop.where({trips_id: id}).fetchAll()
+        .then(function(stops){
+          console.log('The stops', stops);
+          res.status(200).end();
+        })
+    })
+});
+
+
 
 app.post('/api/trip', function(req, res) {
   //here we want an array of ids to be sent from all the stops made in googleAPI
@@ -202,6 +227,12 @@ app.get('/api/trips/:id', function(req, res, next) {
   //  res.send(data);
   //})
 });
+
+app.get('/api/stops', function(req, res) {
+  Stop.forge().fetchAll().then(function(found) {
+    res.send(found);
+  })
+})
 
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {

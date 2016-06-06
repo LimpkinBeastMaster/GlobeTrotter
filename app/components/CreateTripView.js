@@ -45,6 +45,8 @@ class CreateTripsView extends React.Component {
     }
     console.log('Posting this!', postObject);
     CreateTripActions.CreateTrip(postObject);
+    //console.log('props', this.props.history);
+    this.props.history.push('/alltrips');
   }
 
   clearMap(e) {
