@@ -3,7 +3,8 @@ import SearchBar from './SearchBar';
 import TripList from './TripList';
 import AllTripsStore from '../stores/AllTripsStore';
 import AllTripsActions from '../actions/AllTripActions';
-
+import allData from '../stores/data/allData'
+import { Row, PageHeader } from 'react-bootstrap'
 import { search, trips } from '../stylesheets/style';
 import { searchButton, searchBox, searchContainer } from '../stylesheets/style';
 
@@ -58,22 +59,29 @@ class AllTripsView extends React.Component {
     var tripArr = this.state.trips.map((trip, indx) => {
       return (<TripList key={indx} index={indx} trip={trip} clickfxn={this.handleTripClick.bind(this)}/>)
     });
+    var tripArr2 = allData.map((trip, indx) => {
+      return (<TripList key={indx} index={indx} trip={trip} clickfxn={this.handleTripClick.bind(this)}/>)
+    });
 
     return (
-    	<div className='all-trips-view' style={search}>
-    		<div className="search-bar">
-    			<form ref='searchForm' className='navbar-form navbar-left animated' onSubmit={this.handleSubmit.bind(this)}>
-            <div className='input-group'>
-              <input style={searchContainer} type='text' className='form-control' placeholder={'Find your next trip...'} value={this.state.searchQuery} onChange={AllTripsActions.updateSearchQuery} />
-              <span className='input-group-btn'>
-              <button className='btn btn-default' onChange={this.handleSubmit.bind(this)}><span className='glyphicon glyphicon-search'></span></button>
-              </span>
+      <div>
+      	<div className='Row'>
+          <div className="col-md-2">
+          </div>
+          <div className="col-md-8">
+            <PageHeader>Trips Feed <small>Searching Japan</small></PageHeader>
+          </div>
+          <div className="col-md-2">
+          </div>  
+      		<div style={{marginBottom: "10px", clear: "both"}}>
+            <div className="search-bar">
+              <SearchBar />
             </div>
-            </form>
-    		</div>
-    		<div className="trips" style={trips}>
-    		  {tripArr}
-    		</div>
+      		</div>
+      		<div style={{clear: "both"}}>
+      		  {tripArr2}
+      		</div>
+        </div>
       </div>
     );
   }

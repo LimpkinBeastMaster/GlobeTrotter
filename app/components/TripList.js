@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router, Route, Link } from 'react-router'
-import { Row, Button, Well } from 'react-bootstrap'
+import { Row, Button, Well, ButtonGroup } from 'react-bootstrap'
 import { tripDisplay, likes, tripBar } from '../stylesheets/style'
 import CreateTripActions from '../actions/CreateTripActions'
 
@@ -30,14 +30,14 @@ class TripList extends React.Component {
           </Button> 
         </div> 
         <div className="col-md-2">
-          <Button type="button" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}>
-            <span className="glyphicon glyphicon-arrow-up"></span>
-          </Button>
-          <Button type="button" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}>
-            <span className="glyphicon glyphicon-arrow-up"></span>
-          </Button>
-          <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}></a>
-          <a href="#" className="btn btn-default" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2)}><span className="glyphicon glyphicon-arrow-down"></span></a>
+          <ButtonGroup>
+            <Button bsStyle="info" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}>
+              <span className="glyphicon glyphicon-arrow-up"></span>
+            </Button>
+            <Button bsStyle="warning" bsSize="large" onClick={this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1)}>
+              <span className="glyphicon glyphicon-arrow-down"></span>
+            </Button>
+          </ButtonGroup>
         </div> 
     	</div>
     )

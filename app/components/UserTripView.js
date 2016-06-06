@@ -2,9 +2,11 @@ import React from 'react';
 import TripList from './TripList';
 import UserStore from '../stores/UserStore'
 import UserActions from '../actions/UserActions'
+import userData from '../stores/data/userData'
+import { Row, PageHeader } from 'react-bootstrap'
 import { search, trips } from '../stylesheets/style'
  
-class UserView extends React.Component {
+class UserTripView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,16 +43,26 @@ class UserView extends React.Component {
 
   render() {
     return (
-      <div className='all-trips-view' style={search}>
-        <div className="trips" style={trips}>
-        { this.state.trips.map((trip, indx) =>
-          <TripList key={indx} trip={trip} clickfxn={this.fxn.bind(this)}/>
-          )
-        }
+      <div>
+        <div className="Row">
+          <div className="col-md-2">
+          </div>
+          <div className="col-md-8">
+            <PageHeader>My Trips <small>Signed in as user Ben</small></PageHeader>
+          </div>
+          <div className="col-md-2">
+          </div>
+        </div>
+        <div style={{marginBottom: "10px", clear: "both"}}>
+          <div>
+            {userData.map((trip, indx) =>
+              <TripList key={indx} trip={trip} clickfxn={this.fxn.bind(this)}/>
+            )}
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default UserView;
+export default UserTripView;

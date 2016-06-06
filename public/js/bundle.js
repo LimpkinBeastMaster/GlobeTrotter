@@ -265,6 +265,12 @@ var _AllTripActions = require('../actions/AllTripActions');
 
 var _AllTripActions2 = _interopRequireDefault(_AllTripActions);
 
+var _allData = require('../stores/data/allData');
+
+var _allData2 = _interopRequireDefault(_allData);
+
+var _reactBootstrap = require('react-bootstrap');
+
 var _style = require('../stylesheets/style');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -340,36 +346,46 @@ var AllTripsView = function (_React$Component) {
       var tripArr = this.state.trips.map(function (trip, indx) {
         return _react2.default.createElement(_TripList2.default, { key: indx, index: indx, trip: trip, clickfxn: _this2.handleTripClick.bind(_this2) });
       });
+      var tripArr2 = _allData2.default.map(function (trip, indx) {
+        return _react2.default.createElement(_TripList2.default, { key: indx, index: indx, trip: trip, clickfxn: _this2.handleTripClick.bind(_this2) });
+      });
 
       return _react2.default.createElement(
         'div',
-        { className: 'all-trips-view', style: _style.search },
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'search-bar' },
+          { className: 'Row' },
+          _react2.default.createElement('div', { className: 'col-md-2' }),
           _react2.default.createElement(
-            'form',
-            { ref: 'searchForm', className: 'navbar-form navbar-left animated', onSubmit: this.handleSubmit.bind(this) },
+            'div',
+            { className: 'col-md-8' },
             _react2.default.createElement(
-              'div',
-              { className: 'input-group' },
-              _react2.default.createElement('input', { style: _style.searchContainer, type: 'text', className: 'form-control', placeholder: 'Find your next trip...', value: this.state.searchQuery, onChange: _AllTripActions2.default.updateSearchQuery }),
+              _reactBootstrap.PageHeader,
+              null,
+              'Trips Feed ',
               _react2.default.createElement(
-                'span',
-                { className: 'input-group-btn' },
-                _react2.default.createElement(
-                  'button',
-                  { className: 'btn btn-default', onChange: this.handleSubmit.bind(this) },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-search' })
-                )
+                'small',
+                null,
+                'Searching Japan'
               )
             )
+          ),
+          _react2.default.createElement('div', { className: 'col-md-2' }),
+          _react2.default.createElement(
+            'div',
+            { style: { marginBottom: "10px", clear: "both" } },
+            _react2.default.createElement(
+              'div',
+              { className: 'search-bar' },
+              _react2.default.createElement(_SearchBar2.default, null)
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { style: { clear: "both" } },
+            tripArr2
           )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'trips', style: _style.trips },
-          tripArr
         )
       );
     }
@@ -380,7 +396,7 @@ var AllTripsView = function (_React$Component) {
 
 exports.default = AllTripsView;
 
-},{"../actions/AllTripActions":1,"../stores/AllTripsStore":22,"../stylesheets/style":27,"./SearchBar":13,"./TripList":17,"react":"react"}],6:[function(require,module,exports){
+},{"../actions/AllTripActions":1,"../stores/AllTripsStore":22,"../stores/data/allData":25,"../stylesheets/style":27,"./SearchBar":13,"./TripList":17,"react":"react","react-bootstrap":275}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -550,6 +566,8 @@ var _Maps = require('./Maps');
 
 var _Maps2 = _interopRequireDefault(_Maps);
 
+var _reactBootstrap = require('react-bootstrap');
+
 var _reactRouter = require('react-router');
 
 var _style = require('../stylesheets/style');
@@ -577,10 +595,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//import CreateTripsStore from '../stores/CreateTripsStore';
-//import CreateTripsActions from '../actions/CreateTripActions';
-//import { search, trips } from '../stylesheets/style';
 
 //Mytrips link needs to point link to a specific /usertrips/id
 //once a user logs in can have an id on the window....kinda kills point tho
@@ -647,40 +661,77 @@ var CreateTripsView = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'create-trips-view' },
+        null,
         _react2.default.createElement(
           'div',
-          { style: _style.map },
-          _react2.default.createElement(_Maps2.default, {
-            markers: this.state.stops,
-            path: this.state.stops.map(function (stop) {
-              return stop.position;
-            }),
-            ref: function ref(map) {
-              return _this2._input = map;
-            }
-          })
-        ),
-        _react2.default.createElement(
-          'form',
-          { onSubmit: function onSubmit(e) {
-              return _this2.handleSubmit(e);
-            } },
-          _react2.default.createElement('input', { type: 'text', id: 'tripName' }),
+          { className: 'Row' },
+          _react2.default.createElement('div', { className: 'col-md-2' }),
           _react2.default.createElement(
-            'button',
-            { type: 'submit' },
-            ' Submit Trip '
-          )
+            'div',
+            { className: 'col-md-8' },
+            _react2.default.createElement(
+              _reactBootstrap.PageHeader,
+              null,
+              'Build Trip ',
+              _react2.default.createElement('small', null)
+            )
+          ),
+          _react2.default.createElement('div', { className: 'col-md-2' })
         ),
         _react2.default.createElement(
-          'button',
-          { type: 'submit', onClick: function onClick(e) {
-              return _this2.clearMap(e);
-            } },
-          ' Clear Map '
-        ),
-        _react2.default.createElement(_StopList2.default, { id: 'stop-list', style: _style.stopList, data: this.state.stops })
+          'div',
+          { classNAme: 'Row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-6' },
+            _react2.default.createElement(
+              'div',
+              { className: 'create-trips-view' },
+              _react2.default.createElement(
+                'div',
+                { style: _style.map },
+                _react2.default.createElement(_Maps2.default, {
+                  markers: this.state.stops,
+                  path: this.state.stops.map(function (stop) {
+                    return stop.position;
+                  }),
+                  ref: function ref(map) {
+                    return _this2._input = map;
+                  }
+                })
+              )
+            ),
+            _react2.default.createElement(
+              'form',
+              { onSubmit: function onSubmit(e) {
+                  return _this2.handleSubmit(e);
+                } },
+              _react2.default.createElement('input', { type: 'text', id: 'tripName' }),
+              _react2.default.createElement(
+                'button',
+                { type: 'submit' },
+                ' Submit Trip '
+              )
+            ),
+            _react2.default.createElement(
+              'button',
+              { type: 'submit', onClick: function onClick(e) {
+                  return _this2.clearMap(e);
+                } },
+              ' Clear Map '
+            ),
+            _react2.default.createElement(_StopList2.default, { id: 'stop-list', style: _style.stopList, data: this.state.stops })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-6' },
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Hello'
+            )
+          )
+        )
       );
     }
   }]);
@@ -690,7 +741,7 @@ var CreateTripsView = function (_React$Component) {
 
 exports.default = CreateTripsView;
 
-},{"../actions/CreateTripActions":2,"../stores/CreateTripStore":23,"../stores/UserStore":24,"../stylesheets/style":27,"./Maps":11,"./StopList":16,"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
+},{"../actions/CreateTripActions":2,"../stores/CreateTripStore":23,"../stores/UserStore":24,"../stylesheets/style":27,"./Maps":11,"./StopList":16,"react":"react","react-bootstrap":275,"react-router":"react-router"}],8:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1284,33 +1335,57 @@ var _react2 = _interopRequireDefault(_react);
 
 var _style = require('../stylesheets/style');
 
+var _reactBootstrap = require('react-bootstrap');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SearchBar = function SearchBar(props) {
 	return _react2.default.createElement(
 		'div',
-		{ className: 'search-box', style: _style.searchBox },
+		{ className: 'Row' },
+		_react2.default.createElement('div', { className: 'col-md-2' }),
 		_react2.default.createElement(
-			'button',
-			{
-				className: 'btn btn-primary dropdown-toggle',
-				type: 'button',
-				'data-toggle': 'dropdown',
-				style: _style.searchButton },
-			'Location',
-			_react2.default.createElement('span', { className: 'carat' })
+			'div',
+			{ className: 'col-md-8' },
+			_react2.default.createElement(
+				_reactBootstrap.Form,
+				{ horizontal: true },
+				_react2.default.createElement(
+					_reactBootstrap.FormGroup,
+					{ controlId: 'searchTrips' },
+					_react2.default.createElement(
+						_reactBootstrap.Col,
+						{ sm: 2 },
+						_react2.default.createElement(
+							_reactBootstrap.DropdownButton,
+							{ title: 'Search By', id: 'bg-nested-dropdown' },
+							_react2.default.createElement(
+								_reactBootstrap.MenuItem,
+								{ eventKey: '1' },
+								'Location'
+							),
+							_react2.default.createElement(
+								_reactBootstrap.MenuItem,
+								{ eventKey: '2' },
+								'User'
+							)
+						)
+					),
+					_react2.default.createElement(
+						_reactBootstrap.Col,
+						{ sm: 10 },
+						_react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Find your next trip...' })
+					)
+				)
+			)
 		),
-		_react2.default.createElement('input', {
-			style: _style.searchContainer,
-			type: 'text',
-			name: 'location-search',
-			placeholder: 'Find your next trip..' })
+		_react2.default.createElement('div', { className: 'col-md-2' })
 	);
 };
 
 exports.default = SearchBar;
 
-},{"../stylesheets/style":27,"react":"react"}],14:[function(require,module,exports){
+},{"../stylesheets/style":27,"react":"react","react-bootstrap":275}],14:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1597,20 +1672,18 @@ var TripList = function (_React$Component) {
           'div',
           { className: 'col-md-2' },
           _react2.default.createElement(
-            _reactBootstrap.Button,
-            { type: 'button', bsSize: 'large', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
-            _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-up' })
-          ),
-          _react2.default.createElement(
-            _reactBootstrap.Button,
-            { type: 'button', bsSize: 'large', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
-            _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-up' })
-          ),
-          _react2.default.createElement('a', { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) }),
-          _react2.default.createElement(
-            'a',
-            { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2) },
-            _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-down' })
+            _reactBootstrap.ButtonGroup,
+            null,
+            _react2.default.createElement(
+              _reactBootstrap.Button,
+              { bsStyle: 'info', bsSize: 'large', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
+              _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-up' })
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.Button,
+              { bsStyle: 'warning', bsSize: 'large', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
+              _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-down' })
+            )
           )
         )
       );
@@ -1649,6 +1722,12 @@ var _UserActions = require('../actions/UserActions');
 
 var _UserActions2 = _interopRequireDefault(_UserActions);
 
+var _userData = require('../stores/data/userData');
+
+var _userData2 = _interopRequireDefault(_userData);
+
+var _reactBootstrap = require('react-bootstrap');
+
 var _style = require('../stylesheets/style');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1659,13 +1738,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UserView = function (_React$Component) {
-  _inherits(UserView, _React$Component);
+var UserTripView = function (_React$Component) {
+  _inherits(UserTripView, _React$Component);
 
-  function UserView(props) {
-    _classCallCheck(this, UserView);
+  function UserTripView(props) {
+    _classCallCheck(this, UserTripView);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserView).call(this, props));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserTripView).call(this, props));
 
     _this.state = {
       trips: _UserStore2.default.getState().trips || [],
@@ -1675,7 +1754,7 @@ var UserView = function (_React$Component) {
     return _this;
   }
 
-  _createClass(UserView, [{
+  _createClass(UserTripView, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       // console.log('TRIPS', this.state.trips);
@@ -1710,24 +1789,48 @@ var UserView = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'all-trips-view', style: _style.search },
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'trips', style: _style.trips },
-          this.state.trips.map(function (trip, indx) {
-            return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip, clickfxn: _this2.fxn.bind(_this2) });
-          })
+          { className: 'Row' },
+          _react2.default.createElement('div', { className: 'col-md-2' }),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-8' },
+            _react2.default.createElement(
+              _reactBootstrap.PageHeader,
+              null,
+              'My Trips ',
+              _react2.default.createElement(
+                'small',
+                null,
+                'Signed in as user Ben'
+              )
+            )
+          ),
+          _react2.default.createElement('div', { className: 'col-md-2' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: { marginBottom: "10px", clear: "both" } },
+          _react2.default.createElement(
+            'div',
+            null,
+            _userData2.default.map(function (trip, indx) {
+              return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip, clickfxn: _this2.fxn.bind(_this2) });
+            })
+          )
         )
       );
     }
   }]);
 
-  return UserView;
+  return UserTripView;
 }(_react2.default.Component);
 
-exports.default = UserView;
+exports.default = UserTripView;
 
-},{"../actions/UserActions":3,"../stores/UserStore":24,"../stylesheets/style":27,"./TripList":17,"react":"react"}],19:[function(require,module,exports){
+},{"../actions/UserActions":3,"../stores/UserStore":24,"../stores/data/userData":26,"../stylesheets/style":27,"./TripList":17,"react":"react","react-bootstrap":275}],19:[function(require,module,exports){
 'use strict';
 
 var _d = require('d3');
