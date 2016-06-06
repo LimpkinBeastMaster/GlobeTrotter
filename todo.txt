@@ -1,11 +1,7 @@
-
-
-////from alltrips////
-      			<form ref='searchForm' className='navbar-form navbar-left animated' onSubmit={this.handleSubmit.bind(this)}>
-              <div className='input-group'>
-                <input style={searchContainer} type='text' className='form-control' placeholder={'Find your next trip...'} value={this.state.searchQuery} onChange={AllTripsActions.updateSearchQuery} />
-                <span className='input-group-btn'>
-                <button className='btn btn-default' onChange={this.handleSubmit.bind(this)}><span className='glyphicon glyphicon-search'></span></button>
-                </span>
-              </div>
-            </form>
+//////////////TO DO//////////////
+1) Incorpoate Albert's Front Page
+2) Buildout Bigger Sign-in page
+3) Make Search Work
+4) Create Dynamic Header For Build Trip
+5) Create Option for changing Create Trip into Add Trip
+6) Redirect
