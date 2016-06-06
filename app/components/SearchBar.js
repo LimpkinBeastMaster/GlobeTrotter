@@ -2,6 +2,7 @@ import React from 'react';
 import { searchButton, searchBox, searchContainer } from '../stylesheets/style'
 import { Button, ButtonGroup, DropdownButton, Row, MenuItem, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
 
+
 var SearchBar = (props) => (
 	<div className="Row">	
 		<div className="col-md-2">
@@ -15,8 +16,13 @@ var SearchBar = (props) => (
 							<MenuItem eventKey="2">User</MenuItem>
 						</DropdownButton>
 					</Col>
-					<Col sm={10}>
-						<FormControl type="text" placeholder="Find your next trip..." />
+					<Col sm={8}>
+						<FormControl type="text" placeholder="Find your next trip..."/>
+					</Col>
+					<Col sm={2}>
+				    <Button bsStyle="success" type="submit" block>
+	  					Submit
+  					</Button>
 					</Col>
 					</FormGroup>
 				</Form>

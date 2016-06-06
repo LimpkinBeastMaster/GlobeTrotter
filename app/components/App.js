@@ -27,7 +27,7 @@ class App extends React.Component {
               <LinkContainer to="/login" activeClassName="active" onClick={fxn.bind(this, '/login')}>
                 <NavItem eventKey={2}>Login</NavItem>
               </LinkContainer>
-              <LinkContainer to="/login" activeClassName="active" onClick={fxn.bind(this, '/login')}>
+              <LinkContainer to="/signup" activeClassName="active" onClick={fxn.bind(this, '/signup')}>
                 <NavItem eventKey={3}>Sign Up</NavItem>
               </LinkContainer>
               <LinkContainer to="/createtrips" activeClassName="active" onClick={fxn.bind(this, '/createtrips')}>

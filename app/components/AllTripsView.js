@@ -69,12 +69,12 @@ class AllTripsView extends React.Component {
           <div className="col-md-2">
           </div>
           <div className="col-md-8">
-            <PageHeader>Trips Feed <small>Searching Japan</small></PageHeader>
+            <PageHeader>Trips Feed <small></small></PageHeader>
           </div>
           <div className="col-md-2">
           </div>  
       		<div style={{marginBottom: "10px", clear: "both"}}>
-            <div className="search-bar">
+            <div className="search-bar" >
               <SearchBar />
             </div>
       		</div>

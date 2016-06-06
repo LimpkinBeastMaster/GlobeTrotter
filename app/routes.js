@@ -12,6 +12,7 @@ export default (
   <Route component={App}> 
     <Route path="/" component={Home} />
     <Route path="/login" component={Login} />
+    <Route path="/signup" component={SignUp} />
     <Route path="/createtrips" component={CreateTrips} />
     <Route path="/alltrips" component={AllTrips} />
     <Route path="/mytrips" component={UserTrips} />
