@@ -61,7 +61,7 @@ class UserTripView extends React.Component {
         <div style={{marginBottom: "10px", clear: "both"}}>
           <div>
             {this.state.trips.map((trip, indx) =>
-              <TripList key={indx} trip={trip} clickfxn={this.RemoveTrip.bind(this)}/>
+              <TripList index={indx} trip={trip} clickfxn={this.RemoveTrip.bind(this)}/>
             )}
           </div>
         </div>
