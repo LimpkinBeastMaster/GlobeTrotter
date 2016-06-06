@@ -1,0 +1,6 @@
+.left-col {
+	background: blue,
+  float: none,
+  display: inline-block,
+  vertical-align: middle
+}

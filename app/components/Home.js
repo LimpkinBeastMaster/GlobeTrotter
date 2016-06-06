@@ -6,8 +6,7 @@ import UserActions from '../actions/UserActions'
 import NavLink from './NavLink'
 import Globe from './Globe'
 
-import { Col, Row, ButtonToolbar, Button, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
-import { home } from '../stylesheets/style'
+import { Image, Col, Row, ButtonToolbar, Button, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 class Home extends React.Component {
 
@@ -47,27 +46,40 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Row> 
-        <Col md={1}></Col>
-        <div className="col-md-9 col-md-offset-2" >
-          <Globe width={860}
-            height={689}
-            radius={689 / 2}
-            velocity={.02} />
-          <Row > 
-            <div className="col-md-6">
-              <Button bsStyle="default" onClick={this.handleLogin.bind(this)}>Login</Button>
-            </div>
-            <div className="col-md-6">
-              <Button bsStyle="primary" onClick={this.handleSignup.bind(this)}>Sign up</Button>
-            </div>                           
-            {this.props.children}
-          </Row> 
+      <div className="Row" >
+        <table>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+        </table>
+        <div className="col-md-2 text-center">                      
+          <Button className="text-center" bsStyle="primary" bsSize="large" onClick={this.handleSignup.bind(this)}>Sign up</Button>
+        </div> 
+
+        <div className="col-md-8">
+          <Globe width={860} height={689} radius={689/2} velocity={.02} />
         </div>
-        <Col md={1}></Col>
-      </Row>
+
+        <div className="col-md-2">
+        </div>
+
+      </div>
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default Home;

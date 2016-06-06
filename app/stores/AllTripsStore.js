@@ -11,7 +11,6 @@ class AllTripsStore {
   }
 
   onGetTripsSuccess(data) {
-    //this.trips.push(data);
     this.trips = data;
   }
 

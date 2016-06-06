@@ -8033,3 +8033,14 @@ label {
   -webkit-animation-delay: -500ms;
           animation-delay: -500ms;
 }
+
+#signup {
+  background-color: black;
+  float: none,
+  display: inline-block,
+  vertical-align: middle
+}
+
+h1 {
+  text-decoration: line-through;
+}
