@@ -7,6 +7,7 @@ class AllTripsStore {
     this.bindActions(AllTripsActions);
     this.trips = allData;
     this.searchQuery = '';
+    this.stops = [];
 //  this.trips = [];
   }
 
@@ -26,6 +27,9 @@ class AllTripsStore {
 
   onUpdateSearchQuery(event) {
     this.searchQuery = event.target.value;
+  }
+  onGetStopsSuccess(data) {
+    this.stops = data;
   }
 
   // onFindCharacterSuccess(payload) {

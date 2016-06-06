@@ -205,6 +205,12 @@ app.get('/api/trips/:id', function(req, res, next) {
   //})
 });
 
+app.get('/api/stops', function(req, res) {
+  Stop.forge().fetchAll().then(function(found) {
+    res.send(found);
+  })
+})
+
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
     if (err) {

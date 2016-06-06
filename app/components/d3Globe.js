@@ -38,13 +38,31 @@ var Visuals = function (options) {
       grd.addColorStop(1, 'blue');
   }
 
-  this.draw = function (url) {
-    d3.json(url, function(err, world) {
+  this.draw = function (url, coords) {
+    d3.json(url, function(err, land) {
       if (err) {
         console.log(err);
         return;
       } else {
-        var land = topojson.feature(world, world.objects.land);
+        var temp = {
+          type: 'FeatureCollection',
+          features: []
+        }
+        for (var i = 0; i < coords.length; i++) {
+          temp.features.push({
+            "type": "Feature",
+            "geometry" : {
+              "coordinates": coords[i],
+              "type": "Point"
+            },
+            "style": {
+              "fill": "black"
+            }
+          })
+        }
+        console.log(land);
+        console.log(temp);
+        //var land = topojson.feature(world, world.objects.land);
         d3.timer(function(elapsed) {
           context.clearRect(0, 0, width, height);
           projection.rotate([velocity * elapsed, 0]);
@@ -57,7 +75,29 @@ var Visuals = function (options) {
           context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
           context.lineWidth = 1;
           context.stroke();
+
+          context.beginPath();
+          path(temp);
+          context.fillStyle = 'green';
+          context.fill();
+
+          context.beginPath();
+          context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
+          context.lineWidth = 1;
+          context.stroke();
         })
+        // d3.timer(function(elapsed) {
+        //   projection.rotate([velocity * elapsed, 0]);
+        //   context.beginPath();
+        //   path(temp);
+        //   context.fillStyle = 'black';
+        //   context.fill();
+
+        //   context.beginPath();
+        //   context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
+        //   context.lineWidth = 1;
+        //   context.stroke();
+        // })
       }
     })
   }
