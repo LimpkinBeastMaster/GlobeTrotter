@@ -3,18 +3,35 @@ import { Router, Route, Link } from 'react-router'
 import { Row, Button, Well, ButtonGroup } from 'react-bootstrap'
 import { tripDisplay, likes, tripBar } from '../stylesheets/style'
 import CreateTripActions from '../actions/CreateTripActions'
+import CreateTripStore from '../stores/CreateTripStore'
 
 class TripList extends React.Component {
 
   constructor(props) {
-    super(props);    
+    super(props);
+    this.onChange = this.onChange.bind(this);
   }
 
-  clickHandler(e) {
+  componentDidMount() {
+    CreateTripStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    CreateTripStore.unlisten(this.onChange);
+  }
+
+  onChange(state) {
+    event.preventDefault();
+    console.log('props.history:', this.props.history);
+    console.log('this.props:', this.props)
+    const path = '/createtrips';
+    this.props.history.push(path);
+  }
+
+  clickHandler(event) {
     // console.log(e.target.id)
     // console.log(e.currentTarget.id)
-    CreateTripActions.GetTrip(e.currentTarget.id)
-    //this.transitionTo('/createtrips');
+    CreateTripActions.GetTrip(event.currentTarget.id);
   }
 
   render () {
@@ -22,7 +39,7 @@ class TripList extends React.Component {
 
     var sign = '';
     this.props.trip.likes > 0 ? sign = '+' : sign = ''; 
-  	
+    
     var check = {
       'display': 'visible'
     }
@@ -60,7 +77,7 @@ class TripList extends React.Component {
             </Button>
           </ButtonGroup>
         </div> 
-    	</div>
+      </div>
     )
   };
 };
