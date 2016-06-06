@@ -15,16 +15,15 @@ class Globe extends React.Component {
     })
     el = document.getElementById('Globe');
     map.create(el)
-    // map.draw('https://raw.githubusercontent.com/mbostock/topojson/master/examples/world-110m.json');
-    // map.draw('../img/custom.geo.json', this.props.coords);
-    //console.log(this.props.coords);
   }
 
   componentDidUpdate() {
-    // map.draw('https://raw.githubusercontent.com/mbostock/topojson/master/examples/world-110m.json');
-    // map.delete();
     map.draw('../img/custom.geo.json', this.props.coords);
-    console.log(this.props.coords); 
+    // console.log(this.props.coords); 
+  }
+
+  componentWillUnmount() {
+    map.delete();
   }
 
   render() {

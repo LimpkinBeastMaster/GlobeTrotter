@@ -16,7 +16,8 @@ var Visuals = function (options) {
       projection,
       path,
       canvas,
-      grd;
+      grd,
+      timer = false;
   
   this.create = function (element, props) {
     projection = d3.geo.orthographic()
@@ -60,32 +61,37 @@ var Visuals = function (options) {
             }
           })
         }
-        console.log(land);
-        console.log(temp);
+        // console.log(land);
+        // console.log(temp);
         //var land = topojson.feature(world, world.objects.land);
-        d3.timer(function(elapsed) {
-          context.clearRect(0, 0, width, height);
-          projection.rotate([velocity * elapsed, 0]);
-          context.beginPath();
-          path(land);
-          context.fillStyle = grd;
-          context.fill();
+        if ( timer ) {
+          timer = false
+        } else {
+          d3.timer(function(elapsed) {
+            context.clearRect(0, 0, width, height);
+            projection.rotate([velocity * elapsed, 0]);
+            context.beginPath();
+            path(land);
+            context.fillStyle = grd;
+            context.fill();
 
-          context.beginPath();
-          context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
-          context.lineWidth = 1;
-          context.stroke();
+            context.beginPath();
+            context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
+            context.lineWidth = 1;
+            context.stroke();
 
-          context.beginPath();
-          path(temp);
-          context.fillStyle = 'green';
-          context.fill();
+            context.beginPath();
+            path(temp);
+            context.fillStyle = 'green';
+            context.fill();
 
-          context.beginPath();
-          context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
-          context.lineWidth = 1;
-          context.stroke();
-        })
+            context.beginPath();
+            context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI, true);
+            context.lineWidth = 1;
+            context.stroke();
+            return timer;
+          })
+        }
         // d3.timer(function(elapsed) {
         //   projection.rotate([velocity * elapsed, 0]);
         //   context.beginPath();
@@ -100,6 +106,11 @@ var Visuals = function (options) {
         // })
       }
     })
+  }
+
+  this.delete = function() {
+    timer = true;
+    console.log('calling this!')
   }
 }
 
