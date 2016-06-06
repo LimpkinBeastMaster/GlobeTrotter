@@ -6,7 +6,8 @@ class AllTripsActions {
       'GetTripsSuccess',
       'GetTripsFail',
       'updateSearchQuery',
-      'ChangeLikesSuccess'
+      'ChangeLikesSuccess',
+      'GetStopsSuccess'
       //'FindTripSuccess',
       //'FindTripFail'
     );
@@ -38,6 +39,22 @@ class AllTripsActions {
       .fail(() => {
         console.log('failed like request');
       });
+  }
+
+  GetStops() {
+    $.get({url: '/api/stops'})
+    .success((data) => {
+      for (var i = 0; i < data.length; i++) {
+        var position = JSON.parse(data[i].coordinates);
+        var lat = Number(position.lat);
+        var lng = Number(position.lng);
+        data[i] = [lng, lat];
+      }
+      this.actions.GetStopsSuccess(data)
+    })
+    .fail((err) => {
+      console.log('ERROR:', err);
+    })
   }
 
 

@@ -50,7 +50,8 @@ class CreateTripActions {
           stopInfo: data[i].info,
           stopName: data[i].name
         }
-        // console.log(data[i].position);
+        console.log('lat: ', data[i].position.lat);
+        console.log('lng: ', data[i].position.lng);
       }
       this.actions.GetTripSuccess(data)
     })
