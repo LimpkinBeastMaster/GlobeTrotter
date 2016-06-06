@@ -8,8 +8,7 @@ import AllTripsStore from '../stores/AllTripsStore';
 import NavLink from './NavLink'
 import Globe from './Globe'
 
-import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
-import { home } from '../stylesheets/style'
+import { Image, Col, Row, ButtonToolbar, Button, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 class Home extends React.Component {
 
@@ -49,22 +48,37 @@ class Home extends React.Component {
     this.setState({stops})
   }
 
-  handleClick(character) {
-   
+  handleLogin(event) {
+    event.preventDefault(); 
+    console.log('props.history:', this.props.history);
+    const path = '/login';
+    this.props.history.push(path);
   }
+
+  handleSignup(event) {
+    event.preventDefault(); 
+    console.log('props.history:', this.props.history);
+    const path = '/signup';
+    this.props.history.push(path);
+    }
 
   render() {
     return (
-      <div className="home" style={home}>
-        <Jumbotron>
-          <h1>TravelApp</h1>
-        </Jumbotron>
-        <Globe width={500}
-          height={400}
-          radius={400 / 2}
-          velocity={.02}
-          coords={this.state.stops}>
-        </Globe>
+      <div className="Row" >
+        <table>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+        </table>
+        <div className="col-md-2 text-center">                      
+          <Button className="text-center" bsStyle="primary" bsSize="large" onClick={this.handleSignup.bind(this)}>Sign up</Button>
+        </div> 
+        <div className="col-md-8">
+          <Globe width={860} height={689} radius={689/2} velocity={.02} coords={this.state.stops}/>
+        </div>
+        <div className="col-md-2">
+        </div>
       </div>
     );
   }

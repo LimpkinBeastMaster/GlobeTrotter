@@ -37,7 +37,7 @@ class TripList extends React.Component {
       <div className="Row" style={{clear: "both"}}>
         <div className="col-md-2">
           <Button type="button" bsSize="large" disabled block>
-            {sign+this.props.trip.likes}
+            {sign + this.props.trip.likes}
           </Button>
         </div>
           <div className="col-md-8" style={{ margin: '0 auto 10px' }}>

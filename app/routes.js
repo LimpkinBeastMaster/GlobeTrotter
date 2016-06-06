@@ -7,6 +7,7 @@ import SignUp from './components/SignUp'
 import AllTrips from './components/AllTripsView'
 import CreateTrips from './components/CreateTripView'
 import UserTrips from './components/UserTripView'
+import Splash from './components/Splash'
 
 export default (
   <Route component={App}> 
@@ -15,5 +16,6 @@ export default (
     <Route path="/createtrips" component={CreateTrips} />
     <Route path="/alltrips" component={AllTrips} />
     <Route path="/mytrips" component={UserTrips} />
+    <Route path="/splash" component={Splash} />
   </Route>
 );
