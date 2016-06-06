@@ -198,7 +198,7 @@ var UserActions = function () {
   function UserActions() {
     _classCallCheck(this, UserActions);
 
-    this.generateActions('GetTripsSuccess', 'GetTripsFail');
+    this.generateActions('GetTripsSuccess', 'GetTripsFail', 'RemoveTripSuccess');
   }
 
   _createClass(UserActions, [{
@@ -212,6 +212,22 @@ var UserActions = function () {
       }).fail(function (err) {
         console.log('ERROR:', err);
         _this.actions.GetTripsFail(err);
+      });
+    }
+  }, {
+    key: 'RemoveTrip',
+    value: function RemoveTrip(trip, index, type) {
+      var _this2 = this;
+
+      $.ajax({
+        type: 'POST',
+        url: '/api/trips/remove',
+        data: trip
+      }).done(function (data) {
+        _this2.actions.RemoveTripSuccess({ index: index });
+        console.log('success', data);
+      }).fail(function () {
+        console.log('failed like request');
       });
     }
   }]);
@@ -333,7 +349,10 @@ var AllTripsView = function (_React$Component) {
         value: function handleTripClick(trip, index, type, e) {
             e.preventDefault();
             console.log('name, title', trip, index, type);
-            _AllTripActions2.default.ChangeLikes(trip, index, type);
+
+            if (type !== 3) {
+                _AllTripActions2.default.ChangeLikes(trip, index, type);
+            }
         }
     }, {
         key: 'render',
@@ -649,6 +668,8 @@ var CreateTripsView = function (_React$Component) {
       };
       console.log('Posting this!', postObject);
       _CreateTripActions2.default.CreateTrip(postObject);
+      //console.log('props', this.props.history);
+      this.props.history.push('/alltrips');
     }
   }, {
     key: 'clearMap',
@@ -1595,31 +1616,40 @@ var TripList = function (_React$Component) {
         'div',
         { className: 'trip-list', style: _style.tripDisplay },
         _react2.default.createElement(
-          'div',
+          'span',
           { className: 'likes', style: _style.likes },
           sign + JSON.stringify(this.props.trip.likes).replace(/["]/g, '')
         ),
         _react2.default.createElement(
-          'button',
-          {
-            id: this.props.trip.id,
-            className: 'btn btn-primary',
-            type: 'button',
-            'data-toggle': 'dropdown',
-            style: _style.tripBar,
-            onClick: this.clickHandler.bind(this) },
-          this.props.trip.title,
-          _react2.default.createElement('span', { className: 'carat' })
-        ),
-        _react2.default.createElement(
-          'a',
-          { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
-          _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-up' })
-        ),
-        _react2.default.createElement(
-          'a',
-          { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2) },
-          _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-down' })
+          'span',
+          { className: 'pull-right' },
+          _react2.default.createElement(
+            'button',
+            {
+              id: this.props.trip.id,
+              className: 'btn btn-primary',
+              type: 'button',
+              'data-toggle': 'dropdown',
+              style: _style.tripBar,
+              onClick: this.clickHandler.bind(this) },
+            this.props.trip.title,
+            _react2.default.createElement('span', { className: 'carat' })
+          ),
+          _react2.default.createElement(
+            'a',
+            { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 1) },
+            _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-up' })
+          ),
+          _react2.default.createElement(
+            'a',
+            { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 2) },
+            _react2.default.createElement('span', { className: 'glyphicon glyphicon-arrow-down' })
+          ),
+          _react2.default.createElement(
+            'a',
+            { href: '#', className: 'btn btn-default', onClick: this.props.clickfxn.bind(null, this.props.trip, this.props.index, 3) },
+            _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove-sign' })
+          )
         )
       );
     }
@@ -1707,9 +1737,14 @@ var UserView = function (_React$Component) {
       });
     }
   }, {
-    key: 'fxn',
-    value: function fxn() {
-      console.log('hi');
+    key: 'RemoveTrip',
+    value: function RemoveTrip(trip, index, type, e) {
+      // console.log('hi');
+      e.preventDefault();
+      console.log('name, title', trip, index, type);
+      if (type === 3) {
+        _UserActions2.default.RemoveTrip(trip, index, type);
+      }
     }
   }, {
     key: 'render',
@@ -1723,7 +1758,7 @@ var UserView = function (_React$Component) {
           'div',
           { className: 'trips', style: _style.trips },
           this.state.trips.map(function (trip, indx) {
-            return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip, clickfxn: _this2.fxn.bind(_this2) });
+            return _react2.default.createElement(_TripList2.default, { key: indx, trip: trip, clickfxn: _this2.RemoveTrip.bind(_this2) });
           })
         )
       );
@@ -2063,6 +2098,13 @@ var UserStore = function () {
     key: 'onGetTripsFail',
     value: function onGetTripsFail(err) {
       this.trips = [];
+    }
+  }, {
+    key: 'onRemoveTripSuccess',
+    value: function onRemoveTripSuccess(obj) {
+      console.log('REVMOETRIPSUCCESS', obj.index);
+      //this.trips[obj.index] = JSON.parse(obj.data);
+      this.trips.splice(obj.index, 1);
     }
   }]);
 
