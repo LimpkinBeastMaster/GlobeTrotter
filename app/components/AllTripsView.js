@@ -8,6 +8,8 @@ import { Row, PageHeader } from 'react-bootstrap'
 import { search, trips } from '../stylesheets/style';
 import { searchButton, searchBox, searchContainer } from '../stylesheets/style';
 
+import { Button, ButtonGroup, DropdownButton, MenuItem, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
+
 class AllTripsView extends React.Component {
 
   constructor(props) {
@@ -30,6 +32,7 @@ class AllTripsView extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log(event);
     event.preventDefault();
 
     let searchQuery = this.state.searchQuery.trim();
@@ -60,7 +63,7 @@ class AllTripsView extends React.Component {
 
   render() {
     var tripArr = this.state.trips.map((trip, indx) => {
-      return (<TripList key={indx} index={indx} trip={trip} clickfxn={this.handleTripClick.bind(this)}/>)
+      return (<TripList key={indx} index={indx} show={false} trip={trip} clickfxn={this.handleTripClick.bind(this)}/>)
     });
 
     return (
@@ -75,7 +78,27 @@ class AllTripsView extends React.Component {
           </div>  
       		<div style={{marginBottom: "10px", clear: "both"}}>
             <div className="search-bar">
-              <SearchBar />
+              <div className="Row"> 
+                <div className="col-md-2">
+                </div>
+                  <div className="col-md-8">
+                    <Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+                      <FormGroup controlId="searchTrips">
+                      <Col sm={2}>
+                        <DropdownButton title="Search By" id="bg-nested-dropdown">
+                          <MenuItem eventKey="1">Location</MenuItem>
+                          <MenuItem eventKey="2">User</MenuItem>
+                        </DropdownButton>
+                      </Col>
+                      <Col sm={10}>
+                        <FormControl type="text" placeholder="Find your next trip..." value={this.state.searchQuery} onChange={AllTripsActions.updateSearchQuery}/>
+                      </Col>
+                      </FormGroup>
+                    </Form>
+                  </div>
+                <div className="col-md-2">
+                </div>
+              </div>  
             </div>
       		</div>
       		<div style={{clear: "both"}}>
