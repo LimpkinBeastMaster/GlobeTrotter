@@ -700,35 +700,34 @@ var CreateTripsView = function (_React$Component) {
                   }
                 })
               )
-            ),
-            _react2.default.createElement(
-              'form',
-              { onSubmit: function onSubmit(e) {
-                  return _this2.handleSubmit(e);
-                } },
-              _react2.default.createElement('input', { type: 'text', id: 'tripName' }),
-              _react2.default.createElement(
-                'button',
-                { type: 'submit' },
-                ' Submit Trip '
-              )
-            ),
-            _react2.default.createElement(
-              'button',
-              { type: 'submit', onClick: function onClick(e) {
-                  return _this2.clearMap(e);
-                } },
-              ' Clear Map '
-            ),
-            _react2.default.createElement(_StopList2.default, { id: 'stop-list', style: _style.stopList, data: this.state.stops })
+            )
           ),
           _react2.default.createElement(
             'div',
             { className: 'col-md-6' },
             _react2.default.createElement(
-              'h1',
+              'div',
               null,
-              'Hello'
+              _react2.default.createElement(
+                'form',
+                { onSubmit: function onSubmit(e) {
+                    return _this2.handleSubmit(e);
+                  } },
+                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', id: 'tripName', placeholder: 'Enter trip name' }),
+                _react2.default.createElement(
+                  _reactBootstrap.Button,
+                  { type: 'submit', bsStyle: 'primary' },
+                  ' Submit Trip '
+                ),
+                _react2.default.createElement(
+                  _reactBootstrap.Button,
+                  { type: 'submit', bsStyle: 'primary', onClick: function onClick(e) {
+                      return _this2.clearMap(e);
+                    } },
+                  ' Clear Map '
+                )
+              ),
+              _react2.default.createElement(_StopList2.default, { id: 'stop-list', style: _style.stopList, data: this.state.stops })
             )
           )
         )

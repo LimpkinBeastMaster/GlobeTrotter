@@ -1,6 +1,6 @@
 import React from 'react';
 import Maps from './Maps';
-import { Row, PageHeader } from 'react-bootstrap'
+import { Row, PageHeader, FormControl, Button } from 'react-bootstrap'
 import {Link} from 'react-router';
 import { map, stopList } from '../stylesheets/style';
 import CreateTripStore from '../stores/CreateTripStore';
@@ -80,15 +80,16 @@ class CreateTripsView extends React.Component {
                 />
               </div>
             </div>
-            <form onSubmit={(e) => this.handleSubmit(e)}>
-              <input type='text' id='tripName'/>
-              <button type='submit'> Submit Trip </button>
-            </form>
-            <button type='submit' onClick={(e) => this.clearMap(e)}> Clear Map </button>
-            <StopList id="stop-list" style={stopList} data={this.state.stops}/>
           </div>
           <div className="col-md-6">
-            <h1>Hello</h1>
+            <div>
+              <form onSubmit={(e) => this.handleSubmit(e)}>
+                <FormControl type='text' id='tripName' placeholder="Enter trip name"/>
+                <Button type='submit' bsStyle="primary"> Submit Trip </Button>
+                <Button type='submit' bsStyle="primary" onClick={(e) => this.clearMap(e)}> Clear Map </Button>
+              </form>
+            <StopList id="stop-list" style={stopList} data={this.state.stops}/>
+            </div>
           </div>
         </div>
       </div>
