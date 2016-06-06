@@ -15,6 +15,12 @@ class UserStore {
   onGetTripsFail(err) {
     this.trips = [];
   }
+
+  onRemoveTripSuccess(obj) {
+    console.log('REVMOETRIPSUCCESS', obj.index);
+    //this.trips[obj.index] = JSON.parse(obj.data);
+    this.trips.splice(obj.index, 1);
+  }
 }
 
 export default alt.createStore(UserStore);

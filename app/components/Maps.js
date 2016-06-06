@@ -2,6 +2,8 @@ import React from 'react';
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker, Polyline, SearchBox } from "react-google-maps";
 import { default as update } from "react-addons-update";
 import CreateTripActions from '../actions/CreateTripActions'
+import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Col } from 'react-bootstrap';
+
 
 var inputStyle = {
   "border": `1px solid transparent`,
@@ -26,7 +28,7 @@ class Maps extends React.Component {
       markers: this.props.markers || [], //Pass down props so that map can auto-populate
       path: this.props.path || [],
       bounds: null,
-      center: {
+      center: this.props.markers[0] ? this.props.markers[0].position : {
         lat: 37.78355726989257, 
         lng: -122.40891695022583 
       },
@@ -151,14 +153,39 @@ class Maps extends React.Component {
       <InfoWindow 
         key={`${ref}_info_window`}
         onCloseclick={this.handleMarkerClose.bind(this, marker)}>
-        <form onSubmit={(e) => this.saveData(e, ref, marker)} >
-          Name: 
-          <input type='text' id='name'/> <br/> 
-          Address: 
-          <input type='text' id='address'/> <br/>
-          Info:
-          <input type='text' id='info'/> <br/>
-          <button type='submit'> Save & Close </button>
+        <form onSubmit={(e) => this.saveData(e, ref, marker)} horizontal>
+          <FormGroup bsSize="small" style={{marginBottom: "10px"}}>
+            <Col componentClass={ControlLabel} sm={4}>
+              Name
+            </Col>
+            <Col sm={8}>
+            <FormControl type='text' id='name'/>
+            </Col>
+          </FormGroup>
+          <span> { ' ' }</span>
+          <FormGroup bsSize="small" style={{marginBottom: "10px"}}>
+            <Col componentClass={ControlLabel} sm={4}>
+            Address 
+            </Col>
+            <Col sm={8}>
+              <FormControl type='text' id='address'/>
+            </Col>
+          </FormGroup>
+          <span> { ' ' }</span>
+          <FormGroup bsSize="small" style={{marginBottom: "10px"}}>
+            <Col componentClass={ControlLabel} sm={4}>
+              Info
+            </Col>
+            <Col sm={8}>
+              <FormControl type='text' id='info'/>
+            </Col>
+          </FormGroup>
+          <span> { ' ' }</span>
+          <FormGroup>
+            <Col smOffset={4} sm={8}>
+              <Button type='submit' bsStyle="success" bsSize="small">Save & Close</Button>
+            </Col>
+          </FormGroup>
         </form>
       </InfoWindow>
       

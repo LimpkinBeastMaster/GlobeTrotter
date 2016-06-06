@@ -1,2 +1,5 @@
 node_modules
 bower_components
+public/js/*.js
+public/js/*.js.map
+server/db/config.js
