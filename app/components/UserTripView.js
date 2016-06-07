@@ -53,7 +53,7 @@ class UserTripView extends React.Component {
           <div className="col-md-2">
           </div>
           <div className="col-md-8">
-            <PageHeader>My Trips <small>Signed in as user Ben</small></PageHeader>
+            <PageHeader>My Trips <small></small></PageHeader>
           </div>
           <div className="col-md-2">
           </div>
@@ -61,7 +61,7 @@ class UserTripView extends React.Component {
         <div style={{marginBottom: "10px", clear: "both"}}>
           <div>
             {this.state.trips.map((trip, indx) =>
-              <TripList key={indx} trip={trip} clickfxn={this.RemoveTrip.bind(this)}/>
+              <TripList index={indx} trip={trip} show2={false} history={this.props.history} clickfxn={this.RemoveTrip.bind(this)}/>
             )}
           </div>
         </div>

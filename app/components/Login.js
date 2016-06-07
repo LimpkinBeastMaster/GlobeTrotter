@@ -16,6 +16,12 @@ class Login extends React.Component {
 		this.setState({ value: e.target.value})
 	}
 
+	goToMyTrips(e) {
+		e.preventDefault();
+		const path = '/splash';
+		this.props.history.push(path)
+	}
+
   render() {
     return (
 			<div className="Row">
@@ -30,9 +36,9 @@ class Login extends React.Component {
 			      	</FormGroup>
   		      	<FormGroup controlId="formControlsText"> 
 			      		<ControlLabel>Password</ControlLabel>
-			      		<FormControl type="text" placeholder="Enter Password" />
+			      		<FormControl type="password" placeholder="Enter Password" />
 			      	</FormGroup>
-			      	<Button type="submit" bsStyle="primary">
+			      	<Button type="submit" bsStyle="primary" onClick={this.goToMyTrips.bind(this)}>
 			      		Sign In
 			      	</Button>
 			      	{ ' ' }

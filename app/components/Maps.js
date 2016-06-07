@@ -183,7 +183,7 @@ class Maps extends React.Component {
           <span> { ' ' }</span>
           <FormGroup>
             <Col smOffset={4} sm={8}>
-              <Button type='submit' bsStyle="success" bsSize="small">Save & Close</Button>
+              <Button type='submit' bsStyle="success" bsSize="small">Save</Button>
             </Col>
           </FormGroup>
         </form>
