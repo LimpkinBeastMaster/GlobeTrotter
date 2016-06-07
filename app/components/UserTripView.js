@@ -53,7 +53,7 @@ class UserTripView extends React.Component {
           <div className="col-md-2">
           </div>
           <div className="col-md-8">
-            <PageHeader>My Trips <small>Signed in as user Ben</small></PageHeader>
+            <PageHeader>My Trips <small></small></PageHeader>
           </div>
           <div className="col-md-2">
           </div>

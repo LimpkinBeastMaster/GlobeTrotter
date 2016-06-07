@@ -35,7 +35,7 @@ class CreateTripsView extends React.Component {
       stops: CreateTripStore.getState().stops
     })
     if (submit) {
-      this.props.history.push('/alltrips');
+      this.props.history.push('/mytrips');
       submit = false;
     }
   }
@@ -56,7 +56,6 @@ class CreateTripsView extends React.Component {
 
   clearMap(e) {
     CreateTripActions.ClearMap();
-
     this._input.setState({
       markers: [],
       path: []
@@ -97,7 +96,7 @@ class CreateTripsView extends React.Component {
                 <div style={wellStyle}>
                   <Button type='submit' bsStyle="primary" >Submit Trip</Button>
                   { '  ' }
-                  <Button type='submit' bsStyle="default" onClick={(e) => this.clearMap(e)} >Clear Map</Button>
+                  <Button bsStyle="default" onClick={(e) => this.clearMap(e)} >Clear Map</Button>
                 </div>
               </form>
             <StopList id="stop-list" style={stopList} data={this.state.stops}/>
