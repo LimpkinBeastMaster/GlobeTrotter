@@ -71,8 +71,7 @@ class Home extends React.Component {
           <tr>
           </tr>
         </table>
-        <div className="col-md-2 text-center">                      
-          <Button className="text-center" bsStyle="primary" bsSize="large" onClick={this.handleSignup.bind(this)}>Sign up</Button>
+        <div className="col-md-2 text-center">
         </div> 
         <div className="col-md-8">
           <Globe width={860} height={689} radius={689/2} velocity={.02} coords={this.state.stops}/>

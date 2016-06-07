@@ -95,8 +95,8 @@ var signupButton = {
 }
 
 var map = {
-  height: '500px',
-  width: '500px'
+  height: '750px',
+  width: '850px'
 }
 
 var stopList = {

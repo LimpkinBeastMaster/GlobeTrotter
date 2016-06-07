@@ -15,7 +15,7 @@ class App extends React.Component {
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-             <a href="#">TravelApp</a>
+             <a href="#">GlobeTrotters</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
