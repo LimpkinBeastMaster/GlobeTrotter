@@ -1,8 +1,8 @@
 import React from 'react';
-import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import {  Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock, Row, Well, Button, Form, Col, Checkbox } from 'react-bootstrap';
 import { home } from '../stylesheets/style';
 
-class Login extends React.Component {
+class SignUp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
@@ -19,23 +19,51 @@ class Login extends React.Component {
 				</div>
 				<div className="col-md-4">
 	      	<Well>
-		      	<form>
+		      	<Form horizontal>
+			      	<FormGroup controlId="formControlsText"> 
+			      		<Col componentClass={ControlLabel} sm={4}>
+			      			First Name
+		      			</Col>
+			      		<Col sm={8}>
+			      			<FormControl type="text" placeholder="Enter first name" />
+		      			</Col>
+			      	</FormGroup>
+			      	<FormGroup controlId="formControlsText"> 
+			      		<Col componentClass={ControlLabel} sm={4}>
+			      			Last Name
+		      			</Col>
+			      		<Col sm={8}>
+			      			<FormControl type="text" placeholder="Enter last name" />
+		      			</Col>
+			      	</FormGroup>
+			      	</Form>
+			      	<Form>
 			      	<FormGroup controlId="formControlsText"> 
 			      		<ControlLabel>Username</ControlLabel>
 			      		<FormControl type="text" placeholder="Enter Username" />
 			      	</FormGroup>
-  		      	<FormGroup controlId="formControlsText"> 
+  		      	<FormGroup controlId="formControlsPassword"> 
 			      		<ControlLabel>Password</ControlLabel>
-			      		<FormControl type="text" placeholder="Enter Password" />
+			      		<FormControl type="password" placeholder="Enter Password"/>
 			      	</FormGroup>
-			      	<Button type="submit" bsStyle="primary">
-			      		Sign In
-			      	</Button>
-			      	{ ' ' }
+		      		<FormGroup controlId="formControlsText"> 
+			      		<ControlLabel>Email</ControlLabel>
+			      		<FormControl type="text" placeholder="Enter Username" />
+			      	</FormGroup>
+	      	    <FormGroup controlId="formControlsTextarea">
+					      <ControlLabel>Bio</ControlLabel>
+					      <FormControl componentClass="textarea" placeholder="Tell us a little about yourself ..." />
+					    </FormGroup>
+					    <FormGroup>
+					      <Col sm={10}>
+					        <Checkbox>Remember me</Checkbox>
+					      </Col>
+					    </FormGroup>	
+					    { ' ' }		      	
 			      	<Button type="button" bsStyle="success">
 			      		Create Account
 			      	</Button>
-		     	 </form>
+		     	 </Form>
 	     	 </Well>
 	      </div>
 				<div className="col-md-4">
@@ -44,3 +72,5 @@ class Login extends React.Component {
     );
   }
 }
+
+export default SignUp;
