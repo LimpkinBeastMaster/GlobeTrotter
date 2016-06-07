@@ -12,7 +12,7 @@ import StopList from './StopList';
 //once a user logs in can have an id on the window....kinda kills point tho
 //
 const wellStyle = { maxWidth: 200, margin: '0 auto 10px' };
-
+var submit = false;
 
 class CreateTripsView extends React.Component {
   constructor(props) {
@@ -34,10 +34,16 @@ class CreateTripsView extends React.Component {
     this.setState({
       stops: CreateTripStore.getState().stops
     })
+    if (submit) {
+      this.props.history.push('/alltrips');
+      submit = false;
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    submit = true;
+    console.log(submit);
     var postObject = {
         username: UserStore.getState().user,
         tripname: e.target.tripName.value,
@@ -46,7 +52,6 @@ class CreateTripsView extends React.Component {
     console.log('Posting this!', postObject);
     CreateTripActions.CreateTrip(postObject);
     //console.log('props', this.props.history);
-    this.props.history.push('/alltrips');
   }
 
   clearMap(e) {
