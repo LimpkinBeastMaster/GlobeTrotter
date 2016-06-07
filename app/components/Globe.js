@@ -24,11 +24,15 @@ class Globe extends React.Component {
     // map.draw('https://raw.githubusercontent.com/mbostock/topojson/master/examples/world-110m.json');
     // map.delete();
     map.draw('../img/custom.geo.json', this.props.coords);
-    console.log(this.props.coords); 
+    // console.log(this.props.coords); 
+  }
+
+  componentWillUnmount() {
+    map.delete();
   }
 
   render() {
-    console.log('Rendering?!');
+    // console.log('Rendering?!');
     return (
     <div id="Globe">
     </div>

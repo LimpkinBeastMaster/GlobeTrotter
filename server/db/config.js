@@ -3,8 +3,8 @@
   connection: {
     host     : '127.0.0.1',
     user     : 'root',
-    password : 'root',
-    database : 'travel',
+    password : '123',
+    database : 'test1',
     charset  : 'utf8'
   }
 });
