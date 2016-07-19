@@ -18,7 +18,6 @@ var bodyParser = require('body-parser');
 
 //var serverRoutes = require('./server/serverRoutes.js');
 
-
 //////////////////////////////////////////////////
 
 var app = express();
@@ -49,83 +48,32 @@ var allData = require('./data.js');
 
 app.get('/api/trips', function(req, res) {
   //This route is to use Trips to query the database for all entries, for the all trips page
-  
-  //Trip.collection().fetch().then(function(data) {
-  //  res.send(data);
-  //})
-
-  //-----VERY HACKY WAY WITHOUT RELATIONS!-----//
   Trip.forge().fetchAll().then(function(found) {
     res.send(found);
   })
-  // res.send({
-  //   trips: [{
-  //     title: "Swim with spartans", user: "ben", start: "Shizouka", end:"Tokyo", likes: 10000 
-  //   }]
-  // });
 });
 
+//This route is to use Trips to query the database for all entries, for the all trips page
 app.get('/api/trip/:id', function(req, res) {
-  //This route is to use Trips to query the database for all entries, for the all trips page
-  
-  //Trip.collection().fetch().then(function(data) {
-  //  res.send(data);
-  //})
-  //-----VERY HACKY WAY WITHOUT RELATIONS!-----//
   var tripID = url.parse(req.url, true);
-  console.log(tripID);
   tripID = tripID.path.split('/')[3].replace(/%20/g, ' ');
   Stop.query('where', 'trips_id', '=', tripID).fetchAll().then(function(found) {
     console.log(found);
     res.send(found);
   })
-  // res.send({ stops: [
-  //   {
-  //     position: {lat: 1, lng: 1},
-  //     stopData: {
-  //       stopAddress: '123 Somewhere St', 
-  //       stopInfo: 'Ate pizza',
-  //       stopName: 'PizzaHouse'
-  //     }
-  //   },
-  //   {
-  //     position: {lat: 2, lng: 2},
-  //     stopData: {
-  //       stopAddress: '123 Somewhere St', 
-  //       stopInfo: 'Ate pizza',
-  //       stopName: 'PizzaHouse'
-  //     }
-  //   },
-  //   {
-  //     position: {lat: 3, lng: 3},
-  //     stopData: {
-  //       stopName: '',
-  //     }
-  //   }]
-  // });
-
 });
 
 //Route to increment / decrement the likes 
 app.put('/api/trips/likes', function(req, res) {
-  console.log('REQ BODY', req.body);
-
   var likes = req.body.trip.likes;
   var title = req.body.trip.title;
- // var id = req.body['id'];
-  //var user  = req.body['trip[user]'];
   var type = req.body.type;
-
-  console.log('TYPE:',req.body.type);
-  console.log('likes title', likes, title);
   Trip.where({title: title, likes: likes}).fetch()
     .then(function(trip){
       console.log('THE TRIP', trip);
       var temp = Number(likes);
       type === '1' ? temp += 1 : temp -= 1;
-      //temp += 1;
       temp = JSON.stringify(temp);
-      console.log('THE LIKES', temp);
       trip.set('likes', temp);
       trip.save();
       res.status(200).end(JSON.stringify(trip));
@@ -133,14 +81,9 @@ app.put('/api/trips/likes', function(req, res) {
 });
 
 app.post('/api/trips/remove', function(req, res) {
-  console.log('REMOVE REQ BODY', req.body);
-
   var likes = req.body.likes;
   var title = req.body.title;
   var id = req.body.user_id;
-
-  // console.log('TYPE:',req.body.type);
-  // console.log('likes title', likes, title);
   Trip.where({title: title, likes: likes}).fetch()
       .then(function(trip){
       console.log('THE TRIP', trip);
@@ -153,8 +96,6 @@ app.post('/api/trips/remove', function(req, res) {
     })
 });
 
-
-
 app.post('/api/trip', function(req, res) {
   //here we want an array of ids to be sent from all the stops made in googleAPI
   var username = req.body.username;
@@ -165,8 +106,6 @@ app.post('/api/trip', function(req, res) {
     console.log('Woops!');
     return res.sendStatus(404);
   }
-
-  //-----VERY HACKY WAY WITHOUT RELATIONS!-----//
   User.forge({username: username}).fetch().then(function(found) {
     Trips.create({
       users_id: found.attributes.id,
@@ -193,39 +132,14 @@ app.post('/api/trip', function(req, res) {
   })
 });
 
-// app.post('/api/trips', function(req, res) {
-//   //here we want an array of ids to be sent from all the stops made in googleAPI
-  
-//   //var stop_ids = req.body.stop_ids; //array of ids
-//   // new Trip(req.body).save()
-//   //   .then(function(trip){
-//   //     return trip.stops().attach(stop_ids);
-//   //   }).catch(function(error){
-//   //      console.log(error);
-//   //   });
-// });
-
-
 app.get('/api/trips/:id', function(req, res, next) {
   var username = url.parse(req.url, true);
   username = username.path.split('/')[3].replace(/%20/g, ' ');
-
-  //-----VERY HACKY WAY WITHOUT RELATIONS!-----//
   User.forge({username: username}).fetch().then(function(found) {
     Trip.query('where', 'users_id', '=', found.attributes.id).fetchAll().then(function(trips) {
       res.send(trips);
     })
   })
-  //This route is used when navigating to a users own page, want to query for only his related trips
-  //below is just example of potential way to do this
-
-  // var name = url.parse(req.url, true);
-  // name = name.path.split('/')[3].replace(/%20/g, ' ');
-  // console.log('thename', name);
-
-  //Trip.collection().fetchAll({name: name}).then(function(data) {
-  //  res.send(data);
-  //})
 });
 
 app.get('/api/stops', function(req, res) {
@@ -249,7 +163,6 @@ app.use(function(req, res) {
     }
   });
 });
-
 
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
