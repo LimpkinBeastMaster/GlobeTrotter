@@ -8,8 +8,8 @@ import AllTripsStore from '../stores/AllTripsStore';
 import NavLink from './NavLink'
 import Globe from './Globe'
 
-import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
-import { home } from '../stylesheets/style'
+import { Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock, Row, Well, Button, ButtonGroup } from 'react-bootstrap'
+import { home, bg, bgImg } from '../stylesheets/style'
 
 class Home extends React.Component {
 
@@ -56,15 +56,31 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home" style={home}>
-        <Jumbotron>
-          <h1>TravelApp</h1>
-        </Jumbotron>
-        <Globe width={500}
+        <div className="Row">
+          <div className="col-md-4">
+          </div>
+          <div className="col-md-4" style={{paddingTop: '80px'}}>
+            <div style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: '10px', height: 250, color: '#fff', padding: '30px'}}>
+              <h2 className="text-center">Globe Trotter</h2>
+              <Button type="submit" bsStyle="primary" block>
+                Sign In
+              </Button>
+              <Button type="button" bsStyle="success" block>
+                Create Account
+              </Button>
+            </div>
+          </div>
+          <div className="col-md-4">
+          </div>
+        </div>
+
+        {/*<Globe width={500}
           height={400}
           radius={400 / 2}
           velocity={.02}
           coords={this.state.stops}>
-        </Globe>
+        </Globe>*/}
+
       </div>
     );
   }

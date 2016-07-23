@@ -1,3 +1,4 @@
+
 // View Styles
 var search = {
   height: "200px",
@@ -80,13 +81,23 @@ var tripBar = {
 // Home Styles
 
 var home = {
-  maxWidth: 900,
+  maxWidth: '100%',
   marginLeft: 'auto',
   marginRight: 'auto',
   padding: '20px',
   paddingLeft: '20px',
-  paddingRight: '20px'
+  paddingRight: '20px',
+  // background: "url('/img/main.jpg') no-repeat center center fixed"
 }
+
+var bg = {
+  position: 'fixed', 
+  top: 0, 
+  left: 0, 
+  minWidth: '100%',
+  minHeight: '100%'
+}
+
 
 var map = {
   height: '500px',

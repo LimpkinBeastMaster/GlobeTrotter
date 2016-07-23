@@ -17,7 +17,7 @@ class SignUp extends React.Component {
 			<div className="Row">
 				<div className="col-md-4">
 				</div>
-				<div className="col-md-4">
+				<div className="col-md-4" style={{paddingTop: '80px'}}>
 	      	<Well>
 		      	<Form horizontal>
 			      	<FormGroup controlId="formControlsText"> 

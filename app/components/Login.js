@@ -21,7 +21,7 @@ class Login extends React.Component {
 			<div className="Row">
 				<div className="col-md-4">
 				</div>
-				<div className="col-md-4">
+				<div className="col-md-4" style={{paddingTop: '80px'}}>
 	      	<Well>
 		      	<form>
 			      	<FormGroup controlId="formControlsText"> 

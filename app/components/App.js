@@ -12,17 +12,20 @@ class App extends React.Component {
   render() {
     return (
       <div style={{padding: "15px"}}>
-        <Navbar inverse>
+      <img src="/img/main.jpg" style={{position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', minWidth: '100%', minHeight: '100%', zIndex: -1}} />
+        <Navbar inverse style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', border: 0}}>
           <Navbar.Header>
             <Navbar.Brand>
-             <a href="#">TravelApp</a>
+            <div>
+              <i className="fa fa-map fa-inverse" aria-hidden="true"></i> Globe Trotter
+            </div>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
               <LinkContainer to="/" activeClassName="active" onClick={fxn.bind(this, '/')}>
-                <NavItem eventKey={1}>Home</NavItem>
+                <NavItem style={{color: '#fff'}} eventKey={1}>Home</NavItem>
               </LinkContainer>
               <LinkContainer to="/login" activeClassName="active" onClick={fxn.bind(this, '/login')}>
                 <NavItem eventKey={2}>Login</NavItem>
@@ -41,11 +44,11 @@ class App extends React.Component {
               </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <Navbar.Form>
+              {/* <Navbar.Form>
                 <FormGroup>
                   <FormControl type="text" placeholder="Find your next trip..." />
                 </FormGroup>
-              </Navbar.Form>
+              </Navbar.Form> */}
             </Nav>
           </Navbar.Collapse>        
         </Navbar>
