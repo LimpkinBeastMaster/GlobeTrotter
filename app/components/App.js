@@ -11,13 +11,13 @@ function fxn(path){
 class App extends React.Component {
   render() {
     return (
-      <div style={{padding: "15px"}}>
+      <div style={{padding: '15px'}}>
       <img src="/img/main.jpg" style={{position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', minWidth: '100%', minHeight: '100%', zIndex: -1}} />
         <Navbar inverse style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', border: 0}}>
           <Navbar.Header>
             <Navbar.Brand>
             <div>
-              <i className="fa fa-map fa-inverse" aria-hidden="true"></i> Globe Trotter
+              <i className="fa fa-map fa-inverse" aria-hidden="true"></i>
             </div>
             </Navbar.Brand>
             <Navbar.Toggle />

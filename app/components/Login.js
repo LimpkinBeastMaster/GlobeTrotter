@@ -22,7 +22,7 @@ class Login extends React.Component {
 				<div className="col-md-4">
 				</div>
 				<div className="col-md-4" style={{paddingTop: '80px'}}>
-	      	<Well>
+	      	<Well style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', border: 0}}>
 		      	<form>
 			      	<FormGroup controlId="formControlsText"> 
 			      		<ControlLabel>Username</ControlLabel>

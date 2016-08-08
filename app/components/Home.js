@@ -57,20 +57,25 @@ class Home extends React.Component {
     return (
       <div className="home" style={home}>
         <div className="Row">
-          <div className="col-md-4">
-          </div>
-          <div className="col-md-4" style={{paddingTop: '80px'}}>
-            <div style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: '10px', height: 250, color: '#fff', padding: '30px'}}>
-              <h2 className="text-center">Globe Trotter</h2>
-              <Button type="submit" bsStyle="primary" block>
-                Sign In
-              </Button>
-              <Button type="button" bsStyle="success" block>
-                Create Account
-              </Button>
+          <div className="col-md-6 col-md-offset-3" style={{paddingTop: '60px'}}>
+            <div style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: '2px', height: 250, color: '#fff', padding: '30px'}}>
+              <h3 className="text-center">GLOBE TROTTER</h3>
+
+                <div className="col-md-4 col-md-offset-2">
+
+                  <Button type="submit" bsSize="large" style={{backgroundColor: 'rgba(91, 44, 111, 1)', border: 0, borderRadius: 0, color: '#fff'}} block>
+                    Sign In
+                  </Button>
+                </div>
+
+                  <div className="col-md-4">
+                    <Button type="button" style={{backgroundColor: 'rgba(91, 44, 111, 1)', border: 0, borderRadius: 0, color: '#fff'}} bsSize="large" block>
+                      Create Account
+                    </Button>
+                  </div>
+
+
             </div>
-          </div>
-          <div className="col-md-4">
           </div>
         </div>
 

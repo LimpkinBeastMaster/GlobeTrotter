@@ -65,7 +65,7 @@ class CreateTripsView extends React.Component {
           <div className="col-md-2">
           </div>
           <div className="col-md-8">
-            <PageHeader>Build Trip <small></small></PageHeader>
+            <PageHeader style={{color: "#fff"}}>Build Trip <small></small></PageHeader>
           </div>
           <div className="col-md-2">
           </div>  

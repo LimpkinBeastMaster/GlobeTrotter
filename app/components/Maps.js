@@ -137,18 +137,12 @@ class Maps extends React.Component {
       stopAddress: address,
       stopInfo: info
     }
-    //console.log(this.state.markers);
     CreateTripActions.AddPoint(this.state.markers)
   }
 
   renderInfoWindow(ref, marker) {
     
     return (
-      // "<table id='table'>"
-      //            "<tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>"
-      //            "<tr><td>Address:</td> <td><input type='text' id='address'/></td> </tr>"
-      //            "<tr><td>Info:</td> <td><input type='text' id='info'/></td> </tr>"
-      //            "<tr><td></td><td><input type='button' value='Save & Close' onclick='saveData()'/></td></tr>";
 
       <InfoWindow 
         key={`${ref}_info_window`}
@@ -207,7 +201,7 @@ class Maps extends React.Component {
         googleMapElement={
           <GoogleMap
             ref={(map) => (this._googleMapComponent = map)}
-            defaultZoom={10}
+            defaultZoom={14}
             center={this.state.center}
             onClick={this.handleMapClick.bind(this)}
             onBoundsChanged={this.handleViewChanged.bind(this)}

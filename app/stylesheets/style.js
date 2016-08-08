@@ -1,4 +1,4 @@
-
+ 
 // View Styles
 var search = {
   height: "200px",
@@ -37,7 +37,6 @@ var searchContainer = {
   borderRadius: "4px",
   fontSize: "16px",
   backgroundColor: "white",
-  //backgroundImage: "url('/img/searchicon.png')",
   backgroundSize: "27px",
   backgroundPosition: "10px 10px", 
   backgroundRepeat: "no-repeat",
@@ -100,8 +99,8 @@ var bg = {
 
 
 var map = {
-  height: '500px',
-  width: '500px'
+  height: '550px',
+  width: '100%'
 }
 
 var stopList = {
