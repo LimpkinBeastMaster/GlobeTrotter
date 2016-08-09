@@ -1,9 +1,9 @@
-import alt from '../alt';
-import UserActions from '../actions/UserActions';
+import alt from '../../alt';
+import UserTripsActions from './UserTripsActions';
 
 class UserStore {
   constructor() {
-    this.bindActions(UserActions);
+    this.bindActions(UserTripsActions);
     this.trips = [];
     this.user = 'ben';
   }

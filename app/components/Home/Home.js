@@ -1,10 +1,10 @@
 //THE MAIN PAGE AT FOR / INDEX
 
 import React from 'react'
-import UserStore from '../../stores/UserStore'
-import UserActions from '../../actions/UserActions'
-import AllTripActions from '../../actions/AllTripActions'
-import AllTripsStore from '../../stores/AllTripsStore';
+import UserStore from '../UserTrips/UserTripsStore'
+import UserTripsActions from '../UserTrips/UserTripsActions'
+import AllTripActions from '../AllTrips/AllTripsActions'
+import AllTripsStore from '../AllTrips/AllTripsStore';
 import NavLink from '../NavLink'
 // import Globe from '../Globe'
 

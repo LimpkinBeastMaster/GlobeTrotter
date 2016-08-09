@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Route, Link } from 'react-router'
 import { Row, Button, Well, ButtonGroup } from 'react-bootstrap'
 import { tripDisplay, likes, tripBar } from '../../stylesheets/style'
-import CreateTripActions from '../../actions/CreateTripActions'
+import CreateTripActions from '../CreateTrip/CreateTripActions'
 
 class TripList extends React.Component {
 

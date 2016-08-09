@@ -1,8 +1,8 @@
 import React from 'react';
 import TripList from '../AllTrips/TripList';
-import UserStore from '../../stores/UserStore'
-import UserActions from '../../actions/UserActions'
-import userData from '../../stores/data/userData'
+import UserTripsStore from './UserTripsStore'
+import UserTripsActions from './UserTripsActions'
+import userData from '../../data/userData'
 import { Row, PageHeader } from 'react-bootstrap'
 import { search, trips } from '../../stylesheets/style'
  
@@ -10,8 +10,8 @@ class UserTripView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: UserStore.getState().trips || [],
-      user: UserStore.getState().user,
+      trips: UserTripsStore.getState().trips || [],
+      user: UserTripsStore.getState().user,
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -19,21 +19,21 @@ class UserTripView extends React.Component {
   componentDidMount() {
     // console.log('TRIPS', this.state.trips);
     // console.log('USERMOUNTED', this.state.user);
-    UserStore.listen(this.onChange);
-    UserActions.GetTrips(this.state.user);
+    UserTripsStore.listen(this.onChange);
+    UserTripsActions.GetTrips(this.state.user);
     console.log(this.state.trips);
 
   }
 
   componentWillUnmount() {
-    UserStore.unlisten(this.onChange);
+    UserTripsStore.unlisten(this.onChange);
   }
 
   onChange() {
-    // console.log(UserStore.getState().trips)
+    // console.log(UserTripsStore.getState().trips)
     this.setState({
-      trips: UserStore.getState().trips || [],
-      user: UserStore.getState().user
+      trips: UserTripsStore.getState().trips || [],
+      user: UserTripsStore.getState().user
     });
   }
 
@@ -42,7 +42,7 @@ class UserTripView extends React.Component {
     e.preventDefault();
     console.log('name, title', trip, index, type);
     if(type === 3) {
-      UserActions.RemoveTrip(trip, index, type);
+      UserTripsActions.RemoveTrip(trip, index, type);
     }
   }
 

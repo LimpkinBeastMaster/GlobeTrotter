@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker, Polyline, SearchBox } from "react-google-maps";
 import { default as update } from "react-addons-update";
-import CreateTripActions from '../../actions/CreateTripActions'
+import CreateTripActions from './CreateTripActions'
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Col } from 'react-bootstrap';
 
 

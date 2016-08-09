@@ -3,9 +3,9 @@ import Maps from './Maps';
 import { Row, PageHeader, FormControl, Button, ButtonToolbar } from 'react-bootstrap'
 import {Link} from 'react-router';
 import { map, stopList } from '../../stylesheets/style';
-import CreateTripStore from '../../stores/CreateTripStore';
-import UserStore from '../../stores/UserStore';
-import CreateTripActions from '../../actions/CreateTripActions';
+import CreateTripStore from './CreateTripStore';
+import UserTripsStore from '../UserTrips/UserTripsStore';
+import CreateTripActions from './CreateTripActions';
 import StopList from './StopList';
 
 //Mytrips link needs to point link to a specific /usertrips/id
@@ -39,7 +39,7 @@ class CreateTripsView extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     var postObject = {
-        username: UserStore.getState().user,
+        username: UserTripsStore.getState().user,
         tripname: e.target.tripName.value,
         stops: this.state.stops
     }

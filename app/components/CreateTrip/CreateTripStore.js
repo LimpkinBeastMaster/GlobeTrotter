@@ -1,6 +1,6 @@
-import alt from '../alt';
-import userData from './data/userData'
-import CreateTripActions from '../actions/CreateTripActions'
+import alt from '../../alt';
+import userData from '../../data/userData'
+import CreateTripActions from './CreateTripActions'
 
 class CreateTripStore {
 

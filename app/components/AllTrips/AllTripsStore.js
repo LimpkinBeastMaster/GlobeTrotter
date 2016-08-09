@@ -1,6 +1,6 @@
-import alt from '../alt';
-import allData from './data/allData'
-import AllTripsActions from '../actions/AllTripActions'
+import alt from '../../alt';
+import allData from '../../data/allData'
+import AllTripsActions from './AllTripsActions'
 
 class AllTripsStore {
   constructor() {

@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import TripList from './TripList';
-import AllTripsStore from '../../stores/AllTripsStore';
-import AllTripsActions from '../../actions/AllTripActions';
-import allData from '../../stores/data/allData'
+import AllTripsStore from './AllTripsStore';
+import AllTripsActions from './AllTripsActions';
+import allData from '../../data/allData'
 import { Row, PageHeader } from 'react-bootstrap'
 import { search, trips } from '../../stylesheets/style';
 import { searchButton, searchBox, searchContainer } from '../../stylesheets/style';
